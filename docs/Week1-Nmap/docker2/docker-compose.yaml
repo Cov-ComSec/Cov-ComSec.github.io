@@ -1,0 +1,50 @@
+version: '3'
+services:
+  ssh:
+    image: cueh/debian_ssh
+    ports:
+      - "22:22"
+    expose:
+      - 22
+    networks:
+      - external
+  evilweb:
+    image: cueh/comsec_evilweb
+    ports:
+      - "8080:80"
+    expose:
+      - 8080
+    volumes:
+      - data-volume:/var/www/html/ftp-uploads/
+    networks:
+      - external
+  ftp:
+    image: cueh/ftpanon #stilliard/pure-ftpd
+    ports:
+      - "2121:21"
+      - "30000-30009:30000-30009"
+    expose:
+      - 2121
+    volumes:
+      - data-volume:/var/ftp/
+    networks:
+      - external
+  smtp:
+    image: cueh/typewriter_postfix
+    ports:
+      - "2525:25"
+    expose:
+      - 2525
+    networks:
+      - external
+
+volumes:
+  data-volume:
+
+networks:
+ external:
+   ipam:
+     config:
+       - subnet: 192.168.42.0/24
+    
+#image: inanimate/vsftpd-anon

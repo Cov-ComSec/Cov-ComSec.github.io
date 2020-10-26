@@ -1,0 +1,50 @@
+version: '3'
+services:
+  ssh:
+    image: cueh/debian_ssh
+    ports:
+      - "22:22"
+    expose:
+      - 22
+    networks:
+      - external
+  web:
+    image: cueh/scanningweb #cueh/php_apache
+    ports:
+      - "80:80"
+    expose:
+      - 80
+    volumes:
+      - data-volume:/var/www/html/ftp-uploads/
+    networks:
+      - external
+  ftp:
+    image: cueh/ftpanon #stilliard/pure-ftpd
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    expose:
+      - 21
+    volumes:
+      - data-volume:/var/ftp/
+    networks:
+      - external
+  smtp:
+    image: cueh/typewriter_postfix
+    ports:
+      - "25:25"
+    expose:
+      - 25
+    networks:
+      - external
+
+volumes:
+  data-volume:
+
+networks:
+ external:
+   ipam:
+     config:
+       - subnet: 192.168.42.0/24
+    
+#image: inanimate/vsftpd-anon

@@ -1,0 +1,36 @@
+site_name: 'Cov-ComSec - Materials'
+docs_dir: docs
+nav:
+  - Home: index.md
+  - Week 1 - nmap:
+      - Materials: Week1-Nmap/readme.md
+      - Writeup: Week1-Nmap/writeup.md
+  - Week 2 - Web Enumeration: Week2-WebEnumeration/webEnumeration.pdf
+markdown_extensions:
+  - codehilite
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.keys
+  - footnotes
+  - mdx_math
+plugins:
+  - search
+  - macros:
+
+extra_javascript: 
+    - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+
+  
+theme: 
+  name: material
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+
+extra_css:
+    - css/extra.css
+
