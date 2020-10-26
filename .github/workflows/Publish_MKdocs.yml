@@ -14,5 +14,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - run: pip3 install -r requirements.txt
       - run: mkdocs gh-deploy --force
