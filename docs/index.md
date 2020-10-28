@@ -1,11 +1,21 @@
-# ComSecMaterials
+# CUEH ComSec Society
+Welcome to the website for the Coventry University Ethical Hacking ComSec Society (more commonly known as CUEH ComSec). We are are society lead by three second year students [Jack Orcherton](https://jackorcherton.github.io/), [Martin Schon](https://mschon.dev/) & [Tiago Pascoal](http://bs1phc.me). Here we will share materials used in & related to our presentations.
 
-The Materials for each week will be uploaded here!
-This year we will be running docker containers for challenges on your local machine, if you need a hand [view our guide, Docker for Dummies!](DockerforDummies.pdf) Which also **contains troubleshooting advice** (I find general advice point 8 fixes most problems).
+Currently, we hold weekly meetings on [Discord](https://discord.gg/7SF7NKG). These are every week on **Wednesday from 18:30**.
 
-| Week  | Covered | Video |
-|:-----:|---------|:-----:|
-|1      |Nmap & THM|<https://www.twitch.tv/videos/772154140>|
-|2      |Website Enumeration|<https://www.twitch.tv/videos/779063041>|
+## Topics Covered
+Below shows a brief summary of the topics covered, with links to the video lectures. To find all the related material, click on the link in the left hand bar.
 
-Also, don't forget to join the competition! Find additional challenges and submit your flags here! You can work in teams of 2-4, or even by yourself, if you'd prefer. **NOTE: this is for ComSec members only** (university emails required for sign-up).
+| Week  | Covered                           | Video                                  |
+|:-----:|-----------------------------------|:--------------------------------------:|
+|1      |Nmap & THM                         |<https://www.twitch.tv/videos/772154140>|
+|2      |Website Enumeration                |<https://www.twitch.tv/videos/779063041>|
+|3      |Graduate Student Talk, with Ziemni |Currently Unavailable                   |
+
+## Latest Announcements
+The best place to check for announcements is either here or the anouncement channel on Discord.
+### New Sessions!
+We are now planning to hold drop in session every **Thursday from 15:00-21:00** on [Discord](https://discord.gg/7SF7NKG). In these sessions we hope to complete challenges from [Hack the Box](https://www.hackthebox.eu/) and [Try Hack Me](https://tryhackme.com/). We will also aim to play games, like king of the hill (KOTH).
+
+### Join our CTF Server!
+Join our new [CTFd server](https://cueh-comsec.ctfd.io/), here we will try to release weekly challenges related to our weekly ComSec sessions. You can work in teams of 2-4, or even by yourself, if you'd prefer. **Please Note** to join you will have to use your Coventry Universtity email address, otherwise your account will not work!
