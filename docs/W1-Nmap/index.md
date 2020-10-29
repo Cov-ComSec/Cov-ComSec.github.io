@@ -42,3 +42,6 @@ wget https://Cov-ComSec.github.io/Week1-Nmap/d2/docker-compose.yaml
 - Start the container
 
 **Remember to submit your flags to the [CTFd server!](https://cueh-comsec.ctfd.io/)**
+
+## Go Futher
+Complete the [Nmap Room on THM](https://tryhackme.com/room/rpnmap)

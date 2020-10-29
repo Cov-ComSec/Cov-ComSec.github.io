@@ -5,7 +5,7 @@ nav:
   - Week 1 - Nmap:
       - Materials: W1-Nmap/index.md
       - Writeup: W1-Nmap/writeup.md
-  - Week 2 - Web Enumeration: Week2-WebEnumeration/webEnumeration.pdf
+  - Week 2 - Web Enumeration: W2-WebEnum
 markdown_extensions:
   - codehilite
   - admonition
