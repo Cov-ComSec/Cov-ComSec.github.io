@@ -1,4 +1,6 @@
 # Week 2 - Web Enumeration
+Wednesday 21st October 2020 | Page Author: Jack Orcherton
+
 [Session Video](https://www.twitch.tv/videos/779063041) | [Presentation](webEnumeration.pdf)
 
 ## Topics Covered

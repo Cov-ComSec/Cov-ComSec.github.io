@@ -1,4 +1,6 @@
 # Week 1 - Nmap & THM
+Wednesday 15th October 2020 | Page Author: Jack Orcherton
+
 [Session Video](https://www.twitch.tv/videos/772154140) | [Presentation](nmap.pdf)
 
 ## Topics Covered

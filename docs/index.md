@@ -3,6 +3,9 @@ Welcome to the website for the Coventry University Ethical Hacking ComSec Societ
 
 Currently, we hold weekly meetings on [Discord](https://discord.gg/7SF7NKG). These are every week on **Wednesday from 18:30**.
 
+![ComSec RuCTFE, 2019](home.png)
+ComSec @ RuCTFE, 2019
+
 ## Legal
 Please note that topics on this site will cover hacking, however this is intended for educational use only & we condem it from being used in any unethical way.
 
@@ -15,9 +18,9 @@ Below shows a brief summary of the topics covered, with links to the video lectu
 
 | Week  | Covered                           | Video                                  |
 |:-----:|-----------------------------------|:--------------------------------------:|
-|1      |Nmap & THM                         |<https://www.twitch.tv/videos/772154140>|
-|2      |Website Enumeration                |<https://www.twitch.tv/videos/779063041>|
-|3      |Graduate Student Talk, with Ziemni |Currently Unavailable                   |
+|1      |Nmap & THM                         |[Lecture](https://www.twitch.tv/videos/772154140)|
+|2      |Website Enumeration                |[Lecture](https://www.twitch.tv/videos/779063041)|
+|3      |Graduate Student Talk, with Ziemni |[Lecture](https://www.twitch.tv/videos/785147513) & [Live Demo](https://www.twitch.tv/videos/785274676)|
 
 ## Latest Announcements
 The best place to check for announcements is either here or the anouncement channel on Discord.
