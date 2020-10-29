@@ -31,7 +31,8 @@ theme:
   palette:
     primary: 'indigo'
     accent: 'indigo'
-
+  logo: 'logo.png'
+  favicon: 'logo.png'
 extra_css:
     - css/extra.css
 
