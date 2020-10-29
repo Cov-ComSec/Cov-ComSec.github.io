@@ -7,7 +7,7 @@ nav:
       - Writeup: w1-nmap/writeup.md
   - Week 2 - Web Enumeration: w2-webenum
   - Week 3 - Ziemni, Graduate Talk: w3-ziemni
-  - Writeups : writeups/writeup.md
+  - Writeups : writeups
 markdown_extensions:
   - codehilite
   - admonition
