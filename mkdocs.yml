@@ -2,10 +2,12 @@ site_name: 'CUEH ComSec'
 docs_dir: docs
 nav:
   - Home: index.md
-  - Week 1 - Nmap:
+  - Week 1 - Nmap: 
       - Materials: w1-nmap
       - Writeup: w1-nmap/writeup.md
-  - Week 2 - Web Enumeration: w2-webenum
+  - Week 2 - Web Enumeration:
+    - Materials: w2-webenum
+    - Writeup: w2-webenum/writeup.md
   - Week 3 - Ziemni, Graduate Talk: w3-ziemni
 markdown_extensions:
   - codehilite
@@ -31,7 +33,8 @@ theme:
   palette:
     primary: 'indigo'
     accent: 'indigo'
-
+  logo: 'logo.png'
+  favicon: 'logo.png'
 extra_css:
     - css/extra.css
 
