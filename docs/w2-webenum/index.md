@@ -1,5 +1,5 @@
 # Week 2 - Web Enumeration
-[Session Video](https://www.twitch.tv/videos/779063041) | [Presentation](/webEnumeration.pdf)
+[Session Video](https://www.twitch.tv/videos/779063041) | [Presentation](webEnumeration.pdf)
 
 ## Topics Covered
 - What is Enumeration?

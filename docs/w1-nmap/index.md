@@ -1,5 +1,5 @@
 # Week 1 - Nmap & THM
-[Session Video](https://www.twitch.tv/videos/772154140) | [Presentation](/1-Nmap.pdf)
+[Session Video](https://www.twitch.tv/videos/772154140) | [Presentation](nmap.pdf)
 
 ## Topics Covered
 - What is comsec?
@@ -7,10 +7,10 @@
 - Intro to THM
 
 ## Welcome to ComSec!
-Before starting this week, you will need to ensure that you have a virtual machine setup. We will be using Kali linux throughout the society, as it contains most of the tools that we will use. If you need a hand setting up your virtual machine, [view the guide](/vmSetup.pdf)
+Before starting this week, you will need to ensure that you have a virtual machine setup. We will be using Kali linux throughout the society, as it contains most of the tools that we will use. If you need a hand setting up your virtual machine, [view the guide](vmSetup.pdf)
 
 ## This Weeks Challenges
-This week we will be using Docker - if this is new to you, [view our guide & troubleshooting advice - Docker for Dummies!](/DockerforDummies.pdf)
+This week we will be using Docker - if this is new to you, [view our guide & troubleshooting advice - Docker for Dummies!](DockerforDummies.pdf)
 ### Challenge 1
 In this challenge, you will learn to use Nmap to identify running services, then finding the 2 flags hidden within the machine.
 #### Instructions
@@ -24,7 +24,7 @@ cd filepath
 ```
 - Run the following command to fetch the docker file 
 ```bash
-wget https://Cov-ComSec.github.io/Week1-Nmap/d1/docker-compose.yaml
+wget https://Cov-ComSec.github.io/w1-nmap/d1/docker-compose.yaml
 ```
 - To start the container, run:
 ```bash
@@ -37,7 +37,7 @@ In this challenge, you will need to run Nmap to identify services, as they are r
 - Follow steps above to create a new folder (note if you change the docker-compose file name this will not work)
 - Run the following command to fetch the docker file 
 ```bash
-wget https://Cov-ComSec.github.io/Week1-Nmap/d2/docker-compose.yaml
+wget https://Cov-ComSec.github.io/w1-nmap/d2/docker-compose.yaml
 ```
 - Start the container
 

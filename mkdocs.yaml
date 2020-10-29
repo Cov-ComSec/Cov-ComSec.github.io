@@ -3,9 +3,10 @@ docs_dir: docs
 nav:
   - Home: index.md
   - Week 1 - Nmap:
-      - Materials: W1-Nmap/index.md
-      - Writeup: W1-Nmap/writeup.md
-  - Week 2 - Web Enumeration: W2-WebEnum
+      - Materials: w1-nmap
+      - Writeup: w1-nmap/writeup.md
+  - Week 2 - Web Enumeration: w2-webenum
+  - Week 3 - Ziemni, Graduate Talk: w3-ziemni
 markdown_extensions:
   - codehilite
   - admonition
