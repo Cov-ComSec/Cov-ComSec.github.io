@@ -24,7 +24,8 @@ This week we will be using a custom website CTF challenge that we have created. 
 ```bash
 sudo docker run --name csw1 --rm cuehcomsec/2-webenumeration
 ```
-**Remember to submit your flags to the [CTFd server!](https://cueh-comsec.ctfd.io/)**
+
+!!! note "Remember to submit your flags to the [CTFd server!](https://cueh-comsec.ctfd.io/)"
 
 ## Go Futher
 - [Google Dorking on THM](https://tryhackme.com/room/googledorking)

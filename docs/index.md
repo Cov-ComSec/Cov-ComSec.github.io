@@ -6,12 +6,14 @@ Currently, we hold weekly meetings on [Discord](https://discord.gg/7SF7NKG). The
 ![ComSec RuCTFE, 2019](home.png)
 ComSec @ RuCTFE, 2019
 
-## Legal
-Please note that topics on this site will cover hacking, however this is intended for educational use only & we condem it from being used in any unethical way.
+## Legal & Terms of Use
 
-As well as this, do not attack any machine that you do not own, unless you have prior written consent from the owner. As a rule of thumb, if you are unsure if you are allowed to do something, you probably aren't! We would like to take this time to remind you of the [Computer Misuse Act 1990](https://www.legislation.gov.uk/ukpga/1990/18/contents) or your local equivilent.
+!!! warning
+    Please note that topics on this site will cover hacking, however this is intended for educational use only & we condem it from being used in any unethical way.
 
-Finally, we accept no responsibility for any actions that you may take following our guides.
+    As well as this, do not attack any machine that you do not own, unless you have prior written consent from the owner. As a rule of thumb, if you are unsure if you are allowed to do something, you probably aren't! We would like to take this time to remind you of the [Computer Misuse Act 1990](https://www.legislation.gov.uk/ukpga/1990/18/contents) or your local equivilent.
+
+    Finally, we **accept no responsibility** for any actions that you may take following our guides.
 
 ## Topics Covered
 Below shows a brief summary of the topics covered, with links to the video lectures. To find all the related material, click on the link in the left hand bar.
