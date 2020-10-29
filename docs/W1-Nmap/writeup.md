@@ -112,9 +112,3 @@ Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/)
 
 
 Author:Tiago Pascoal @bs1phc
-
-
-
-
-
-

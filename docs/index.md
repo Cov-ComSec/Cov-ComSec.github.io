@@ -17,5 +17,10 @@ The best place to check for announcements is either here or the anouncement chan
 ### New Sessions!
 We are now planning to hold drop in session every **Thursday from 15:00-21:00** on [Discord](https://discord.gg/7SF7NKG). In these sessions we hope to complete challenges from [Hack the Box](https://www.hackthebox.eu/) and [Try Hack Me](https://tryhackme.com/). We will also aim to play games, like king of the hill (KOTH).
 
+### What do you think?
+As we are new to this, we want to know your thoughts about the club and how we can improve. So would appreciate it, if you could take the time to [fill out our survey](https://forms.office.com/Pages/ResponsePage.aspx?id=mqsYS2U3vkqsfA4NOYr9T4msyAUEx4ZCtQFUtwJ8c85UQlZLUDZaV1lKRTFWSDk2U0M3UlZOVUJHQi4u&embed=true).
+
+**Please Note:** all survey results are anonymized (so we cannot identify you) - you may be asked to sign in, but this is only to confirm that you are a Coventry University Student & your details will not be recorded. If you wish to invoke your GDPR rights, please contact [Jack Orcherton](https://jackorcherton.github.io/contact/). 
+
 ### Join our CTF Server!
 Join our new [CTFd server](https://cueh-comsec.ctfd.io/), here we will try to release weekly challenges related to our weekly ComSec sessions. You can work in teams of 2-4, or even by yourself, if you'd prefer. **Please Note** to join you will have to use your Coventry Universtity email address, otherwise your account will not work!
