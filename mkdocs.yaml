@@ -1,14 +1,18 @@
 site_name: 'CUEH ComSec'
+site_url: 'https://cov-comsec.github.io/'
+site_author: 'CUEH ComSec'
+site_description: 'The official site for Coventry University Ethical Hacking Computer Security Society (CUEH ComSec), find our latest presentations, videos & announcements!'
 docs_dir: docs
 nav:
   - Home: index.md
   - Week 1 - Nmap: 
-      - Materials: w1-nmap
+      - Materials: w1-nmap/index.md
       - Writeup: w1-nmap/writeup.md
   - Week 2 - Web Enumeration:
-    - Materials: w2-webenum
+    - Materials: w2-webenum/index.md
     - Writeup: w2-webenum/writeup.md
-  - Week 3 - Ziemni, Graduate Talk: w3-ziemni
+  - Week 3 - Ziemni, Graduate Talk: w3-ziemni/index.md
+  - CUEH CTF Challenges: 'https://cueh-comsec.ctfd.io/'
 markdown_extensions:
   - codehilite
   - admonition
