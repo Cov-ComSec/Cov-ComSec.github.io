@@ -12,7 +12,7 @@ nav:
     - Materials: w2-webenum/index.md
     - Writeup: w2-webenum/writeup.md
   - Week 3 - Ziemni, Graduate Talk: w3-ziemni/index.md
-  - CUEH CTF Challenges: 'https://cueh-comsec.ctfd.io/'
+
 markdown_extensions:
   - codehilite
   - admonition
@@ -24,6 +24,8 @@ markdown_extensions:
   - pymdownx.keys
   - footnotes
   - mdx_math
+  - attr_list
+
 plugins:
   - search
   - macros:

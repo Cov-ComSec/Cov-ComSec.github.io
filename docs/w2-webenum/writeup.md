@@ -43,7 +43,7 @@ By the Way always check the source code.
 
 ### .well-known/security.txt
 
-Have you heard of this directory before if you don't you can get an idea [security.txt](https://en.wikipedia.org/wiki/Security.txt). Always good to check. 
+Have you heard of this directory before if you don't you can get an idea [security.txt](https://en.wikipedia.org/wiki/Security.txt){target=_blank}. Always good to check. 
 
 ## Flag.txt
 

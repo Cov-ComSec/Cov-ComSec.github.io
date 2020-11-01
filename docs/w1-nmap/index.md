@@ -1,7 +1,7 @@
 # Week 1 - Nmap & THM
 Wednesday 15th October 2020 | Page Author: Jack Orcherton
 
-[Session Video](https://www.twitch.tv/videos/772154140) | [Presentation](nmap.pdf)
+[Session Video](https://www.twitch.tv/videos/772154140){target=_blank} | [Presentation](nmap.pdf){target=_blank}
 
 ## Topics Covered
 - What is comsec?
@@ -9,10 +9,10 @@ Wednesday 15th October 2020 | Page Author: Jack Orcherton
 - Intro to THM
 
 ## Welcome to ComSec!
-Before starting this week, you will need to ensure that you have a virtual machine setup. We will be using Kali linux throughout the society, as it contains most of the tools that we will use. If you need a hand setting up your virtual machine, [view the guide](vmSetup.pdf)
+Before starting this week, you will need to ensure that you have a virtual machine setup. We will be using Kali linux throughout the society, as it contains most of the tools that we will use. If you need a hand setting up your virtual machine, [view the guide](vmSetup.pdf){target=_blank}
 
 ## This Weeks Challenges
-This week we will be using Docker - if this is new to you, [view our guide & troubleshooting advice - Docker for Dummies!](DockerforDummies.pdf)
+This week we will be using Docker - if this is new to you, [view our guide & troubleshooting advice - Docker for Dummies!](DockerforDummies.pdf){target=_blank}
 ### Challenge 1
 In this challenge, you will learn to use Nmap to identify running services, then finding the 2 flags hidden within the machine.
 #### Instructions
@@ -43,7 +43,7 @@ wget https://Cov-ComSec.github.io/w1-nmap/d2/docker-compose.yaml
 ```
 - Start the container
 
-!!! note "Remember to submit your flags to the [CTFd server!](https://cueh-comsec.ctfd.io/)"
+!!! note "Remember to submit your flags to the [CTFd server!](https://cueh-comsec.ctfd.io/){target=_blank}"
 
 ## Go Futher
-Complete the [Nmap Room on THM](https://tryhackme.com/room/rpnmap)
+Complete the [Nmap Room on THM](https://tryhackme.com/room/rpnmap){target=_blank}
