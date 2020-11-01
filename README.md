@@ -1,18 +1,35 @@
 
-# ComSecMaterials
+# CUEH Website
+The official site for Coventry University Ethical Hacking Computer Security Society (CUEH ComSec), find our latest presentations, videos & announcements! [Click here to view our site!](https://cov-comsec.github.io/)
 
-## This is an mkdocs/github pages repo
+## Viewing Materials
+If you wish to view the presentations, either head to the [website](https://cov-comsec.github.io/) or go to the /docs folder.
 
-The URL for rendered material is:
+## Mistakes/Suggestions
+Unfortunately we are ethical hackers, and not graphics designers (we are used to spending 90% of our time in terminals), so if you have a suggestion to improve our content, let us know! We are also only human, so there is a high likelihood that we have made a syntax error  on a webpage or presentation or have a bug in a piece of code or challenge.
+If you spot an error in our site/or have a suggestion, please either:
+ - [Fork the repository](https://github.com/Cov-ComSec/Cov-ComSec.github.io), correct the error & create a pull request.
+ - Create an [issue on GitHub](https://github.com/Cov-ComSec/Cov-ComSec.github.io/issues).
+ - Contact us on the [Discord Server](https://discord.gg/7SF7NKG).
+All editors will be credited (unless you wish to remain anonymous).
 
-If you're here to read about ComSec, go there.
+# Development
+The rest of this readme file will detail the technical documentation on how to develop the site.
 
-The rest of this document is about how the repo is organised.
+# Branches
+- **gh-pages** - the hosted html version of the site (never attempt to push to this branch)
+- **main** - the mcdocs version of the live site (note that this branch has an automation task - see below) (has branch protection - must submit pull requests)
+- **dev**- development version of the site (not hosted), able to push directly to this branch, or create new branches and pull to this one
 
+# Automation
+A GitHub pages automation task has been setup:
+- **Runs:** whenever anything is commited to the main branch
+- **What it does:** runs mkdocs, & exports the html version of the site to gh-pages (which are then hosted live)
 
+## MkDocs.yaml & MkDocs.yml
+Both same file, but both must be kept updated, as .yaml is used locally & .yml is used by the GitHub action
 
 ## Building and publishing
-
  - MKDocs does most of the work
  - Keep your pages in `./docs`
  - All requirements can be installed in a venv 
@@ -22,4 +39,7 @@ The rest of this document is about how the repo is organised.
      commands set up a new shell when working with the repo)
  - Use `make serve` and go to <http://localhost:8008/> to see the site preview
    - This will update *live* as you change config files or page contents
- - When you're ready, commit your changes then use `make publish` to render and push the content to the pages branch. 
+ - When you're ready, commit your changes to the relevant branch
+ 
+## Admin Console
+You should always ensure that you never accidently expose your credentials or API keys in a public GitHub repository. This is because it is possible to look at previous commits & view all the old data (even if you submit over the top of it!) It is surprising the ammount of people who accidently do this. CUEH{flag1_checkCommits} It is possible to delete old commits however, this can be a pain to do and can cause issues when working as part of a team! So therefore, it is much easier to just double check before you commit your changes!
