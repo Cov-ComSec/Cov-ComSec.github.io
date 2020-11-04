@@ -37,7 +37,7 @@ So you have one flag.To be honest this flag works more like a hint to tell you w
 ftp 172.18.0.1
 ```
 You will be asked to input the Name. You just have to type anonymous to connect.
-If you do a "ls" you will be able do see the a file called FTPflag.txt which is the same file you found in the website. You type help you will see as the commands that you can use inside the ftp, we want to upload p0wnyshell so that we can get access to the machine through the browser. For now you just need to know that we are using p0wnyshell as our reverse-shell. So "ctrl+c" to stop the ftp connection clone p0wny shell repository [P0wny-Shell](http://github.com/flozz/p0wny-shell.git).
+If you do a "ls" you will be able do see the a file called FTPflag.txt which is the same file you found in the website. You type help you will see as the commands that you can use inside the ftp, we want to upload p0wnyshell so that we can get access to the machine through the browser. For now you just need to know that we are using p0wnyshell as our reverse-shell. So "ctrl+c" to stop the ftp connection clone p0wny shell repository [P0wny-Shell](http://github.com/flozz/p0wny-shell.git){target=_blank}.
 ```bash
 cd p0wny-shell
 ftp 127.18.0.1
@@ -71,7 +71,7 @@ ftp 192.168.42.1 2121
 ```
 Again use anonymous as login. 
 In this challegne we introduced privesc so we will need a scrip to enumerate all te services that are being run on the machine, file permissions, file types, sym links ,etc.
-There are 2 that are I know, LinEnum and linpeas. I prefer [linpeas](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/linPEAS/linpeas.sh), instead of cloning the repository what I did is I open my prefered text editor on my kali box and I just copy/pasted the script. Then I stopped the ftp connection I cd to the directory where I have linpeas, I started the connection again and use the "put linpeas.sh" to copy linpeas to the machine. Besides linpeas we will need a php reverse shell, cause p0wny shell is not going to work in this challenge. Another good resource to put in your bookmarks, [PentestMonkeys](https://github.com/pentestmonkey/php-reverse-shell) I did the same process with both linpeas and the [php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php) so open your editor and "ctrl+c / ctrl+v" put hte ip of your kali box in the line where you see "" \\change this" and upload the file to the ftp.
+There are 2 that are I know, LinEnum and linpeas. I prefer [linpeas](https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/linPEAS/linpeas.sh){target=_blank}, instead of cloning the repository what I did is I open my prefered text editor on my kali box and I just copy/pasted the script. Then I stopped the ftp connection I cd to the directory where I have linpeas, I started the connection again and use the "put linpeas.sh" to copy linpeas to the machine. Besides linpeas we will need a php reverse shell, cause p0wny shell is not going to work in this challenge. Another good resource to put in your bookmarks, [PentestMonkeys](https://github.com/pentestmonkey/php-reverse-shell){target=_blank} I did the same process with both linpeas and the [php-reverse-shell](https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php){target=_blank} so open your editor and "ctrl+c / ctrl+v" put hte ip of your kali box in the line where you see "" \\change this" and upload the file to the ftp.
 So right now you should see something like this 
 
 ![ftpfodler](imgs/uploads2.png)
@@ -95,7 +95,7 @@ Take a look at the output and try to find the SUID section. If you don't know SU
 
 ![linpeas](imgs/linpeas.png)
 
-That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called ["GTFOBINS"](https://gtfobins.github.io/) which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command. 
+That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called ["GTFOBINS"](https://gtfobins.github.io/){target=_blank} which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command. 
 ```
 :!/bin/sh
 #or
@@ -108,13 +108,7 @@ cat flag.txt
 ```
 Congrats!
 Any doubts contact ComSec Committee on discord.
-Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/)
+Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/){target=_blank}
 
 
 Author:Tiago Pascoal @bs1phc
-
-
-
-
-
-
