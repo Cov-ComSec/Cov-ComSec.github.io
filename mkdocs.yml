@@ -12,6 +12,7 @@ nav:
     - Materials: w2-webenum/index.md
     - Writeup: w2-webenum/writeup.md
   - Week 3 - Ziemni, Graduate Talk: w3-ziemni/index.md
+  - Week 4 - Web Exploitation: w4-webexploit/index.md
 
 markdown_extensions:
   - codehilite
