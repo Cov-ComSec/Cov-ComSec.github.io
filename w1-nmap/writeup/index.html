@@ -1,0 +1,604 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The official site for Coventry University Ethical Hacking Computer Security Society (CUEH ComSec), find our latest presentations, videos & announcements!">
+      
+      
+      
+        <link rel="canonical" href="https://cov-comsec.github.io/w1-nmap/writeup/">
+      
+      
+        <meta name="author" content="CUEH ComSec">
+      
+      <link rel="shortcut icon" href="../../logo.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.6">
+    
+    
+      
+        <title>Writeup - CUEH ComSec</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6910b76c.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.196e0c26.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4051b5">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="indigo" data-md-color-accent="indigo">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#nmap-1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://cov-comsec.github.io/" title="CUEH ComSec" class="md-header-nav__button md-logo" aria-label="CUEH ComSec">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            CUEH ComSec
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Writeup
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://cov-comsec.github.io/" title="CUEH ComSec" class="md-nav__button md-logo" aria-label="CUEH ComSec">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    CUEH ComSec
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    <label class="md-nav__link" for="nav-2">
+      Week 1 - Nmap
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Week 1 - Nmap" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Week 1 - Nmap
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../" class="md-nav__link">
+      Materials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Writeup
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Writeup
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nmap-scan" class="md-nav__link">
+    Nmap Scan
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    <label class="md-nav__link" for="nav-3">
+      Week 2 - Web Enumeration
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Week 2 - Web Enumeration" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Week 2 - Web Enumeration
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../w2-webenum/" class="md-nav__link">
+      Materials
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../w2-webenum/writeup/" class="md-nav__link">
+      Writeup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w3-ziemni/" class="md-nav__link">
+      Week 3 - Ziemni, Graduate Talk
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w4-webexploit/" class="md-nav__link">
+      Week 4 - Web Exploitation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w5-socialengineering/" class="md-nav__link">
+      Week 5 - Social Engineering
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w6-buffer/" class="md-nav__link">
+      Week 6 - Dan, Buffer Overflow
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w7-rop/" class="md-nav__link">
+      Week 7 - Sleepoverflow, ROP
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w8-CrowdStrike/" class="md-nav__link">
+      Week 8 - CrowdStrike Event
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../w9-stack/" class="md-nav__link">
+      Week 9 - Overflow, Real World Stack
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#nmap-scan" class="md-nav__link">
+    Nmap Scan
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="nmap-1">Nmap 1</h1>
+<p>So first week of comsec I hope everyone enjoyed the slides and is prepared for the ctf.</p>
+<p>after running this commands
+<div class="highlight"><pre><span></span><code>git clone https://github.com/Cov-ComSec/ComSecMaterials.git
+<span class="nb">cd</span> docker1 
+docker-compose up
+</code></pre></div>
+After running this commands you should see something like this in your terminal.</p>
+<p><img alt="dockerrunning" src="../imgs/docker_is_working.png" /></p>
+<p>If you do see this it means you are ready for playing.
+Minimize your shell open a new one and start scanning.</p>
+<h3 id="nmap-scan">Nmap Scan</h3>
+<p><div class="highlight"><pre><span></span><code>sudo nmap -sC -sV <span class="m">172</span>.18.0.1
+</code></pre></div>
+<img alt="nmap1scan" src="../imgs/nmap_1_scan.png" /></p>
+<p>It looks like we have 4 ports open 21,25,80,8080
+Lets navigate to http://172.18.0.1</p>
+<p>If you look at your nmap scan you can see that u have something like "/ftp-uploads" so this a directory in the website let's see whats going on in there. We have a folder called a anonymous let's see what's inside. Hm a file called FTPflag.txt looks like we found the first flag. Good Job!</p>
+<p><img alt="ftpanonymous" src="../imgs/ftp_anonymous.png" /></p>
+<p>So you have one flag.To be honest this flag works more like a hint to tell you what you should do after this. So if you go back to your nmap scan you will see that you have a line "21/tcp open ftp Pure-ftp" so we have a file transfer protocol it is always good to check as this can sometimes be used for file upload to the machine you are attacking. But what's the mean of ftp-anonymous if you do a fast google search you will find out that when this happens you can have acces to ftp server without having to know the credentials.So lets try to connect to the ftp.</p>
+<p><div class="highlight"><pre><span></span><code>ftp <span class="m">172</span>.18.0.1
+</code></pre></div>
+You will be asked to input the Name. You just have to type anonymous to connect.
+If you do a "ls" you will be able do see the a file called FTPflag.txt which is the same file you found in the website. You type help you will see as the commands that you can use inside the ftp, we want to upload p0wnyshell so that we can get access to the machine through the browser. For now you just need to know that we are using p0wnyshell as our reverse-shell. So "ctrl+c" to stop the ftp connection clone p0wny shell repository <a href="http://github.com/flozz/p0wny-shell.git" target="_blank">P0wny-Shell</a>.
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> p0wny-shell
+ftp <span class="m">127</span>.18.0.1
+put shell.php
+</code></pre></div>
+The last command is going to upload our shell.
+If you go back to your browser and back to "/ftp-uploads/anonymous" you will see the file shell.php in there clicked and you will have p0wny-shell.<img alt="p0wny-shell" src="../imgs/pwnyshell.png" /> So you succefully entered the machine. Let's look for the last flag. A easy way to find files on linux is using the file command.
+<div class="highlight"><pre><span></span><code>find / -name <span class="s2">&quot;*.txt&quot;</span> <span class="m">2</span>&gt;/dev/null
+</code></pre></div>
+<img alt="findcommand" src="../imgs/find_command.png" /></p>
+<p>Congratulations! Lets move to docker2</p>
+<h1 id="nmap-2">Nmap 2</h1>
+<p>So to prove how important is nmap we setup a second nmap challenge but right now we not following the common ports as you can see in here. We mangled the ports </p>
+<p><img alt="StandardPorts" src="../imgs/commonports.pdf" /></p>
+<div class="highlight"><pre><span></span><code>sudo nmap -sC -sV <span class="m">192</span>.168.42.1 -p-
+</code></pre></div>
+<p><img alt="nmap2scan" src="../imgs/nmap_2_scan.png" /></p>
+<p>In this challenge the ftp part is the same as the first challenge and the first flag is the same, the only difference is that the ports have been changed so if you to "http://192.168.42.1" the website is not going to load you need to instead look for something like this "192.168.42.1:8080".
+So lets pass to the second part uploading files to ftp. We have ftp running on port 2121 (2121/tcp ccproxy-ftp) last time you use "ftp $ip" to connect this time that wont work cause you will need to specify the port os instead use something like this "ftp $ip port"
+<div class="highlight"><pre><span></span><code>ftp <span class="m">192</span>.168.42.1 <span class="m">2121</span>
+</code></pre></div>
+Again use anonymous as login. 
+In this challegne we introduced privesc so we will need a scrip to enumerate all te services that are being run on the machine, file permissions, file types, sym links ,etc.
+There are 2 that are I know, LinEnum and linpeas. I prefer <a href="https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/blob/master/linPEAS/linpeas.sh" target="_blank">linpeas</a>, instead of cloning the repository what I did is I open my prefered text editor on my kali box and I just copy/pasted the script. Then I stopped the ftp connection I cd to the directory where I have linpeas, I started the connection again and use the "put linpeas.sh" to copy linpeas to the machine. Besides linpeas we will need a php reverse shell, cause p0wny shell is not going to work in this challenge. Another good resource to put in your bookmarks, <a href="https://github.com/pentestmonkey/php-reverse-shell" target="_blank">PentestMonkeys</a> I did the same process with both linpeas and the <a href="https://github.com/pentestmonkey/php-reverse-shell/blob/master/php-reverse-shell.php" target="_blank">php-reverse-shell</a> so open your editor and "ctrl+c / ctrl+v" put hte ip of your kali box in the line where you see "" \change this" and upload the file to the ftp.
+So right now you should see something like this </p>
+<p><img alt="ftpfodler" src="../imgs/uploads2.png" /></p>
+<p>Which means you ready. Open a terminal and start netcat.
+<div class="highlight"><pre><span></span><code>nc -lvnp <span class="m">1234</span>
+</code></pre></div>
+Go to "192.168.42.1:8080/ftp-uploads/php-reverse-shell.php" the site should be loading for ever. If you go back to your terminal you should have access to the box.
+Tip: everytime I get a reverse shell I try to find out what user I am.
+<div class="highlight"><pre><span></span><code>whoami
+</code></pre></div>
+Lets not forget we are in /var/www , we need to copy our linpeas script to tmp folder.
+<div class="highlight"><pre><span></span><code>cp linpeas.sh /tmp
+chmod +x linpeas.sh
+./linpeash.sh
+</code></pre></div>
+Take a look at the output and try to find the SUID section. If you don't know SUID is a type of permission that you have on linux that let's the user run the file or binary. </p>
+<p><img alt="linpeas" src="../imgs/linpeas.png" /></p>
+<p>That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called <a href="https://gtfobins.github.io/" target="_blank">"GTFOBINS"</a> which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command. 
+<div class="highlight"><pre><span></span><code>:!/bin/sh
+#or
+vim -c &#39;:!/bin/sh&#39;
+</code></pre></div>
+Now you are root!
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span> /root
+cat flag.txt
+</code></pre></div>
+Congrats!
+Any doubts contact ComSec Committee on discord.
+Don't to submit your flags in <a href="https://cueh-comsec.ctfd.io/" target="_blank">CTFD</a></p>
+<p>Author:Tiago Pascoal @bs1phc</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Materials
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../w2-webenum/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Materials
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.fd16492e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.7836ba4d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      
+    
+  </body>
+</html>
