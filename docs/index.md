@@ -23,6 +23,13 @@ Below shows a brief summary of the topics covered, with links to the video lectu
 |1      |Nmap & THM                         |[Lecture](https://www.twitch.tv/videos/772154140){target=_blank}|
 |2      |Website Enumeration                |[Lecture](https://www.twitch.tv/videos/779063041){target=_blank}|
 |3      |Graduate Student Talk, with Ziemni |[Lecture](https://www.twitch.tv/videos/785147513){target=_blank} & [Live Demo](https://www.twitch.tv/videos/785274676){target=_blank}|
+|4      |Website Exploitation               |Currently Unavailable                  |
+|5      |Social Engineering                 |Currently Unavailable                  |
+|6      |Buffer Overflow, with Dan          |Currently Unavailable                  |
+|7      |ROP Chain Exploits, with Sleepunderflow|[Lecture](https://www.twitch.tv/videos/817925421){target=_blank}|
+|8      |CrowdStrike University Challenge   |Future Event                           |
+|9      |Buffer Exploitation in Industry with Overflow|Future Event                 |
+
 
 ## Got a Question?
 

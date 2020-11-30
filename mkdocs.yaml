@@ -13,6 +13,11 @@ nav:
     - Writeup: w2-webenum/writeup.md
   - Week 3 - Ziemni, Graduate Talk: w3-ziemni/index.md
   - Week 4 - Web Exploitation: w4-webexploit/index.md
+  - Week 5 - Social Engineering: w5-socialengineering/index.md
+  - Week 6 - Dan, Buffer Overflow: w6-buffer/index.md
+  - Week 7 - Sleepoverflow, ROP: w7-rop/index.md
+  - Week 8 - CrowdStrike Event: w8-CrowdStrike/index.md
+  - Week 9 - Overflow, Real World Stack: w9-stack/index.md
 
 markdown_extensions:
   - codehilite

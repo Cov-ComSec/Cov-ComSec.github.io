@@ -40,6 +40,3 @@ Both same file, but both must be kept updated, as .yaml is used locally & .yml i
  - Use `make serve` and go to <http://localhost:8008/> to see the site preview
    - This will update *live* as you change config files or page contents
  - When you're ready, commit your changes to the relevant branch
- 
-## Admin Console
-You should always ensure that you never accidently expose your credentials or API keys in a public GitHub repository. This is because it is possible to look at previous commits & view all the old data (even if you submit over the top of it!) It is surprising the ammount of people who accidently do this. CUEH{flag1_checkCommits} It is possible to delete old commits however, this can be a pain to do and can cause issues when working as part of a team! So therefore, it is much easier to just double check before you commit your changes!
