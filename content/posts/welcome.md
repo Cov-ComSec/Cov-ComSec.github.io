@@ -3,7 +3,7 @@ title: "Welcome!"
 date: 2020-05-25T23:14:41+01:00
 lastmod: 2020-05-25T23:14:41+01:00
 draft: false
-author: "Jack"
+author: "Jack Orcherton"
 authorLink: "https://jackorcherton.github.io"
 description: "A brief introduction to the new site and future plans"
 tags: ["welcome "]
