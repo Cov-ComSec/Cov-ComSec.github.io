@@ -1,4 +1,17 @@
-# Nmap 1
+---
+title: "ComSec Introduction Writeup"
+date: 2020-10-21T12:40:28+01:00
+lastmod: 2021-05-29T12:40:28+01:00
+draft: false
+description: "A writeup for the introduction to ComSec challenges"
+
+tags: ["welcome", "TryHackMe", "Nmap", "writeup" ]
+categories: ["Academic Year 2020-21"]
+
+author: "Tiago Pascoal"
+---
+
+## Nmap 1
 
 So first week of comsec I hope everyone enjoyed the slides and is prepared for the ctf.
 
@@ -52,7 +65,7 @@ find / -name "*.txt" 2>/dev/null
 
 Congratulations! Lets move to docker2
 
-# Nmap 2
+## Nmap 2
 
 So to prove how important is nmap we setup a second nmap challenge but right now we not following the common ports as you can see in here. We mangled the ports 
 
@@ -109,6 +122,3 @@ cat flag.txt
 Congrats!
 Any doubts contact ComSec Committee on discord.
 Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/){target=_blank}
-
-
-Author:Tiago Pascoal @bs1phc
