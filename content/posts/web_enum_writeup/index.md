@@ -1,4 +1,14 @@
-# Week 2
+---
+title: "Web Enumeration Writeup"
+date: 2020-10-28T12:40:28+01:00
+lastmod: 2021-05-30T12:40:28+01:00
+draft: false
+
+tags: ["writeup", "reconnaissance", "enumeration", "Nmap", "Web Shells" ]
+categories: ["Academic Year 2020-21"]
+
+author: "Tiago Pascoal"
+---
 Web Enumeration ctf
 So you know start your docker instances and let's hack!
 8 Flags inside this machine
@@ -41,7 +51,7 @@ If you don't while do a brief explanation. So inside the alt='' tag you will hav
 By the Way always check the source code.
 ![](img/404.png)
 
-### .well-known/security.txt
+## .well-known/security.txt
 
 Have you heard of this directory before if you don't you can get an idea [security.txt](https://en.wikipedia.org/wiki/Security.txt){target=_blank}. Always good to check. 
 
