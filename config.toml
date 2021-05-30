@@ -37,12 +37,12 @@ enableRobotsTXT = true
   gitRepo = "https://github.com/jackorcherton/jackorcherton.github.io"
   fingerprint = ""
   dateFormat = "2006-01-02"
-  images = ["/logo.png"]
+  images = ["/logo.svg"]
 
   [params.app]
     title = "CUEH ComSec"
     noFavicon = false
-    svgFavicon = ""
+    svgFavicon = "/CUEH.svg"
     # Android browser
     themeColor = "#ffffff"
     # Safari
@@ -69,8 +69,8 @@ enableRobotsTXT = true
     mobileMode = "auto"
     [params.header.title]
       # URL of the LOGO
-      logo = ""
-      name = "CUEH ComSec"
+      logo = "/CUEH.svg"
+      name = "ComSec"
       pre = ""
       post = ""
       typeit = false
@@ -81,7 +81,7 @@ enableRobotsTXT = true
     hugo = false
     copyright = true
     author = true
-    since = 2021
+    since = 2020
     icp = ""
     license = ''
 
@@ -99,6 +99,7 @@ enableRobotsTXT = true
     rss = 10
     [params.home.profile]
       enable = true
+
       gravatarEmail = "jackorcherton@yahoo.com"
       avatarAlt = "ComSec"
       title = "ComSec"
@@ -285,7 +286,7 @@ enableRobotsTXT = true
 
   [params.seo]
     # image URL
-    image = ""
+    image = "/CUEH.svg"
     # thumbnail URL
     thumbnailUrl = ""
 
