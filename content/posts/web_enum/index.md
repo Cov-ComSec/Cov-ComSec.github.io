@@ -85,7 +85,7 @@ Can be used to find out about the software a server is running:
 - Wappalyzer
 
 ## Exploitation
-We won't delve deep into exploitation phase this week, however we will look into the following concepts (and they may be helpful in this week's challenges hint hint)
+We won't delve deep into the exploitation phase this week, however we will look into the following concepts (and they may be helpful in this week's challenges *hint hint*)
 
 ### Directory Traversal
 This is an age-old attack, found on PHP servers. It can occur when you see addresses like https://example.com?file=test.txt due to php being used to fetch files and render them in your browser.
