@@ -89,7 +89,7 @@ This week's challenges can be found on the [CTFd server](https://cueh-comsec.ctf
  - OSINT
     - OSINT the picture
     - Identify the device that took the pictures
-    - Find the flag hidden in GitHub hidden in the ComSec website repo
+    - Find the flag hidden in GitHub, hidden in the ComSec website repo
 - Complete the Office Space challenges on CTFd
 
 ## Go Further
