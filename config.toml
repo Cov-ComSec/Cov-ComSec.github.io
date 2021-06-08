@@ -265,11 +265,11 @@ enableRobotsTXT = true
     #  Page SEO config
     [params.page.seo]
       # image URL
-      images = []
+      images = ["/CUEH.svg"]
       # Publisher info
       [params.page.seo.publisher]
         name = "Jack Orcherton"
-        logoUrl = "/images/avatar.png"
+        logoUrl = "/CUEH.svg"
 
   [params.typeit]
     speed = 100
@@ -288,7 +288,7 @@ enableRobotsTXT = true
     # image URL
     image = "/CUEH.svg"
     # thumbnail URL
-    thumbnailUrl = ""
+    thumbnailUrl = "/CUEH.svg"
 
   #  Analytics config
   [params.analytics]
