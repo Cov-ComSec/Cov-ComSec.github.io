@@ -69,7 +69,7 @@ This is the art of tricking people into trusting you, or doing things that they 
 This is because we like to be trusting and helpful to others (generally). For example, if someone helps you, you are more likely to help them.
 
 ### Why
-The reason why this works is because humans are creatures of habit and have a cognitive bias. This means that are brains will make subconscious decisions for us. Below are some of the theories around this topic if you would like to find out more:
+The reason why this works is because humans are creatures of habit and have a cognitive bias. This means that our brains will make subconscious decisions for us. Below are some of the theories around this topic if you would like to find out more:
 
 - Stereotyping
 - ‘Going with the Group’
