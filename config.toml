@@ -249,7 +249,7 @@ enableRobotsTXT = true
         issueTerm = "pathname"
         label = "Comments"
         lightTheme = "github-light"
-        darkTheme = "github-dark"
+        darkTheme = "photon-dark"
     #  Third-party library config
     [params.page.library]
       [params.page.library.css]
