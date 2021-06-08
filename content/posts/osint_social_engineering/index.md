@@ -64,7 +64,7 @@ Ever done the same to GitHub? Check old Git commit history!
 
 ## Social Engineering - Hacking the Mind
 
-This is the art of faking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (high Vis Test).
+This is the art of tricking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (high Vis Test).
 
 This is because we like to be trusting and helpful to others (generally). For example, if someone helps you, you are more likely to help them.
 
