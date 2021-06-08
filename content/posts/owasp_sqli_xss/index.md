@@ -19,7 +19,7 @@ This week we will begin to look at website exploitation, using the OWASP top 10.
 - Introduction to OWASP top 10
 - SQL Injection
 - SQLmap
-- Cross Site Scripting (XSS)
+- Cross-Site Scripting (XSS)
 - Sensitive Data Exposure
 
 ### Resources 
