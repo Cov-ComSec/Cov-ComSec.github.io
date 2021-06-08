@@ -17,7 +17,7 @@ The Three Kings have received a prophecy about the birth of God's son in twelve 
 
 Unfortunately, King Herald has also heard this news and has ordered the death of all babies within his kingdom. Since King Herald has many spies, we have had to enclose hidden information within this letter. 
 
-Can you help the three King's reach God's son and ensure his safety? To do this each day there will be three daily challenges to complete for the next 12 days (starting 26th December) with different difficulties aimed at different abilities. 
+Can you help the three Kings reach God's son and ensure his safety? To do this, each day there will be three daily challenges to complete for the next 12 days (starting 26th December) with varying difficulties aimed at a range of abilities. 
 
 As a reward for your help, we will offer the following prizes:
 - 1st Place - 4 months of tryhackme premium (one month per person for teams of 4) and swag, courtesy of CrowdStrike
