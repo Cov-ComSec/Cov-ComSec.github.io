@@ -14,7 +14,7 @@ authorLink: "https://jackorcherton.github.io"
 
 If you are a member of ComSec, we would love you to contribute to our site; and as a reward we will display your name as the article's author.
 
-The types of articles we would like is anything hacking related; this could be from discussing a topic to a walk through to a CTF challenge.
+The type of articles we would like is anything hacking related; this could be from discussing a topic to a walkthrough to a CTF challenge.
 
 ## Getting Started
 
