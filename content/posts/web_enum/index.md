@@ -88,7 +88,7 @@ Can be used to find out about the software a server is running:
 We won't delve deep into exploitation phase this week, however we will look into the following concepts (and they may be helpful in this week's challenges hint hint)
 
 ### Directory Traversal
-This is an age old attack, found on PHP servers. It occurs when you see addresses like https://example.com?file=test.txt and is used to fetch files and render them in your browser.
+This is an age-old attack, found on PHP servers. It can occur when you see addresses like https://example.com?file=test.txt due to php being used to fetch files and render them in your browser.
 
 So what could be the problem? Well the above is just a file path, so as long as you know a valid file path, you may be able to fetch any file. So examples are:
 - https://example.com?file=.. /.. /.. /etc/passwd - can be used to find usernames
