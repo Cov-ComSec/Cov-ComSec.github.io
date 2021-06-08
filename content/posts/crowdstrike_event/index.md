@@ -20,7 +20,7 @@ CrowdStrike and ComSec request your help in identifying the malicious attackers.
 
 This week we will complete a blue team, security operation centre type challenge!
 
-Unfortunately places are limited this week, and require booking in advance - to book view our post on either Aula or Discord
+Unfortunately places are limited this week, and require booking in advance - to book, view our post on either Aula or Discord
 
 ## Who are CrowdStrike? 
 'CrowdStrike was founded in 2011 to fix a fundamental problem: The sophisticated attacks that were forcing the world’s leading businesses into the headlines could not be solved with existing malware-based defences. Co-founders George Kurtz and Dmitri Alperovitch realized that a brand new approach was needed — one that combines the most advanced endpoint protection with expert intelligence to pinpoint the adversaries perpetrating the attacks, not just the malware.'
