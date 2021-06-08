@@ -20,7 +20,7 @@ Unfortunately, King Herald has also heard this news and has ordered the death of
 Can you help the three Kings reach God's son and ensure his safety? To do this, each day there will be three daily challenges to complete for the next 12 days (starting 26th December) with varying difficulties aimed at a range of abilities. 
 
 As a reward for your help, we will offer the following prizes:
-- 1st Place - 4 months of tryhackme premium (one month per person for teams of 4) and swag, courtesy of CrowdStrike
+- 1st Place - 4 months of TryHackMe premium (one month per person for teams of 4) and swag, courtesy of CrowdStrike
 - 2nd Place - 3 months HTB premium subscription, courtesy of the Institute of Code.
 - 3rd Place – 1 month HTB premium subscription courtesy of HTB.
 - Best Write up - Udemy course on Linux Privilege Escalation for OSCP & Beyond! And Windows Privilege Escalation for OSCP & Beyond! Courtesy of Tib3rius
