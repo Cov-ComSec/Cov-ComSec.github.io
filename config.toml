@@ -185,12 +185,12 @@ enableRobotsTXT = true
       Mix = false
 
     [params.page.comment]
-      enable = false
+      enable = true
       # Disqus comment config
       [params.page.comment.disqus]
         # 
         enable = false
-        # Disqus shortname to use Disqus in posts
+        # Disqus shorptname to use Disqus in posts
         shortname = ""
       # Gitalk comment config
       [params.page.comment.gitalk]
@@ -243,11 +243,11 @@ enableRobotsTXT = true
         enable = false
       #  Utterances comment config
       [params.page.comment.utterances]
-        enable = false
+        enable = true
         # owner/repo
-        repo = ""
+        repo = "Cov-ComSec/Cov-ComSec.github.io"
         issueTerm = "pathname"
-        label = ""
+        label = "Comments"
         lightTheme = "github-light"
         darkTheme = "github-dark"
     #  Third-party library config
