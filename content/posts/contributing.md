@@ -28,7 +28,7 @@ git clone --recursive https://github.com/<your github username>/<your forked rep
 
 ## Installing Hugo
 
-The website uses the [Hugo engine](https://gohugo.io) to build the markdown pages into a website. Although this step is not required, as the website is compiled by a Github month look run:
+The website uses the [Hugo engine](https://gohugo.io) to build the markdown pages into a website, although this step is not required, as the website is compiled by a Github action. To view it locally run:
 
 ```
 hugo serve
