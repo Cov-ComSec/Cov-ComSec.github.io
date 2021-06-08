@@ -27,7 +27,7 @@ As a reward for your help, we will offer the following prizes:
 
 Note, for the best write-up award you do not have to complete all challenges - it will be judged by all the CTF creators and must be emailed in one pdf or md file to comsec@live.coventry.ac.uk at the end of the event. We will be judging on repeatability and clarity of explanation.
 If you get stuck on a challenge - don't get disheartened, it will not prevent you from doing the next day's challenge. If you get stuck on a level drop us an email or message and we may give you a hint (depending on how merry we are feeling). 
-Finally, the Comsec committee and three kings **would like to thank the lecturers (Dan and James), Babzsichu and sleepunderflow as without them this CTF would have been impossible. A special mention also goes to our sponsors: Crowdstrike, HTB, Institute of Code and Tib3rius.** 
+Finally, the ComSec committee and three kings **would like to thank the lecturers (Dan and James), Babzsichu and sleepunderflow, as without them this CTF would have been impossible. A special mention also goes to our sponsors: CrowdStrike, HTB, Institute of Code and Tib3rius.** 
 Hope you have a great Christmas, 
 
 The Three Kings and Comsec Committee 
