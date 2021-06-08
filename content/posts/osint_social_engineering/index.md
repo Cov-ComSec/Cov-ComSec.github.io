@@ -58,7 +58,7 @@ Or on Windows you can view the image properties (but please note this won't alwa
 
 ## Old Websites & GitHub Repositories
 Ever accidently published private information to a website – well 
-it may have been cached by either google or Wayback Machine.
+it may have been cached by either Google or Wayback Machine.
 
 Ever done the same to GitHub? Check old Git commit history!
 
