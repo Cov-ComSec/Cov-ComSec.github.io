@@ -23,6 +23,11 @@ Open Source Intelligence is the art of finding information from publicly availab
 
 The main benefit of OSINT is that it is a form of passive reconnaissance (so legal) as all information is already in the public domain.
 
+
+{{< admonition warning >}}
+Altough it is legal to access documents in the public domain, you must be wary of stalking rules and people's right to a private life (see the Human Rights Act).
+{{< /admonition >}}
+
 ### Good Places
 - Google
 - Social Media

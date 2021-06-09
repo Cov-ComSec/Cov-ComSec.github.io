@@ -75,7 +75,7 @@ After you have added the front matter, and added the three dashes, you can write
 To add a photo that you have placed in the same folder as above use:
 
 ```
-! [<add alternate text>] (imageName.png)
+![<add alternate text>] (imageName.png)
 ```
 
 To add a file, you must add a hyperlink - this is done by:
