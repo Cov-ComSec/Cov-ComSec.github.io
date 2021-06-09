@@ -49,7 +49,7 @@ It can be surprising, the kind of comments that can make it into a product:
 All this information can then all be helpful in the exploitation phase. 
 
 Common files (as defined by RFC rules) are locations where useful information about a website is stored
-- **.well-known/** - normally contains information regarding software, such as PGP keys. Also, many sites have a text file stored on .well-known/security.txt which tells you how to report security flaws. 
+- **.well-known/** - normally contains information regarding software, such as PGP keys. Also, many sites are starting have a text file stored at .well-known/security.txt which tells you how to report security flaws.
 - **robots.txt** - this is a very good place to check and is used by webmasters to tell search engines which pages not to index - this can, in turn, reveal the location of admin portals. For an example, check this [site's robots.txt](/robots.txt)
 - **Sitemap.xml** - another way to improve SEO - it shows the layout of a website - check [ours here](/sitemap.xml). 
 - **/wp-admin/** - shows the website runs WordPress, so you can check out vulnerabilities related to this platform. 
