@@ -12,9 +12,9 @@ authorLink: "https://jackorcherton.github.io"
 
 ---
 
-If you are a member of ComSec, we would love you to contribute to our site; and as a reward we will display your name as the articles author.
+If you are a member of ComSec, we would love you to contribute to our site; and as a reward we will display your name as the article's author.
 
-The types of articles we would like is anything hacking related; this could be from discussing a topic to a walk through to a CTF challenge.
+The type of articles we would like is anything hacking related; this could be from discussing a topic to a walkthrough to a CTF challenge.
 
 ## Getting Started
 
@@ -28,7 +28,7 @@ git clone --recursive https://github.com/<your github username>/<your forked rep
 
 ## Installing Hugo
 
-The website uses the [Hugo engine](https://gohugo.io) to build the markdown pages into a website. Although this step is not required, as the website is compiled by a Github month look run:
+The website uses the [Hugo engine](https://gohugo.io) to build the markdown pages into a website, although this step is not required, as the website is compiled by a Github action. To view it locally run:
 
 ```
 hugo serve

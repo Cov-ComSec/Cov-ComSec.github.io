@@ -17,17 +17,17 @@ The Three Kings have received a prophecy about the birth of God's son in twelve 
 
 Unfortunately, King Herald has also heard this news and has ordered the death of all babies within his kingdom. Since King Herald has many spies, we have had to enclose hidden information within this letter. 
 
-Can you help the three King's reach God's son and ensure his safety? To do this each day there will be three daily challenges to complete for the next 12 days (starting 26th December) with different difficulties aimed at different abilities. 
+Can you help the three Kings reach God's son and ensure his safety? To do this, each day there will be three daily challenges to complete for the next 12 days (starting 26th December) with varying difficulties aimed at a range of abilities. 
 
 As a reward for your help, we will offer the following prizes:
-- 1st Place - 4 months of tryhackme premium (one month per person for teams of 4) and swag, courtesy of CrowdStrike
+- 1st Place - 4 months of TryHackMe premium (one month per person for teams of 4) and swag, courtesy of CrowdStrike
 - 2nd Place - 3 months HTB premium subscription, courtesy of the Institute of Code.
 - 3rd Place – 1 month HTB premium subscription courtesy of HTB.
-- Best Write up - Udemy course on Linux Privilege Escalation for OSCP & Beyond! And Windows Privilege Escalation for OSCP & Beyond! Courtesy of Tib3rius
+- Best Write-up - Udemy course on Linux Privilege Escalation for OSCP & Beyond! And Windows Privilege Escalation for OSCP & Beyond! Courtesy of Tib3rius
 
-Note, for the best writeup award you do not have to complete all challenges - it will be judged by all the ctf creators and must be emailed in one pdf or md file to Comsec@live.coventry.ac.uk at the end of the event. We will be judging on repeatability and explanation. 
+Note, for the best write-up award you do not have to complete all challenges - it will be judged by all the CTF creators and must be emailed in one pdf or md file to comsec@live.coventry.ac.uk at the end of the event. We will be judging on repeatability and clarity of explanation.
 If you get stuck on a challenge - don't get disheartened, it will not prevent you from doing the next day's challenge. If you get stuck on a level drop us an email or message and we may give you a hint (depending on how merry we are feeling). 
-Finally, the Comsec committee and three kings **would like to thank the lecturers (Dan and James), Babzsichu and sleepunderflow as without them this CTF would have been impossible. A special mention also goes to our sponsors: Crowdstrike, HTB, Institute of Code and Tib3rius.** 
+Finally, the ComSec committee and three kings **would like to thank the lecturers (Dan and James), Babzsichu and sleepunderflow, as without them this CTF would have been impossible. A special mention also goes to our sponsors: CrowdStrike, HTB, Institute of Code and Tib3rius.** 
 Hope you have a great Christmas, 
 
 The Three Kings and Comsec Committee 

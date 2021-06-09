@@ -58,18 +58,18 @@ Or on Windows you can view the image properties (but please note this won't alwa
 
 ## Old Websites & GitHub Repositories
 Ever accidently published private information to a website – well 
-it may have been cached by either google or Wayback Machine.
+it may have been cached by either Google or Wayback Machine.
 
 Ever done the same to GitHub? Check old Git commit history!
 
 ## Social Engineering - Hacking the Mind
 
-This is the art of faking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (high Vis Test).
+This is the art of tricking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (high Vis Test).
 
 This is because we like to be trusting and helpful to others (generally). For example, if someone helps you, you are more likely to help them.
 
 ### Why
-The reason why this works is because humans are creatures of habit and have a cognitive bias. This means that are brains will make subconscious decisions for us. Below are some of the theories around this topic if you would like to find out more:
+The reason why this works is because humans are creatures of habit and have a cognitive bias. This means that our brains will make subconscious decisions for us. Below are some of the theories around this topic if you would like to find out more:
 
 - Stereotyping
 - ‘Going with the Group’
@@ -89,7 +89,7 @@ This week's challenges can be found on the [CTFd server](https://cueh-comsec.ctf
  - OSINT
     - OSINT the picture
     - Identify the device that took the pictures
-    - Find the flag hidden in GitHub hidden in the ComSec website repo
+    - Find the flag hidden in GitHub, hidden in the ComSec website repo
 - Complete the Office Space challenges on CTFd
 
 ## Go Further

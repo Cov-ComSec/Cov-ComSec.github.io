@@ -13,13 +13,13 @@ authorLink: "https://jackorcherton.github.io"
 ---
 
 This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:
-- Good notes, and there importance 
-- Making notes with MarkDown
+- Good notes, and their importance 
+- Making notes with Markdown
 - What is website exploitation?
 - Introduction to OWASP top 10
 - SQL Injection
 - SQLmap
-- Cross Site Scripting (XSS)
+- Cross-Site Scripting (XSS)
 - Sensitive Data Exposure
 
 ### Resources 
@@ -31,13 +31,13 @@ Effective hacking requires a thorough and methodological approach. Additionally,
 They don't have to be long and laborious - short and sweet can be best (such as recording command outputs). For an example of good note checking, [have a look at this by Dan](https://github.coventry.ac.uk/CUEH/DansALLNotes).
 
 ## MarkDown
-All three of the ComSec committee uses MarkDown - this is a simplistic language great for taking notes. Personally, I prefer it to other options because of code fences with syntax highlighting and as its open-source many programs are able to open it. Finally, it is easy to export MarkDown to different formats, e.g. All the content on this website has been exported to HTML from MarkDown.
+All three of the ComSec committee uses Markdown - this is a simplistic language great for taking notes. Personally, I prefer it to other options because of code fences with syntax highlighting and, as it's open-source, many programs are able to display it in its formatted form. Finally, it is easy to export Markdown to different formats, e.g. All the content on this website has been exported to HTML from Markdown.
 
 ### Editor Choice
 As said above, you can open/use multiple programs to edit ComSec articles. Here are some of our favourites:
 - Joplin - Martin's and my favourite 
 - Obsidian.md - Tiago's favourite 
-- Visual Studio Code - great for making changes for files or don't want them stored in a central location. I also use VScode to write assignments in MarkDown
+- Visual Studio Code - great for making changes for files or don't want them stored in a central location. I also use VSCode to write assignments in Markdown
 
 ### MarkDown Syntax
 
@@ -51,7 +51,7 @@ As said above, you can open/use multiple programs to edit ComSec articles. Here 
 • [Enter text](enter hyperlink)
 • Inline embed `test`
 • ```python 
-print(“Format this code like Python”)
+print("Format this code like Python")
 ```Example of code fences
 ```
 
