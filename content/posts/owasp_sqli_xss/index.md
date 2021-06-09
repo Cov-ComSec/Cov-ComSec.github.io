@@ -37,7 +37,7 @@ All three of the ComSec committee uses Markdown - this is a simplistic language 
 As said above, you can open/use multiple programs to edit ComSec articles. Here are some of our favourites:
 - Joplin - Martin's and my favourite 
 - Obsidian.md - Tiago's favourite 
-- Visual Studio Code - great for making changes for files or don't want them stored in a central location. I also use VScode to write assignments in MarkDown
+- Visual Studio Code - great for making changes for files or don't want them stored in a central location. I also use VSCode to write assignments in Markdown
 
 ### MarkDown Syntax
 
