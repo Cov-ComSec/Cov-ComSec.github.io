@@ -10,8 +10,8 @@ categories: ["Academic Year 2020-21"]
 author: "Tiago Pascoal"
 ---
 Web Enumeration ctf
-So you know start your docker instances and let's hack!
-8 Flags inside this machine
+Start your docker instances and let's hack!
+8 flags inside this machine
 
 Every time first thing to do Nmap scan
 ![scan](img/scan.png)
@@ -48,12 +48,12 @@ If you don't while do a brief explanation. So inside the alt='' tag you will hav
 ## 404
 
 404 is a page that can be really important for the attacker if not well setup. From the 404 page we can sometimes extract important information for example the version of the distro or server ,etc. This kinds of information can be really important sometimes to find CVES and other vulns.
-By the Way always check the source code.
+By the way, always check the source code.
 ![](img/404.png)
 
 ## .well-known/security.txt
 
-Have you heard of this directory before if you don't you can get an idea [security.txt](https://en.wikipedia.org/wiki/Security.txt){target=_blank}. Always good to check. 
+Have you heard of this directory before? If you haven't you can read about it [here](https://en.wikipedia.org/wiki/Security.txt){target=_blank}. Always good to check.
 
 ## Flag.txt
 

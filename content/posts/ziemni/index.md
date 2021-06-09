@@ -13,7 +13,7 @@ authorLink: "https://jackorcherton.github.io"
 
 ---
 
-This week we had a presentation by a graduate student, Ziemni. He is currently studying Masters of Cybersecurity Management & is frequently in the Hack the Box top 10. He details how he has developed himself throughout his time at Coventry University & the importance of practicing hacking.
+This week we had a presentation by a graduate student, Ziemni. He is currently studying for a Masters in Cybersecurity Management & is frequently in the HackTheBox top 10. He details how he has improved himself throughout his time at Coventry University & the importance of practising hacking.
 
 The main talking points were:
 

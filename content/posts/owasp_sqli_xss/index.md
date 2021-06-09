@@ -50,7 +50,7 @@ As said above, you can open/use multiple programs to edit ComSec articles. Here 
 • ***make this bold & italic***
 • [Enter text](enter hyperlink)
 • ![Image name](image hyperlink)
-• Inline embed `test`
+• Inline embed: `test`
 • ```python 
 print("Format this code like Python")
 ```Example of code fences
@@ -59,10 +59,10 @@ print("Format this code like Python")
 
 
 ## Web Exploitation 
-Web site exploitation is when you are able to make a website act in a way it shouldn't; typically with the aim of gaining access to the underlying system or 'protected information'.
+Website exploitation is when you are able to make a website act in a way it shouldn't; typically with the aim of gaining access to the underlying system or 'protected information'.
 
 ### OWASP
-The Open Web Application Security Project (OWASP) is a nonprofit organisation that every four years release a list named The OWASP Top 10.  This list shows the most critical flaws that can be found in websites. The current list, released in 2017 is:
+The Open Web Application Security Project (OWASP) is a nonprofit organisation that, every four years, releases a list named The OWASP Top 10.  This list shows the most critical flaws that can be found in websites. The current list, released in 2017 is:
 
 1) Injection
 2) Broken Authentication
@@ -98,12 +98,12 @@ SELECT * FROM userTable WHERE username="jack"
 And if a database entry is found, you could log in. The problem occurs when a malicious payload is entered, like `" OR 1=1; - -` . This would form the following:
 
 ```SQL
-SELECT * FROM userTable WHERE username="" OR 1=1; - - ";
+SELECT * FROM userTable WHERE username="" OR 1=1; -- ";
 ```
 
-This would print out the whole table as 1=1 equates to true and - - comments out the rest of the statement.
+This would print out the whole table as 1=1 equates to true and -- comments out the rest of the statement.
 
-There are also further payloads that can be used, but will cover this another time as we must move on.
+There are also further payloads that can be used, but we'll cover this another time, as we must move on.
 
 ### SQLmap
 As great as exploiting manually is, sometimes it is best to use prebuilt tools to automate the process; the most notable being SQLmap. The general command is
@@ -112,12 +112,12 @@ As great as exploiting manually is, sometimes it is best to use prebuilt tools t
 sqlmap –a –u ‘http://example.com’
 ```
 
-This runs all scripts against an URL, for more finite control, use `- - help ` to find the right flags.
+This runs all scripts against an URL. For more granular control, use `--help ` to find the right flags.
 
 ## Cross Site Scripting (XSS)
 This is when clients are able to inject html commands into an input field. The problem with this is that they can use this to execute JavaScript code. 
 
-This type of exploit can typically found on Web forums. The easiest way to test this is to attempt to create an alert box.
+This type of exploit can typically be found on web forums. The easiest way to test this is to attempt to create an alert box.
 
 ```html
 <script>alert("demo XSS exploit") </script>
@@ -130,10 +130,10 @@ With JavaScript you are able to do more evil things:
 - Steal cookies & send them to a remote server (could lead to session hijacking)
 - Deface websites (E.g. create tech support scam pop-ups)
 - Preform actions on behalf of the user (such as transactions)
-- Create iframes – this can allow you to embed different webpages into 
+- Create iframes – this can allow you to embed different webpages into one
 another. One use of this could be to spoof a login page (so instead of logging in they send credentials to your server) – great for phishing!
 - Capture keystrokes
-- Read all the data on a victims webpage (could reveal sensitive information).
+- Read all the data on a victim's webpage (could reveal sensitive information).
 
 Please note that this was a quick intro to a larger topic, if you wish to find out more I recommend [this article.](https://pentest-tools.com/blog/xss-attacks-practical-scenarios/)
 

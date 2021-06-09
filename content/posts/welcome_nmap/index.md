@@ -30,22 +30,22 @@ This week is the first session of the academic year, and we will cover:
 ## What is ComSec? 
 Firstly welcome to ComSec, we are the universities unofficial ethical hacking society. This year the club will be led by second year students Jack Orcherton, Martin Schon and Tiago Pascoal.
 
-As a club, are main aims are to:
+As a society, our main aims are to:
 - Learn & practise new cybersecurity/ethical hacking skills
-- Organise and compete CTF competitions on an international stage (we do this under the team name ethical slackers and have previously taken part in the RuCTFe competition) 
+- Organise and compete CTF competitions on an international stage (we do this under the team name ethical slackers and have previously taken part in RuCTFe among others) 
 - Create a warm and welcoming environment which is beginner and pro friendly and to share our skills from people across the University.
 
 ### Interested in Joining? 
 It is free to join our society, to join just drop ComSec or one of the committee an email (look us up in your university contacts). From there, we can provide you with more information.
 
-Unfortunately due to Covid restrictions, we are unable to meet in person - so for the foreseeable all ComSec meetings will be held at 18:30 every Wednesday on Discord.
+Unfortunately, due to Covid restrictions, we are unable to meet in person - so, for the foreseeable future, all ComSec meetings will be held at 18:30 every Wednesday on Discord.
 
 Can't join us then? Don't worry! We aim to record sessions and provide materials here. Also, hacking challenges normally take place over the weekend - so it's still worth joining to keep in the loop.
 
 Any further questions? Just drop us an email!
 
 ## Legal 
-As I’m sure you will have heard by now, there are some rules when  it comes to hacking:
+As I’m sure you will have heard by now, there are some rules when it comes to hacking:
 - These courses are to be **used only for ethical purposes**
 - **Do not attack anything**, unless you have written consent from the owner
 - If you’re **unsure if you’re allowed to do something – you probably aren’t!** So ask someone beforehand
@@ -55,7 +55,7 @@ Please note we accept no liability, and you are responsible for your own actions
 ## Hacker Mindset
 To be successful at hacking, you must know how to think like hacker - below shows their thought process when targeting a machine:
 
-- **Reconnaissance** - where you find information out about a target within the public domain . 
+- **Reconnaissance** - where you find information out about a target within the public domain.
 - **Scanning and Enumeration** - finding more detailed information by scanning the target. 
 - **Exploitation** - after finding a weakness in the above stages - you use it in order to gain access to a target. 
 - **Maintaining Access** - now you need to ensure that no one can remove your access to the target. 
@@ -75,19 +75,19 @@ One popular scan is a port/network scan. The point of this is to be able to iden
 - OS detection
 - Easy to do
 
-The main disadvantage is that it can be ‘loud’ and detected on IDS/IPS. 
+The main disadvantage is that it can be ‘loud’ and detected by IDS/IPS. 
 
 #### Types of Scan
 Due to different types of technologies there are multiple ways to scan targets, the main ones are described below:
 
 ##### TCP Stealth Scan
-TCP is a connection oriented method used by the majority of protocols (e.g. SSH, HTTP, HTTPS). It has the following stages known as a handshake:
+TCP is a connection-oriented method used by the majority of protocols (e.g. SSH, HTTP, HTTPS). It has the following stages known as a handshake:
 - Syn – client device initiates and attempts to establish connection
 - Syn-ack – server acknowledges receipt of syn
 - Ack – client acknowledges receipt of syn-ack and communication will start
 - Fin – terminates connection
 
-A TCP scan uses this to its advantage, it sends a syn packet and if  a syn-ack packet is received, the port is open. The connection is then dropped, before the host fully recognises the connection. 
+A TCP scan uses this to its advantage, it sends a syn packet and if a syn-ack packet is received, the port is open. The connection is then dropped, before the host fully recognises the connection. 
 
 ##### Ping Scan
 Sends an ICMP packet to specified hosts, if there is a response, you know its up
@@ -96,7 +96,7 @@ Sends an ICMP packet to specified hosts, if there is a response, you know its up
 Sends udp packet, if there is a response it is open, if there is no response it is open or filtered. If the port is unreachable it is closed
 
 ##### ARP Scan
-Sends an ARP request and wait for responses
+Sends an ARP request and waits for responses
 
 ##### Listening
 Just listens to network traffic & is able to detect which devices are communicating
@@ -137,9 +137,9 @@ docker-compose up
 Now complete the first challenge, then once completed type ctrl + c and repeat instructions for the second challenge. We will release a walk through later on in the week.
 
 ## TryHackMe 
-Tryhackme is an online platform aimed towards beginners & gives 
+TryHackMe is an online platform aimed towards beginners & gives 
 guided walkthroughs on challenges (if you’re more advanced you 
-may to try HTB, more on this in the future).
+may want to try HTB, more on this in the future).
 
 Go to [TryHackMe.com](https://tryhackme.com/) & create the free account!
 
