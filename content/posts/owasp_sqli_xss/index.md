@@ -42,7 +42,7 @@ As said above, you can open/use multiple programs to edit ComSec articles. Here 
 ### MarkDown Syntax
 
 ```
-• Same syntax as Discord/GitHub
+• (Mostly) The same syntax as Discord/GitHub (due to slightly different implementations)
 • # Make a Heading
 • ## Make a smaller header (can use up to six #)
 • *make this italic*
