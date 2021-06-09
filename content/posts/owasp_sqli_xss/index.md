@@ -51,7 +51,7 @@ As said above, you can open/use multiple programs to edit ComSec articles. Here 
 • [Enter text](enter hyperlink)
 • Inline embed `test`
 • ```python 
-print(“Format this code like Python”)
+print("Format this code like Python")
 ```Example of code fences
 ```
 
