@@ -14,7 +14,7 @@ authorLink: "https://jackorcherton.github.io"
 
 This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:
 - Good notes, and their importance 
-- Making notes with MarkDown
+- Making notes with Markdown
 - What is website exploitation?
 - Introduction to OWASP top 10
 - SQL Injection
