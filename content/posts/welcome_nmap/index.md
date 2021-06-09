@@ -99,7 +99,7 @@ Sends udp packet, if there is a response it is open, if there is no response it 
 Sends an ARP request and wait for responses
 
 ##### Listening
-Just listen to network traffic & able to detect which devices are communicating
+Just listens to network traffic & is able to detect which devices are communicating
 
 ## Nmap
 Nmap is the most popular network scanner and installed on Kali by default. Here I will teach you the basics on how to use it.
