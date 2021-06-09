@@ -49,6 +49,7 @@ As said above, you can open/use multiple programs to edit ComSec articles. Here 
 • **make this bold**
 • ***make this bold & italic***
 • [Enter text](enter hyperlink)
+• ![Image name](image hyperlink)
 • Inline embed `test`
 • ```python 
 print("Format this code like Python")
