@@ -28,7 +28,7 @@ This week is the first session of the academic year, and we will cover:
     - [Challenge 2](c2/docker-compose.yaml)
 
 ## What is ComSec? 
-Firstly welcome to ComSec, we are the universities unofficial ethical hacking society. This year the club will be led by second year students Jack Orcherton, Martin Schon and Tiago Pascoal.
+Firstly welcome to ComSec, we are the university's unofficial ethical hacking society. This year the club will be led by second year students Jack Orcherton, Martin Schon and Tiago Pascoal.
 
 As a society, our main aims are to:
 - Learn & practise new cybersecurity/ethical hacking skills
