@@ -69,7 +69,7 @@ Ever done the same to GitHub? Check old Git commit history!
 
 ## Social Engineering - Hacking the Mind
 
-This is the art of tricking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (high Vis Test).
+This is the art of tricking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (hi Vis Test - see below).
 
 This is because we like to be trusting and helpful to others (generally). For example, if someone helps you, you are more likely to help them.
 
@@ -88,6 +88,25 @@ The reason why this works is because humans are creatures of habit and have a co
 - Scams
 - Phishing
 - Gaining unauthorised access (tailgating)
+
+### Uniform
+One joke for social engineers is that you will need a Hi Vis jacket, but why is that the case?
+
+Many believe that Hi Vis jackets make people look more authoritative and official - therefore they are more likely to listen to them. To prove this point comedian and scientist Eline van der Velden donned a jacket and clipboard; then asked random people to complete ridiculous requests - see the results below.
+
+{{< youtube 4jcleVvgchs >}}
+
+#### The Milgram Experiment
+The above was done to prove a point and builds on more historic research.
+
+In 1963 Stanley Milgram investigated the difference between obedience and free will. The main reason for this was at the time the Nuremberg War Criminal trials were taking place; and many people argued they carried out genocides as they were just following orders.
+
+The experiment worked by attaching someone to an electric shock machine. Then a volunteer had to ask that person questions; if they got one wrong, they would have to administer an electric shock - each one progressively worse. If the volunteer declined, they were told they must by an authoritative figure.
+
+In a similar experiment, Milgram repeated it with people wearing uniform - one was with the authoritative figure wearing a grey lab coat and one wearing plain clothes. 20% more people would listen to the person wearing the lab coat.
+
+For more information about this experiment, I recommend you read my source - [an article written by Saul McLeod on Simply Psychology](https://www.simplypsychology.org/milgram.html)
+
 
 ## The Challenge
 This week's challenges can be found on the [CTFd server](https://cueh-comsec.ctfd.io/challenges) - there are two sections to complete:
