@@ -33,7 +33,7 @@ The website uses the [Hugo engine](https://gohugo.io) to build the markdown page
 hugo serve
 ```
 
-The website should then be hosted locally on port 1331.
+The website should then be hosted locally on port 1313.
 
 ## Creating Posts
 
