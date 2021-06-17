@@ -1,7 +1,6 @@
 ---
 title: "How to Contribute"
 date: 2021-05-28T12:40:28+01:00
-lastmod: 2021-05-28T12:40:28+01:00
 draft: false
 description: "How to contribute and add your own posts to this site! "
 
@@ -23,22 +22,24 @@ Firstly you will need to fork this repository. This can be done through GitHub b
 Now that you have forked the repository, you will need to use the following commands to download the repository and the related git submodules:
 
 ```
-git clone --recursive https://github.com/<your github username>/<your forked repo name>
+git clone --recursive https://github.com/<your GitHub username>/<your forked repo name>
 ```
 
 ## Installing Hugo
 
-The website uses the [Hugo engine](https://gohugo.io) to build the markdown pages into a website, although this step is not required, as the website is compiled by a Github action. To view it locally run:
+The website uses the [Hugo engine](https://gohugo.io) to build the markdown pages into a website, although this step is not required, as the website is compiled by a GitHub Action. To view it locally run:
 
 ```
 hugo serve
 ```
 
-The website should then be hosted on http://127.0.0.1:1313.
+The website should then be hosted locally on port 1331.
 
 ## Creating Posts
 
-To create a post, firstly head into the posts folder. Now create a new folder - **NB:** this is used to generate the posts URL, so please ensure that it is short, descriptive and contains no spaces and/or special characters.
+To create a post, firstly head into the posts folder. Now create a new folder.
+
+**NB:** this is used to generate the posts URL, so please ensure that it is short, descriptive and contains no spaces and/or special characters.
 
 Once the folder is created, enter it and create a file named 'index.md' - this will be where you write your text.
 
@@ -55,10 +56,8 @@ To set up the blog post, you must use front matter to set the settings, you must
 ---
 title: "Add Post Title "
 date: 2021-05-07T14:50:28+01:00
-lastmod: 2021-05-12T17:51:51+01:00
 draft: false
-description: "A short description of the post "
-
+description: "describe your article"
 tags: ["tag1", "tag2", "etc. "]
 categories: ["Big Category "]
 
@@ -75,7 +74,7 @@ After you have added the front matter, and added the three dashes, you can write
 To add a photo that you have placed in the same folder as above use:
 
 ```
-![<add alternate text>] (imageName.png)
+![<add alternate text>](imageName.png)
 ```
 
 To add a file, you must add a hyperlink - this is done by:
