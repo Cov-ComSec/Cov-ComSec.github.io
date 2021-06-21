@@ -3,7 +3,7 @@ title: "Bulletproof Event"
 date: 2021-02-24T12:40:28+01:00
 draft: false
 
-tags: ["Bulletproof", "guest"]
+tags: ["guest"]
 categories: ["Academic Year 2020-21"]
 
 ---
