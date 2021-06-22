@@ -1,11 +1,10 @@
 ---
 title: "ComSec Introduction Writeup"
 date: 2020-10-21T12:40:28+01:00
-lastmod: 2021-05-29T12:40:28+01:00
 draft: false
-description: "A writeup for the introduction to ComSec challenges"
+description: "A writeup for the introduction to ComSec challenges."
 
-tags: ["welcome", "TryHackMe", "Nmap", "writeup" ]
+tags: ["welcome", "TryHackMe", "Nmap", "writeup"]
 categories: ["Academic Year 2020-21"]
 
 author: "Tiago Pascoal"

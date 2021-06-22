@@ -31,7 +31,7 @@ enableRobotsTXT = true
 
 [params]
   version = "0.2.X"
-  description = "The official site of CUEH ComSec - Coventry Universities Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."
+  description = "The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."
   keywords = ["CUEH", "ComSec", "Coventry", "cybersecurity", "Ethical Hacking", "cyber security"]
   defaultTheme = "dark"
   gitRepo = "https://github.com/jackorcherton/jackorcherton.github.io"
@@ -103,7 +103,7 @@ enableRobotsTXT = true
       gravatarEmail = "jackorcherton@yahoo.com"
       avatarAlt = "ComSec"
       title = "ComSec"
-      subtitle = "Coventry Universities Ethical Hacking Society"
+      subtitle = "Coventry University's Ethical Hacking Society"
       disclaimer = "Content on this website will teach hacking, you are responsible to ensure that it is used ethically and all laws are followed"
       typeit = true
 

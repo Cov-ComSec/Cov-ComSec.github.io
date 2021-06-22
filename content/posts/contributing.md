@@ -2,7 +2,7 @@
 title: "How to Contribute"
 date: 2021-05-28T12:40:28+01:00
 draft: false
-description: "How to contribute and add your own posts to this site! "
+description: "How to contribute and add your own posts to this site!"
 
 tags: ["welcome", "contributing"]
 

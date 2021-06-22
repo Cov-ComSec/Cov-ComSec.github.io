@@ -15,4 +15,4 @@ The talk will include topics like what it is like to work in the security indust
 We would like to thank Bulletproof for holding the event, [click here to find more about them.](https://www.bulletproof.co.uk/)
 
 ## Update
-To view a recording of the event, [please click here (Coventry University Students only).](https://livecoventryac.sharepoint.com/:f:/t/Comsec/EklqAE3jUXdLrSNGShoWy8cBNZXz9UmBMVpjxvXvAqe9Cg)
+To view a recording of the event, [please click here (Coventry University Students only)](https://livecoventryac.sharepoint.com/:f:/t/Comsec/EklqAE3jUXdLrSNGShoWy8cBNZXz9UmBMVpjxvXvAqe9Cg).

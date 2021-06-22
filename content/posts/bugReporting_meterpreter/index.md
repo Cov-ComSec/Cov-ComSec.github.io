@@ -3,7 +3,7 @@ title: "Bug Reporting & Meterpreter"
 date: 2021-02-10T12:40:28+01:00
 draft: false
 
-tags: ["Metasploit", "Meterpreter", "Metasploitable2", "Bug Reporting" ]
+tags: ["Metasploit", "Meterpreter", "Metasploitable2", "Bug Reporting"]
 categories: ["Academic Year 2020-21"]
 
 author: "Jack Orcherton" 
@@ -26,15 +26,15 @@ Remember, before asking for help to attempt to try and solve the problem yoursel
 When completing a bug report, ensure you cover the 5w's and one h
 
 ### Who?
-For this question think who wrote this code/who would be the best person to ask. Normally, you can find the author commented at the top of the code, otherwise contact the person that handed you the code.
+For this question think who wrote this code/who would be the best person to ask? Normally, you can find the author commented at the top of the code, otherwise contact the person that handed you the code.
 
 Next think what the best way is to reach them. For example, most lecturers prefer contact via emails.
 
 ### What?
-Normally, people have written loads of code and may not be able to tell what it is from a single screenshot; so explicitly state where you got the code from. E.g., the code from week 2, demo 3 for module 123CT doesn't work.
+Normally, people have written loads of code and may not be able to tell what it is from a single screenshot; so explicitly state where you got the code from. E.g., the code from week 2, demo 3 for module 123CT does not work.
 
 ### Where?
-State on which operating system you are trying to run the code on, such as Arch, Windows 10, Kali, Parrot, etc. also it will be helpful to mention how you are running the operating (is it bare metal, WSL or a virtual machine).
+State on which operating system you are trying to run the code on, such as Arch, Windows 10, Kali, Parrot, etc. also it will be helpful to mention how you are running the operating (is it bare metal, WSL, or a virtual machine).
 
 Finally mention the interpreter or compiler that you are using (e.g., Python Interpreter 3.8).
 
@@ -57,7 +57,7 @@ We all make mistakes, which is fine, however being able to troubleshoot is an in
 5) **Missing Python Module** - if you receive a 'submodule cannot be found error', then you probably will need to install it (have a look at using pip).
 
 ## Meterpreter
-Meterpreter is an interactive shell, made specifically for hackers and contains useful features (more on this later). As it's a shell, you are able to use your typical Linux commands (even if the attackers machine runs Windows - but note all commands may not work). An example of some of these commands are:
+Meterpreter is an interactive shell, made specifically for hackers and contains useful features (more on this later). As it is a shell, you can use your typical Linux commands (even if the attackers machine runs Windows - but note all commands may not work). An example of some of these commands are:
 - cd
 - ls
 - pwd
@@ -73,7 +73,7 @@ Meterpreter has also included some of its own commands, here are a few of them:
 - **getsystem** - automatically attempts to gain administrator access. 
 - **hashdump** - dumps the hashed passwords for all users on a Windows system. 
 - **clearev** - clears all the logs on a Windows System (helping to avoid detection/hiding actions you have carried).
-- **idletime** - displays how long the user has been idle (so you can schedule intensive tasks when the user isn't using the PC).
+- **idletime** - displays how long the user has been idle (so you can schedule intensive tasks when the user is not using the PC).
 - **migrate** - allows you to change to a different process on the system.
 - **webcam_snap** - attempts to grab a picture from the targets webcam and saves it in your pwd as a JPEG image.
 - **shell** - drops you to the target systems default shell.

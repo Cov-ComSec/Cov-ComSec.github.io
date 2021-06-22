@@ -1,10 +1,10 @@
 ---
-title: "Web Enumeration "
+title: "Web Enumeration"
 date: 2020-10-22T12:40:28+01:00
 lastmod: 2021-05-30T12:40:28+01:00
 draft: false
 
-tags: ["reconnaissance", "enumeration", "Nmap", "Web Shells" ]
+tags: ["reconnaissance", "enumeration", "Nmap", "Web Shells"]
 categories: ["Academic Year 2020-21"]
 
 author: "Jack Orcherton" 
@@ -12,7 +12,7 @@ authorLink: "https://jackorcherton.github.io"
 
 ---
 
-In this session, we will look at website enumeration and exploitation. This is what we'll cover in further detail:
+In this session, we will look at website enumeration and exploitation. This is what we will cover in further detail:
 
 - What is Enumeration?
 - Directory Brute Forcing
@@ -27,7 +27,7 @@ In this session, we will look at website enumeration and exploitation. This is w
 - [Live Session Recording](https://www.twitch.tv/videos/779063041) 
 
 ## What is Enumeration?
-Enumeration is the process of going through a list, one by one, in order to find information. This is used in hacking to find information to leverage an attack.
+Enumeration is the process of going through a list, one by one, to find information. This is used in hacking to find information to leverage an attack.
 
 ### Directory Enumeration
 This is when you use a wordlist to try to 
@@ -36,7 +36,7 @@ guess the names of web pages/directories. The reason for this is:
 - It allows you to build a sitemap/understand layout
 - Find hidden directories
 
-Popular tools include: Dirb/Dirbuster, nmap's http-enum script. 
+Popular tools include: Dirb/Dirbuster, Nmap’s http-enum script. 
 
 
 ## Code Comments & Common Files
@@ -74,7 +74,7 @@ Shodan & ZoomEye:
 - Attempts to see what services devices are running
 - Tests to see if they are running default credentials
 
-WARNING: these services can give credentials on how to access devices – please don’t do this without permission of the owner as it is classed as hacking!
+WARNING: these services can give credentials on how to access devices – please do not do this without permission of the owner as it is classed as hacking!
 
 ## Server Fingerprinting & Other Tools
 Can be used to find out about the software a server is running:
@@ -85,28 +85,28 @@ Can be used to find out about the software a server is running:
 - Wappalyzer
 
 ## Exploitation
-We won't delve deep into the exploitation phase this week, however we will look into the following concepts (and they may be helpful in this week's challenges *hint hint*)
+We will not delve deep into the exploitation phase this week; however, we will investigate the following concepts (and they may be helpful in this week's challenges *hint hint*)
 
 ### Directory Traversal
 This is an age-old attack, found on PHP servers. It can occur when you see addresses like https://example.com?file=test.txt due to php being used to fetch files and render them in your browser.
 
-So what could be the problem? Well the above is just a file path, so as long as you know a valid file path, you may be able to fetch any file. So examples are:
+So, what could be the problem? Well, the above is just a file path, so if you know a valid file path, you may be able to fetch any file. So, examples are:
 - https://example.com?file=../../../etc/passwd - can be used to find usernames
 - https://example.com?file=../../root/flag.txt - can be used to find root flag files
 
 ### Web Shells 
 Probably one of the most useful ways to exploit a webserver is when you can upload a shell - allowing command execution. This can be done either by file upload or via uploading to an anonymous FTP server (but there are also other methods).
 
-There are two main webshells that I recommend, the first being p0wny@shell:~#. This is the friendlier of the two as you can access it via a webpage, however it has less features (but they are more than adequate for this week's challenge). 
+There are two main web shells that I recommend, the first being p0wny@shell:~#. This is the friendlier of the two as you can access it via a webpage, however it has less features (but they are more than adequate for this week's challenge). 
 
-The second of the two is my favourite and is the Pentest Monkey Reverse TCP shell. The downside to this is that you have to edit the file to include your attacking IP address and port number, as well as setting up a netcat feature. The benefits of this though is that you can interact with it through your command line.
+The second of the two is my favourite and is the Pentest Monkey Reverse TCP shell. The downside to this is that you must edit the file to include your attacking IP address and port number, as well as setting up a netcat listener. The benefit is that you can interact with it through your command line.
 
 ## The Challenge
 - Open Kali Terminal
 ```sh
 sudo docker run --name csw1 --rm cuehcomsec/2-webenumeration
 ```
-- Find the webserver port using nmap (the port will change every time
+- Find the webserver port using Nmap (the port will change every time
 you run it!)
 - There are 8 flags to find & submit on [CTFd](https://cueh-comsec.ctfd.io/); format cueh{flag#sometext}
 - To end the container, type:
@@ -120,4 +120,4 @@ The writeup will be released next week.
 If you would like more challenges related to this week's topics, we recommend:
 
 - [Google Dorking (THM)](https://tryhackme.com/room/GOOGLEDORKING)
-- [RootMe (THM)](https://tryhackme.com/room/rrootme) 
+- [RootMe (THM)](https://tryhackme.com/room/rrootme)

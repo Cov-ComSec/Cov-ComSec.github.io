@@ -2,7 +2,7 @@
 title: About ComSec
 ---
 
-Hello and welcome to Comsec, we are Coventry Universities unofficial ethical hacking society.
+Hello and welcome to Comsec, we are Coventry University’s unofficial ethical hacking society.
 
 We meet weekly during term-time, typically on Wednesdays, to provide lectures on ethical hacking, invite guest lecturers, compete in tournaments and meeting with businesses in the cybersecurity field.
 
@@ -14,7 +14,7 @@ We plan to resume ComSec fully again in September 2021, dates will be confirmed 
 
 ## Committee
 
-As a society we are fairly open, and will allow anyone to run sessions - as we are all good at different areas. However, to ensure that the club runs smoothly, it is led by the following people:
+As a society we are fairly open and will allow anyone to run sessions - as we are all good at different areas. However, to ensure that the club runs smoothly, it is led by the following people:
 
 - Jack Orcherton
 - Martin Schon
@@ -24,4 +24,4 @@ If you are a Coventry University student, feel free to get in touch by either se
 
 ## Want to Join?
 
-If you are a Coventry University student and wish to join, contact us using the the method above. 
+If you are a Coventry University student and wish to join, contact us using the method above.

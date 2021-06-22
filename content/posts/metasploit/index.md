@@ -3,7 +3,7 @@ title: "Metasploit"
 date: 2021-01-27T12:40:28+01:00
 draft: false
 
-tags: ["Metasploit", "mfsconsole", "Metasploitable2" ]
+tags: ["Metasploit", " msfconsole", "Metasploitable2"]
 categories: ["Academic Year 2020-21"]
 
 author: "Jack Orcherton" 
@@ -22,7 +22,7 @@ Today, we will look at Metasploit; a widely used pen testing framework. Metasplo
 - [Presentation Slides](metasploit.pdf)
 
 {{< admonition tip >}}
-In the examples, I run exploits against Metasploitable 2 (a deliberately vulnerable VM). You are able to download it [here.](https://sourceforge.net/projects/metasploitable/files/Metasploitable2/) 
+In the examples, I run exploits against Metasploitable 2 (a deliberately vulnerable VM). You can download it [here](https://sourceforge.net/projects/metasploitable/files/Metasploitable2/).
 {{< /admonition >}}
 
 ## What is Metasploit?
@@ -38,7 +38,7 @@ Msfconsole is the main command used to access the majority of Metasploit. Msfcon
 - Payload – holds shellcodes/other scripts handy after exploitation. 
 - Auxiliary – mainly for scanning/checking a machine is vulnerable to an 
 exploit. 
-- Post – used after exploitation for privesc/pivoting/maintaining access. 
+- Post – used after exploitation for privilege escalation/pivoting/maintaining access. 
 - Encoder – used to hide payloads to avoid antivirus signature detection. 
 - NOP – used for buffer overflow and ROP chain attacks. 
 
@@ -67,7 +67,6 @@ Remember if you get stuck you can type `?` at any time.
 Let's discover what services are running on the Metasploitable machine. We will do this by scanning it with Nmap in msfconsole. To do this you must use `db_nmap` - then you can use all the usual Nmap flags. 
 
 ```sh
-msfdb init
 db_nmap -sV -vv machineIP
 ```
 
@@ -102,7 +101,7 @@ run
 You should now receive a remote shell - congratulations you have just carried out your first exploit through Metasploit. 
 
 ## Challenge
-This week, we have only looked at the scanning & exploitation process - next week we will look into post exploitation. But for today, return to the Nmap scan and pick a different port and try to gain access.
+This week, we have only looked at the scanning & exploitation process - next week we will look at post exploitation. But for today, return to the Nmap scan and pick a different port and try to gain access.
 
 ## Further Challenges
 Have a go at completing the [Metasploit room on TryHackMe](https://tryhackme.com/room/rpmetasploit).

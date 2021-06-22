@@ -1,11 +1,10 @@
 ---
 title: "Graduate Talks - Ziemni"
 date: 2020-10-28T12:40:28+01:00
-lastmod: 2021-05-29T12:40:28+01:00
 draft: false
 description: "This week, we had a talk by a graduate student about his experiences and the importance of practise and CTF competitions. "
 
-tags: ["talk", "HTB", "Graduate", "Ziemni" ]
+tags: ["talk", "HTB", "Graduate", "Ziemni"]
 categories: ["Academic Year 2020-21"]
 
 author: "Jack Orcherton" 
@@ -30,4 +29,4 @@ Here are the resources used:
 - [Live Session Recording](https://www.twitch.tv/videos/785147513) 
 - [Live HTB Demo](https://www.twitch.tv/videos/785274676) 
 
-Also to find out more about Ziemni, please visit [his website](https://ziemni.com)
+Also, to find out more about Ziemni, please visit [his website](https://ziemni.com).

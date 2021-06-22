@@ -4,7 +4,7 @@ date: 2020-11-11T12:40:28+01:00
 lastmod: 2021-06-06T12:40:28+01:00
 draft: false
 
-tags: ["OSINT", "Social Engineering", "exiftool" ]
+tags: ["OSINT", "Social Engineering", "exiftool"]
 categories: ["Academic Year 2020-21"]
 
 author: "Jack Orcherton" 
@@ -13,19 +13,19 @@ authorLink: "https://jackorcherton.github.io"
 ---
 
 
-This week, I gave an introductory talk on open source intelligence (OSINT) and social engineering. We also delved into the theories of why social engineering can be a successful attack and why humans are vulnerable to it!
+This week, I gave an introductory talk on open-source intelligence (OSINT) and social engineering. We also delved into the theories of why social engineering can be a successful attack and why humans are vulnerable to it!
 
 ### Resources
 - [Presentation Slides](SocialEngineering.pdf)
 
 ## OSINT 
-Open Source Intelligence is the art of finding information from publicly available sources. This is crucial in pentesting (as the more you know about the company you are hacking – the easier it can become).
+Open-Source Intelligence is the art of finding information from publicly available sources. This is crucial in pen testing (as the more you know about the company you are hacking – the easier it can become).
 
 The main benefit of OSINT is that it is a form of passive reconnaissance (so legal) as all information is already in the public domain.
 
 
 {{< admonition warning >}}
-Altough it is legal to access documents in the public domain, you must be wary of stalking rules and people's right to a private life (see the Human Rights Act).
+Although it is legal to access documents in the public domain, you must be wary of stalking rules and people's right to a private life (see the Human Rights Act).
 {{< /admonition >}}
 
 ### Good Places
@@ -39,12 +39,12 @@ Altough it is legal to access documents in the public domain, you must be wary o
 - Maltego
 
 ## Image Metadata
-What's in the image can provide useful information, like:
+What is in the image can provide useful information, like:
 
 - Employee badge number
 - Signs (to tell location)
 - Confidential documents
-- What’s on their computer screen (may give away confidential information/IT programs & systems they use)
+- What is on their computer screen (may give away confidential information/IT programs & systems they use)
 - Faces (can you identify anyone?)
 
 An image can paint a thousand words, well at least the metadata can; the sort of thing you can find is:
@@ -59,7 +59,7 @@ To view metadata in Linux, I recommend using exiftool:
 exiftool image.png
 ```
 
-Or on Windows you can view the image properties (but please note this won't always show all the metadata fields).
+Or on Windows you can view the image properties (but please note this will not always show all the metadata fields).
 
 ## Old Websites & GitHub Repositories
 Ever accidently published private information to a website – well 
@@ -69,7 +69,7 @@ Ever done the same to GitHub? Check old Git commit history!
 
 ## Social Engineering - Hacking the Mind
 
-This is the art of tricking people into trusting you, or doing things that they would not normally do. It normally involves you making people believe you have authority (hi Vis Test - see below).
+This is the art of tricking people into trusting you or doing things that they would not normally do. It normally involves you making people believe you have authority (hi Vis Test - see below).
 
 This is because we like to be trusting and helpful to others (generally). For example, if someone helps you, you are more likely to help them.
 

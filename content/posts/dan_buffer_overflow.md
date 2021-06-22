@@ -1,9 +1,8 @@
 ---
 title: "Guest Lecturer - Buffer Overflows"
 date: 2020-11-18T12:40:28+01:00
-lastmod: 2021-05-29T12:40:28+01:00
 draft: false
-description: "An introduction to buffer overflows, by guest lecterer Dan. "
+description: "An introduction to buffer overflows, by guest lecturer Dan."
 
 tags: ["buffer overflow", "guest", "Dan"]
 categories: ["Academic Year 2020-21"]

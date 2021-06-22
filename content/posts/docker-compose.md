@@ -1,5 +1,5 @@
 ---
-title: "Howto: docker-compose"
+title: "How-To: docker-compose"
 date: 2020-10-19T12:40:28+01:00
 draft: false
 

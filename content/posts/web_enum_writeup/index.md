@@ -4,7 +4,7 @@ date: 2020-10-28T12:40:28+01:00
 lastmod: 2021-05-30T12:40:28+01:00
 draft: false
 
-tags: ["writeup", "reconnaissance", "enumeration", "Nmap", "Web Shells" ]
+tags: ["writeup", "reconnaissance", "enumeration", "Nmap", "Web Shells"]
 categories: ["Academic Year 2020-21"]
 
 author: "Tiago Pascoal"
