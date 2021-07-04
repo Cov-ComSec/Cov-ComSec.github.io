@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" version="1.0" width="140px" height="153px" viewBox="0 0 1400 1530" preserveAspectRatio="xMidYMid meet" id="svg156" sodipodi:docname="CUEH.svg" inkscape:version="1.0.2 (e86c870879, 2021-01-15, custom)">
+  <metadata id="metadata162">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs id="defs160"/>
+  <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1366" inkscape:window-height="705" id="namedview158" showgrid="false" inkscape:zoom="3.5163399" inkscape:cx="70" inkscape:cy="76.5" inkscape:window-x="-8" inkscape:window-y="-8" inkscape:window-maximized="1" inkscape:current-layer="svg156"/>
+  <g id="layer107" fill="#989898" stroke="none">
+    <path d="M445 1322 c-121 -71 -253 -147 -292 -170 l-73 -43 0 -343 0 -344 243 -140 c133 -77 267 -154 298 -171 l57 -32 203 119 c112 65 246 142 297 171 l92 53 -2 345 -3 346 -290 168 c-159 92 -294 168 -300 168 -5 0 -109 -57 -230 -127z m495 -100 l255 -148 3 -306 2 -306 -262 -152 c-252 -146 -263 -151 -288 -137 -14 8 -132 76 -263 152 l-237 137 2 306 3 306 255 148 c140 81 260 147 265 147 6 0 125 -66 265 -147z" id="path143"/>
+    <path d="M413 1190 l-233 -135 0 -113 0 -112 53 4 c28 3 60 5 70 6 15 0 17 10 17 73 l0 74 161 93 c88 51 163 99 165 105 3 7 4 41 2 76 l-3 65 -232 -136z" id="path145"/>
+    <path d="M710 1081 l0 -239 55 -4 55 -3 0 215 0 215 -50 28 c-28 15 -52 27 -55 27 -3 0 -5 -108 -5 -239z" id="path147"/>
+    <path d="M1070 975 l0 -135 55 0 55 0 0 108 0 107 -49 28 c-27 15 -52 27 -55 27 -3 0 -6 -61 -6 -135z" id="path149"/>
+    <path d="M180 636 l0 -164 230 -131 c127 -72 233 -131 235 -131 3 0 5 33 5 73 l-1 72 -164 94 -165 93 0 69 0 69 165 0 165 0 0 60 0 60 -235 0 -235 0 0 -164z" id="path151"/>
+    <path d="M710 504 c0 -163 3 -294 8 -292 4 2 28 14 55 28 l47 24 0 208 0 208 125 0 125 0 0 -131 c0 -146 -4 -141 69 -94 l41 25 0 160 0 160 -235 0 -235 0 0 -296z" id="path153"/>
+  </g>
+</svg>

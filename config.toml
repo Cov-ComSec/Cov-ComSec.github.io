@@ -1,0 +1,309 @@
+baseURL = "https://cov-comsec.github.io/"
+defaultContentLanguage = "en"
+languageCode = "en"
+title = "CUEH ComSec"
+theme = "HackIt"
+enableGitInfo = true
+enableRobotsTXT = true
+disableHugoGeneratorInject = true
+
+[menu]
+  [[menu.main]]  
+    identifer = "About"
+    name = "About"
+    url = "/about/"
+    weight = 1
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 3
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "/categories/"
+    weight = 4
+
+
+[params]
+  version = "0.2.X"
+  description = "The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."
+  keywords = ["CUEH", "ComSec", "Coventry", "cybersecurity", "Ethical Hacking", "cyber security"]
+  defaultTheme = "dark"
+  gitRepo = "https://github.com/Cov-ComSec/Cov-ComSec.github.io"
+  fingerprint = ""
+  dateFormat = "2006-01-02"
+  images = ["/logo.svg"]
+
+  [params.app]
+    title = "CUEH ComSec"
+    noFavicon = false
+    svgFavicon = "/CUEH.svg"
+    # Android browser
+    themeColor = "#ffffff"
+    # Safari
+    iconColor = "#5bbad5"
+    # Windows tile color
+    tileColor = "#da532c"
+
+  [params.search]
+    enable = true
+    type = "lunr"
+    contentLength = 4000
+    placeholder = ""
+    maxResultLength = 10
+    snippetLength = 30
+    highlightTag = "em"
+    absoluteURL = false
+    [params.search.algolia]
+      index = ""
+      appID = ""
+      searchKey = ""
+
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+    [params.header.title]
+      # URL of the LOGO
+      logo = "/CUEH.svg"
+      name = "ComSec"
+      pre = ""
+      post = ""
+      typeit = false
+
+  [params.footer]
+    enable = true
+    custom = ''
+    hugo = false
+    copyright = true
+    author = true
+    since = 2020
+    icp = ""
+    license = ''
+
+  [params.section]
+    paginate = 20
+    dateFormat = "01-02"
+    rss = 10
+
+  [params.list]
+    paginate = 20
+    dateFormat = "01-02"
+    rss = 10
+
+  [params.home]
+    rss = 10
+    [params.home.profile]
+      enable = true
+
+      gravatarEmail = ""
+      avatarURL = "/CUEH.svg"
+      avatarAlt = "ComSec"
+      title = "ComSec"
+      subtitle = "Coventry University's Ethical Hacking Society"
+      disclaimer = "Content on this website will teach hacking, you are responsible to ensure that it is used ethically and all laws are followed"
+      typeit = true
+
+    [params.home.posts]
+      enable = true
+      paginate = 6
+      defaultHiddenFromHomePage = false
+
+  [params.social]
+    GitHub = "cov-comsec"
+    RSS = true
+
+  [params.page]
+    hiddenFromHomePage = false
+    hiddenFromSearch = false
+    twemoji = false
+    lightgallery = false
+    ruby = false
+    fraction = false
+    fontawesome = false
+    linkToMarkdown = true
+    rssFullText = false
+
+    [params.page.toc]
+      enable = true
+      keepStatic = true
+      auto = true
+
+    [params.page.math]
+      enable = false
+      blockLeftDelimiter = ""
+      blockRightDelimiter = ""
+      inlineLeftDelimiter = ""
+      inlineRightDelimiter = ""
+      copyTex = true
+      mhchem = true
+      
+    [params.page.code]
+      copy = true
+      maxShownLines = 10
+
+    [params.page.mapbox]
+      accessToken = ""
+      lightStyle = "mapbox://styles/mapbox/light-v9"
+      darkStyle = "mapbox://styles/mapbox/dark-v9"
+      navigation = true
+      geolocate = true
+      scale = true
+      fullscreen = true
+
+    [params.page.share]
+      enable = false
+      Twitter = true
+      Facebook = true
+      Linkedin = false
+      Whatsapp = true
+      Pinterest = false
+      Tumblr = false
+      HackerNews = false
+      Reddit = false
+      VK = false
+      Buffer = false
+      Xing = false
+      Line = true
+      Instapaper = false
+      Pocket = false
+      Digg = false
+      Stumbleupon = false
+      Flipboard = false
+      Weibo = true
+      Renren = false
+      Myspace = true
+      Blogger = true
+      Baidu = false
+      Odnoklassniki = false
+      Evernote = true
+      Skype = false
+      Trello = false
+      Mix = false
+
+    [params.page.comment]
+      enable = true
+      [params.page.comment.utterances]
+        enable = true
+        # owner/repo
+        repo = "Cov-ComSec/Cov-ComSec.github.io"
+        issueTerm = "pathname"
+        label = "Comments"
+        lightTheme = "github-light"
+        darkTheme = "photon-dark"
+
+    [params.page.seo]
+      # image URL
+      images = ["/CUEH.svg"]
+      # Publisher info
+      [params.page.seo.publisher]
+        name = "Jack Orcherton"
+        logoUrl = "/CUEH.svg"
+
+  [params.typeit]
+    speed = 100
+    cursorSpeed = 1000
+    cursorChar = "|"
+    duration = -1
+
+  [params.seo]
+    # image URL
+    image = "/CUEH.svg"
+    # thumbnail URL
+    thumbnailUrl = "/CUEH.svg"
+
+  #  Analytics config
+  [params.analytics]
+    enable = false
+
+  #  Cookie consent config
+  [params.cookieconsent]
+    enable = false
+
+  #  Compatibility config
+  [params.compatibility]
+    # whether to use Polyfill.io to be compatible with older browsers
+    polyfill = false
+    # whether to use object-fit-images to be compatible with older browsers
+    objectFit = false
+
+# Markup related config in Hugo
+[markup]
+  # Syntax Highlighting
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # false is a necessary configuration
+    # (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+  # Goldmark is from Hugo 0.60 the default library used for Markdown
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # whether to use HTML tags directly in the document
+      unsafe = true
+  # Table Of Contents settings
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+# Author config
+[author]
+  name = "CUEH ComSec"
+  email = ""
+  link = ""
+
+# Sitemap config
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Permalinks config
+[Permalinks]
+  # posts = ":year/:month/:filename"
+  posts = "posts/:filename"
+
+# Privacy config
+[privacy]
+  #  privacy of the Google Analytics (replaced by params.analytics.google)
+  [privacy.googleAnalytics]
+    # ...
+  [privacy.twitter]
+    enableDNT = true
+  [privacy.youtube]
+    privacyEnhanced = true
+
+# Options to make output .md files
+[mediaTypes]
+  [mediaTypes."text/plain"]
+    suffixes = ["md"]
+
+# Options to make output .md files
+[outputFormats.MarkDown]
+  mediaType = "text/plain"
+  isPlainText = true
+  isHTML = false
+
+# Options to make hugo output files
+[outputs]
+  # 
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML", "MarkDown"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML"]
