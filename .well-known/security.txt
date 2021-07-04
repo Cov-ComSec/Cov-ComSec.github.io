@@ -1,0 +1,1 @@
+To report security issues/view our policy - please visit our website GitHub Repository - https://github.com/Cov-ComSec/Cov-ComSec.github.io/blob/main/SECURITY.md
