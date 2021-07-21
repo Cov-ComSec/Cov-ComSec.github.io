@@ -19,6 +19,7 @@ As a society we are fairly open and will allow anyone to run sessions - as we ar
 - Jack Orcherton
 - Martin Schon
 - Tiago Pascoal
+- Ben Roxbee Cox
 
 If you are a Coventry University student, feel free to get in touch by either searching for 'ComSec' or one of our names in the universities email directory.
 
