@@ -28,8 +28,11 @@ disableHugoGeneratorInject = true
     name = "Categories"
     url = "/categories/"
     weight = 4
-
-
+  [[menu.main]]
+    identifier = "ctfd"
+    name = "CTFd"
+    url = "https://cueh-comsec.ctfd.io/"
+    weight = 5
 [params]
   version = "0.2.X"
   description = "The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."
