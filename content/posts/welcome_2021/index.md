@@ -2,7 +2,7 @@
 title: "We're Back!"
 date: 2021-09-10T12:40:28+01:00
 draft: false
-description: "An introduction to ComSec and looking at network enumeration."
+description: "An introduction to ComSec and our plans for 2021"
 
 tags: ["welcome"]
 categories: ["Academic Year 2021-22"]
