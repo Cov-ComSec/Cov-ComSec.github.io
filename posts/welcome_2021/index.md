@@ -17,5 +17,3 @@ See what ComSec has to offer and join us in our first session on Wednesday 15th 
 
 ![Promotional Ad](promo.gif)
 
-<!-- cueh{insert_sensitive-data_here!} -->
-
