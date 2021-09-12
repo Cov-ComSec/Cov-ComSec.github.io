@@ -26,3 +26,5 @@ To create a warm and welcoming environment; we follow and uphold a [code of cond
 See what ComSec has to offer and join us in our first session on Wednesday 15th September at 2pm. If you have any questions; drop us an email by searching for ComSec in your university email contacts!
 
 ![Promotional Ad](promo.gif)
+
+<!-- cueh{insert_sensitive-data_here!} -->
