@@ -40,6 +40,7 @@ What is the best way to improve?
     - [TryHackMe](https://tryhackme.com/)
     - [VulnHub](https://www.vulnhub.com/)
 - Keeping up with the latest cybersecurity news.
+    - [All InfoSec News](https://allinfosecnews.com/) is nice as it aggregates news stories from multiple sources.
 
 ## Today's Challenge
 Today we will be completing a boot2root machine, kindly put together by Ben and Jack. It is hosted on CTFd – remember when signing up, use your university address!
