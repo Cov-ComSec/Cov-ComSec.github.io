@@ -143,7 +143,6 @@ Let's begin with the names. We can put them into a wordlist.
 > EOF
 ```
 Now we can use a little bit of hashcat-fu and generate a new wordlist from our names. For this purpose, we can use rules. If you are not familiar with hashcat rules, check out their [documentation](https://hashcat.net/wiki/doku.php?id=rule_based_attack)
-<br />
 The rules I am going to use to generate the new wordlist are pretty much going to replace symbols like "s" with "$", "a" with "4", and so on.
 That is the content of the file I am going to use:
 ```
