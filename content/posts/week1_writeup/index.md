@@ -21,7 +21,7 @@ Anyway, as we go to the landing page, we can see that there are home(1) and logi
 
 ![Web Page](pics/webpage.png)
 
-As the challenge is OSINT related, we can try to find some accounts or any information on the internet related to these people. After a little bit of googling, I managed to find <a href="https://twitter.com/DixsonVarley" target="_blank">Dixon's Twitter account</a>. Following the chronology and the contest of the tweets, we can see that Dixon has started working for Insanity Accounting a while after he created his account. From one of the tweets, we can see a picture of his cat... and the username we were looking for on peace of paper under the cat......
+As the challenge is OSINT related, we can try to find some accounts or any information on the internet related to these people. After a little bit of googling, I managed to find [Dixon's Twitter account](https://twitter.com/DixsonVarley). Following the chronology and the contest of the tweets, we can see that Dixon has started working for Insanity Accounting a while after he created his account. From one of the tweets, we can see a picture of his cat... and the username we were looking for on peace of paper under the cat......
 
 ![Username](pics/cat.png)
 
