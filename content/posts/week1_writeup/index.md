@@ -43,7 +43,6 @@ And we got our second flag.
 
 ## Challenge 3: What is Dixson's password?
 For challenge 3, we are being given a new hash as the one from challenge 2 is incorrect.
-<br />
 To crack the hash we can use either `hashcat`, `johnny`, <a href="https://crackstation.net/" target="_blink">CrackStation</a>, `Cain&Abel`, etc. As `hashcat` is the best password brute force tool, in my opinion, I will use it, but CrackStation will do just fine for this password.
 <br />
 ```
