@@ -73,7 +73,7 @@ Username: D.Varley772
 Password: qwertyuiop
 ```
 
-Now we cant try logging in.
+Now we can try logging in.
 
 ![UI](pics/UI.png)
 
