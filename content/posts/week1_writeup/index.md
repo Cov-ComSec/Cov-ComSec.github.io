@@ -16,7 +16,6 @@ The first-week challenge covers the basics of OSINT research, opening remote con
 
 ## Challenge 1: Web Username
 The first one was very tricky for me as I am not a cat person and don't enjoy cat pictures...
-<br />
 Anyway, as we go to the landing page, we can see that there are home(1) and login(2) pages and some information(3) about some employees.
 
 ![Web Page](pics/webpage.png)
