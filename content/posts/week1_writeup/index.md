@@ -195,7 +195,6 @@ This mask will append `-` or `_` to the end of each word with folowing all the e
 <br />
 After less then a second we will have our result.
 `Result: $6$czitf7EkuZDKvo1G$Fzuxy.As6BxQhNyUV0zq9z0ehkb3yhzSAOFekJ1jpf.J3/3wJ.v.ARwzq28tQp2XEI81tl.hb6bWWY29JLxnX0:C0ll1n_1989`
-<br />
 Now we just need the root flag.
 <br />
 Bare in mind that to be able to gain live shell (TTY), you need to run: `/usr/bin/script -qc /bin/bash /dev/null`.
