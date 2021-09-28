@@ -32,7 +32,7 @@ If we take a look over this tweet, we can see that Dixon messed up something and
 
 ![Tweet1](pics/tweetP1.png)
 
-The <a href="https://twitter.com/DixsonVarley/status/1431255932445417473" target="_blink">link</a> will take us to deleted tweet, but that doesn't mean we can't see it. By using <a href="https://archive.org/web/" target="_blank">WayBack</a> we can see the content of the tweet.
+The [link](https://twitter.com/DixsonVarley/status/1431255932445417473) will take us to deleted tweet, but that doesn't mean we can't see it. By using [WayBack](https://archive.org/web/) we can see the content of the tweet.
 
 ![Tweet2](pics/tweetP2.png)
 
