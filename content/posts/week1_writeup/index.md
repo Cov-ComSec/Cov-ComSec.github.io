@@ -133,7 +133,6 @@ Here is what I know
 ```
 Now we can use this info and hashcat rules to crack the password.
 So, if we already have one password we can use it as a template.
-<br />
 Let's begin with the names. We can put them into a wordlist.
 ```
 ❯ cat < EOF > names.list
