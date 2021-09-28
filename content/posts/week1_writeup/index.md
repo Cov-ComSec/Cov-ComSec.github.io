@@ -180,7 +180,7 @@ The command to generate it is:
 ```
 hashcat -r rules names.list --stdout > wordlist.list
 ```
-And once we have generated our new wordlist, we can try brute-forcing the password with a <a href="https://hashcat.net/wiki/doku.php?id=mask_attack" target="_blink">mask attack</a> that is going to look like this:
+And once we have generated our new wordlist, we can try brute-forcing the password with a [mask attack](https://hashcat.net/wiki/doku.php?id=mask_attack) that is going to look like this:
 ```
 hashcat -m 1800 -a 6 hash.txt wordlist.list ?1?2?3?d?d -1 _- -2 12 -3 90
 ```
