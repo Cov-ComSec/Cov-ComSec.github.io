@@ -29,7 +29,6 @@ As the challenge is OSINT related, we can try to find some accounts or any infor
 
 ## Challenge 2: Web Hashed Password
 The second challenge is more obvious.
-<br />
 If we take a look over this tweet, we can see that Dixon messed up something and decided to share a link with us.
 
 ![Tweet1](pics/tweetP1.png)
