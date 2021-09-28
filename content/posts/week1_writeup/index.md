@@ -185,7 +185,6 @@ And once we have generated our new wordlist, we can try brute-forcing the passwo
 hashcat -m 1800 -a 6 hash.txt wordlist.list ?1?2?3?d?d -1 _- -2 12 -3 90
 ```
 This mask will append `-` or `_` to the end of each word with folowing all the ears from `1900` to `2099`.
-<br />
 After less then a second we will have our result.
 `Result: $6$czitf7EkuZDKvo1G$Fzuxy.As6BxQhNyUV0zq9z0ehkb3yhzSAOFekJ1jpf.J3/3wJ.v.ARwzq28tQp2XEI81tl.hb6bWWY29JLxnX0:C0ll1n_1989`
 Now we just need the root flag.
