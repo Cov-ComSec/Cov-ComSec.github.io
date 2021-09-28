@@ -132,7 +132,6 @@ Here is what I know
 - The password he set for Splunk was h0lly_2001
 ```
 Now we can use this info and hashcat rules to crack the password.
-<br />
 So, if we already have one password we can use it as a template.
 <br />
 Let's begin with the names. We can put them into a wordlist.
