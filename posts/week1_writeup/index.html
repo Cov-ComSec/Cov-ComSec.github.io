@@ -10,14 +10,14 @@ Challenge 1: Web Username The first one was very tricky for me as I am not a cat
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/week1_writeup/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-28T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-09-28T22:02:25+01:00">
+<meta property="article:modified_time" content="2021-09-29T09:00:33+01:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="Week 1: OSINT Chalange Writeup">
 <meta name=twitter:description content="Intro The first-week challenge covers the basics of OSINT research, opening remote connections and password cracking. I will try to cover most of the methods we can use to get through Jack&rsquo;s cat and Ben&rsquo;s secure passwords. Without further ado, let&rsquo;s begin.
 Challenge 1: Web Username The first one was very tricky for me as I am not a cat person and don&rsquo;t enjoy cat pictures&mldr; Anyway, as we go to the landing page, we can see that there are home(1) and login(2) pages and some information(3) about some employees.">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/taster_week1/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Week 1: OSINT Chalange Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/week1_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"OSINT,  nc, pwncat, metasploit, hashcat, ngrok","wordcount":1063,"url":"https:\/\/cov-comsec.github.io\/posts\/week1_writeup\/","datePublished":"2021-09-28T12:40:28+01:00","dateModified":"2021-09-28T22:02:25+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Nick"},"description":""}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/taster_week1/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Week 1: OSINT Chalange Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/week1_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"OSINT,  nc, pwncat, metasploit, hashcat, ngrok","wordcount":1053,"url":"https:\/\/cov-comsec.github.io\/posts\/week1_writeup\/","datePublished":"2021-09-28T12:40:28+01:00","dateModified":"2021-09-29T09:00:33+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Nick"},"description":""}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -85,7 +85,7 @@ Cancel
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Week 1: OSINT Chalange Writeup</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://nikelandjelo.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Nick</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1063 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-28>2021-09-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1053 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept=true>
 <div class="details-summary toc-title">
@@ -119,7 +119,6 @@ Anyway, as we go to the landing page, we can see that there are home(1) and logi
 <p><img class=lazyload src=/svg/loading.min.svg data-src=pics/webpage.png data-srcset="/posts/week1_writeup/pics/webpage.png, pics/webpage.png 1.5x, /posts/week1_writeup/pics/webpage.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/webpage.png title="Web Page"></p>
 <p>As the challenge is OSINT related, we can try to find some accounts or any information on the internet related to these people. After a little bit of googling, I managed to find <a href=https://twitter.com/DixsonVarley target=_blank rel="noopener noreffer">Dixon&rsquo;s Twitter account</a>. Following the chronology and the contest of the tweets, we can see that Dixon has started working for Insanity Accounting a while after he created his account. From one of the tweets, we can see a picture of his cat&mldr; and the username we were looking for on peace of paper under the cat&mldr;&mldr;</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=pics/cat.png data-srcset="/posts/week1_writeup/pics/cat.png, pics/cat.png 1.5x, /posts/week1_writeup/pics/cat.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/cat.png title=Username></p>
-<p><code>Flag: D.Varley772</code></p>
 <h2 id=challenge-2-web-hashed-password>Challenge 2: Web Hashed Password</h2>
 <p>The second challenge is more obvious.
 If we take a look over this tweet, we can see that Dixon messed up something and decided to share a link with us.</p>
@@ -127,7 +126,6 @@ If we take a look over this tweet, we can see that Dixon messed up something and
 <p>The <a href=https://twitter.com/DixsonVarley/status/1431255932445417473 target=_blank rel="noopener noreffer">link</a> will take us to deleted tweet, but that doesn&rsquo;t mean we can&rsquo;t see it. By using <a href=https://archive.org/web/ target=_blank rel="noopener noreffer">WayBack</a> we can see the content of the tweet.</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=pics/tweetP2.png data-srcset="/posts/week1_writeup/pics/tweetP2.png, pics/tweetP2.png 1.5x, /posts/week1_writeup/pics/tweetP2.png 2x" data-sizes=auto alt=/posts/week1_writeup/pics/tweetP2.png title=Tweet2></p>
 <p>And we got our second flag.</p>
-<p><code>Flag: ab353a4eaf482265e7a85cba84422b4ab95fae8a4f5dd2bddea9548d53d1644a</code></p>
 <h2 id=challenge-3-what-is-dixsons-password>Challenge 3: What is Dixson&rsquo;s password?</h2>
 <p>For challenge 3, we are given a new hash as the one from challenge 2 is incorrect.
 To crack the hash we can use either <code>hashcat</code>, <code>johnny</code>, <a href=https://crackstation.net/ target=_blank rel="noopener noreffer">CrackStation</a>, <code>Cain&Abel</code>, etc. As <code>hashcat</code> is the best password brute force tool, in my opinion, I will use it, but CrackStation will do just fine for this password.</p>
@@ -163,8 +161,7 @@ Analyzing &#39;9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd&
 ❯ hashcat -m 1400 -a 0 &#39;9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd&#39; rockyou.txt
 </code></pre></td></tr></table>
 </div>
-</div><p><code>Result: 9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd:qwertyuiop</code>
-<code>Flag: qwertyuiop</code></p>
+</div><p><code>Result: 9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd:qwertyuiop</code></p>
 <h2 id=challenge-4-user-flag>Challenge 4: User Flag</h2>
 <p>Great! We have credentials.</p>
 <div class=highlight><div class=chroma>
@@ -214,8 +211,7 @@ The only thing left is to get the user flag.</p>
 <pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>cat /home/intern/user.txt
 </code></pre></td></tr></table>
 </div>
-</div><p><code>Flag: cueh{0h...I_gu3ss_y0u_can_r3vers3_shell_via_3val}</code></p>
-<h2 id=challenge-5-root-flag>Challenge 5: Root Flag</h2>
+</div><h2 id=challenge-5-root-flag>Challenge 5: Root Flag</h2>
 <p>Now, on the root flag!
 <br>
 No further enumeration is required than <code>cat /etc/shadow</code>.</p>
@@ -410,14 +406,13 @@ From there:</p>
 cat /root/you_rooted_me.txt
 </code></pre></td></tr></table>
 </div>
-</div><p><code>Flag: cueh{0h...y0u_can_us3_hashcat_rulezz}</code></p>
-<h3 id=hope-you-have-learned-something-new->Hope you have learned something new 😄🐈‍⬛</h3>
+</div><h3 id=hope-you-have-learned-something-new->Hope you have learned something new 😄🐈‍⬛</h3>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-09-28&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/338bb8634b9e251153da38d98a72d3fd34d8a87a target=_blank title="commit by Nick(44437104+Nikelandjelo@users.noreply.github.com) 338bb8634b9e251153da38d98a72d3fd34d8a87a: Update content/posts/week1_writeup/index.md">
-<i class="fas fa-hashtag fa-fw"></i>338bb86</a></span>
+<span>Updated on 2021-09-29&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/650dc4c47ff79292bf8e546293bab746f23ad971 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 650dc4c47ff79292bf8e546293bab746f23ad971: Update index.md">
+<i class="fas fa-hashtag fa-fw"></i>650dc4c</a></span>
 </div>
 <div class=post-info-license></div>
 </div>

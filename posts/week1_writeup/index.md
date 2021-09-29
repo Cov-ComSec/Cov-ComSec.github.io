@@ -14,8 +14,6 @@ As the challenge is OSINT related, we can try to find some accounts or any infor
 
 ![Username](pics/cat.png)
 
-`Flag: D.Varley772`
-
 ## Challenge 2: Web Hashed Password
 The second challenge is more obvious.
 If we take a look over this tweet, we can see that Dixon messed up something and decided to share a link with us.
@@ -27,8 +25,6 @@ The [link](https://twitter.com/DixsonVarley/status/1431255932445417473) will tak
 ![Tweet2](pics/tweetP2.png)
 
 And we got our second flag.
-
-`Flag: ab353a4eaf482265e7a85cba84422b4ab95fae8a4f5dd2bddea9548d53d1644a`
 
 ## Challenge 3: What is Dixson's password?
 For challenge 3, we are given a new hash as the one from challenge 2 is incorrect.
@@ -49,7 +45,6 @@ Analyzing '9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd'
 ❯ hashcat -m 1400 -a 0 '9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd' rockyou.txt
 ```
 `Result: 9a900403ac313ba27a1bc81f0932652b8020dac92c234d98fa0b06bf0040ecfd:qwertyuiop`
-`Flag: qwertyuiop`
 
 ## Challenge 4: User Flag
 Great! We have credentials.
@@ -82,7 +77,6 @@ The only thing left is to get the user flag.
 ```
 cat /home/intern/user.txt
 ```
-`Flag: cueh{0h...I_gu3ss_y0u_can_r3vers3_shell_via_3val}`
 
 ## Challenge 5: Root Flag
 Now, on the root flag!
@@ -184,6 +178,6 @@ From there:
 su root
 cat /root/you_rooted_me.txt
 ```
-`Flag: cueh{0h...y0u_can_us3_hashcat_rulezz}`
 
 ### Hope you have learned something new 😄🐈‍⬛
+
