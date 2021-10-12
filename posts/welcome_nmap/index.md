@@ -130,4 +130,5 @@ may want to try HTB, more on this in the future).
 
 Go to [TryHackMe](https://tryhackme.com/) & create the free account!
 
-As a final challenge, try and complete the [rpnmap](https://tryhackme.com/room/rpnmap) room.
+As a final challenge, try and complete the [nmap room](https://tryhackme.com/room/furthernmap).
+
