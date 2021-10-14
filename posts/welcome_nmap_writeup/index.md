@@ -9,8 +9,7 @@ So first week of comsec I hope everyone enjoyed the slides and is prepared for t
 
 after running this commands
 ```bash
-git clone https://github.com/Cov-ComSec/ComSecMaterials.git
-cd docker1 
+wget https://cov-comsec.github.io/posts/welcome_nmap/c1/docker-compose.yaml
 docker-compose up
 ```
 After running this commands you should see something like this in your terminal.
@@ -57,9 +56,14 @@ Congratulations! Lets move to docker2
 
 ## Nmap 2
 
-So to prove how important is nmap we setup a second nmap challenge but right now we not following the common ports as you can see in here. We mangled the ports 
+To start this challenge, use:
 
-![StandardPorts](imgs/commonports.pdf)
+```sh
+wget https://cov-comsec.github.io/posts/welcome_nmap/c2/docker-compose.yaml
+docker-compose up
+```
+
+So to prove how important is nmap we setup a second nmap challenge but right now we not following the common ports as you can see in here. We mangled the ports from the [StandardPorts](imgs/commonports.pdf)
 
 ```bash
 sudo nmap -sC -sV 192.168.42.1 -p-
@@ -111,5 +115,5 @@ cat flag.txt
 ```
 Congrats!
 Any doubts contact ComSec Committee on discord.
-Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/){target=_blank}
+Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/)
 
