@@ -25,7 +25,7 @@ a = 4
 
 Let's start by push x,y,z,a to the stack. Since the stack is LIFO we should push in reverse order, so that we can access x & y first. Whilst demoing this in the session, it was pointed out that would could move the values directly into the relevant registers, however we showed it this way because it introduces the concept of interacting with memory.
 
-```
+```asm
 .global _start
 .intel_syntax noprefix
 
