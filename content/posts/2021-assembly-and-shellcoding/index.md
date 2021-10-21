@@ -39,7 +39,7 @@ push 10
 
 Next we should pop x and y into registers and multiply them.
 
-```
+```asm
 times:
 /* 10 * 5 */
 pop rdi
@@ -49,7 +49,7 @@ imul rdi, rsi
 
 Now we need to divide by z. Remember in assembly the operator of the integer division should be stored in rax, and we call div with the register containing the operand. 
 
-```
+```asm
 divide:
 mov rax, rdi
 pop rsi
@@ -58,7 +58,7 @@ div rsi
 
 Now we simply need to add a, and exit.
 
-```
+```asm
 add:
 pop rdx
 add rax, rdx
@@ -72,7 +72,7 @@ syscall
 
 We then assembled our code. 
 
-```
+```bash
 $ gcc task1.s -o task1.elf -nostdlib -static
 ```
 
@@ -88,7 +88,7 @@ The next task was to use a loop to calculate `x ^ 3`. We will do `4 ^ 3`.
 
 So lets get 4 into a register.
 
-```
+```asm
 .global _start
 .intel_syntax noprefix
 
@@ -101,7 +101,7 @@ mov rsi, rdi
 
 Now we want to build a loop. For the loop, we will build an if statement using a a conditional relative jump. rax is compared to decimal 2, if they are equal then a conditional relative jump is performed to the label `done:`. Otherwise the program continues to the multiply statement. The value of rax is then increased by 1, and a relative jump is made to the `loop:` label.
 
-```
+```asm
 loop:
 cmp rax, 2
 je done
@@ -144,7 +144,7 @@ How do you know if a number is even or odd ? Well in binary, if a number is odd 
 
 We can use a conditional relative jump if the number is odd to the label `odd:`, which will exit the program. Otherwise divide again and relative jump back to the `test:` label
 
-```
+```asm
 test:
 test al, 1
 jnz odd
