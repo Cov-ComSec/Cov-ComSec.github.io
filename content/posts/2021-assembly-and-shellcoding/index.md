@@ -116,7 +116,7 @@ syscall
 
 We can see that the resulting value, stored in rdi, is 0x40 or decimal 64. This is the correct answer. 
 
-![task1](images/ss2.png)
+![Screenshot of GDB context menu](images/ss2.png)
 
 ## Task 3
 
