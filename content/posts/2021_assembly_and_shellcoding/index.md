@@ -11,7 +11,7 @@ categories: ["Academic Year 2020-21"]
 
 This week Ben led a session on some basic assembly shellcoding. The first section of the session covered some foundational theory content on CPU architecture, registers, and memory. After this, assembly was introduced - we used x86_64 assembly with Intel syntax. In this article we will go through one method of solving each assembly challenge. The shellcode solutions will be released at a later date. 
 
-You can download the presentation [here](presentation.pptx).
+You can download the presentation [here](presentation.pdf).
 
 ## Task 1
 
