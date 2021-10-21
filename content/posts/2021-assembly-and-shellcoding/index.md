@@ -2,7 +2,8 @@
 title: "Assembly & Shellcoding"
 date: 2021-10-20T12:40:28+01:00
 draft: false
-
+author: "sharkmoos"
+description: "An introduction to assembly coding and shellcoding"
 tags: ["pwn", "Docker", "assembly"]
 categories: ["Academic Year 2020-21"]
 ---
@@ -10,7 +11,7 @@ categories: ["Academic Year 2020-21"]
 
 This week Ben led a session on some basic assembly shellcoding. The first section of the session covered some foundational theory content on CPU architecture, registers, and memory. After this, assembly was introduced - we used x86_64 assembly with Intel syntax. In this article we will go through one method of solving each assembly challenge. The shellcode solutions will be released at a later date. 
 
-You can download the presentation [here](./presentation.pptx).
+You can download the presentation [here](presentation.pptx).
 
 ## Task 1
 
@@ -77,7 +78,9 @@ $ gcc task1.s -o task1.elf -nostdlib -static
 
 With this done, we could step through the program with our debugger to see the result of our code. We can see tha value in rax is 0x1d, 29 in decimal, which is the correct answer.
 
-![task1](./images/ss1.png)
+We can load the program into gdb, start the program with a breakpoint using `starti`, and step through the program using `n`. The context will be printed after each step, and we can call the different context sections. (ie context registers) in case the sections scroll off the page.
+
+![Screenshot of GDB context menu](images/ss1.png)
 
 ## Task 2
 
@@ -113,7 +116,7 @@ syscall
 
 We can see that the resulting value, stored in rdi, is 0x40 or decimal 64. This is the correct answer. 
 
-![task1](./images/ss2.png)
+![task1](images/ss2.png)
 
 ## Task 3
 
