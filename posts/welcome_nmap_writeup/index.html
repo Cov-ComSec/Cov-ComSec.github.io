@@ -9,13 +9,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/welcome_nmap_writeup/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2020-10-21T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-10-14T17:04:11+01:00">
+<meta property="article:modified_time" content="2021-10-23T00:00:03+01:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="ComSec Introduction Writeup">
 <meta name=twitter:description content="A writeup for the introduction to ComSec challenges.">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/welcome_nmap_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/docker-compose/><link rel=next href=https://cov-comsec.github.io/posts/web_enum/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ComSec Introduction Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, TryHackMe, Nmap, writeup","wordcount":991,"url":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/","datePublished":"2020-10-21T12:40:28+01:00","dateModified":"2021-10-14T17:04:11+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Tiago Pascoal"},"description":"A writeup for the introduction to ComSec challenges."}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/welcome_nmap_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/docker-compose/><link rel=next href=https://cov-comsec.github.io/posts/web_enum/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ComSec Introduction Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, TryHackMe, Nmap, writeup","wordcount":991,"url":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/","datePublished":"2020-10-21T12:40:28+01:00","dateModified":"2021-10-23T00:00:03+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Tiago Pascoal"},"description":"A writeup for the introduction to ComSec challenges."}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -123,12 +123,12 @@ Minimize your shell open a new one and start scanning.</p>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>sudo nmap -sC -sV 172.18.0.1
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>sudo nmap -sC -sV 192.168.42.1
 </code></pre></td></tr></table>
 </div>
 </div><p><img class=lazyload src=/svg/loading.min.svg data-src=imgs/nmap_1_scan.png data-srcset="/posts/welcome_nmap_writeup/imgs/nmap_1_scan.png, imgs/nmap_1_scan.png 1.5x, /posts/welcome_nmap_writeup/imgs/nmap_1_scan.png 2x" data-sizes=auto alt=/posts/welcome_nmap_writeup/imgs/nmap_1_scan.png title=nmap1scan></p>
 <p>It looks like we have 4 ports open 21,25,80,8080
-Lets navigate to http://172.18.0.1</p>
+Lets navigate to http://192.168.42.1</p>
 <p>If you look at your nmap scan you can see that u have something like &ldquo;/ftp-uploads&rdquo; so this a directory in the website let&rsquo;s see whats going on in there. We have a folder called a anonymous let&rsquo;s see what&rsquo;s inside. Hm a file called FTPflag.txt looks like we found the first flag. Good Job!</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=imgs/ftp_anonymous.png data-srcset="/posts/welcome_nmap_writeup/imgs/ftp_anonymous.png, imgs/ftp_anonymous.png 1.5x, /posts/welcome_nmap_writeup/imgs/ftp_anonymous.png 2x" data-sizes=auto alt=/posts/welcome_nmap_writeup/imgs/ftp_anonymous.png title=ftpanonymous></p>
 <p>So you have one flag.To be honest this flag works more like a hint to tell you what you should do after this. So if you go back to your nmap scan you will see that you have a line &ldquo;21/tcp open ftp Pure-ftp&rdquo; so we have a file transfer protocol it is always good to check as this can sometimes be used for file upload to the machine you are attacking. But what&rsquo;s the mean of ftp-anonymous if you do a fast google search you will find out that when this happens you can have acces to ftp server without having to know the credentials.So lets try to connect to the ftp.</p>
@@ -137,7 +137,7 @@ Lets navigate to http://172.18.0.1</p>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>ftp 172.18.0.1
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>ftp 192.168.42.1
 </code></pre></td></tr></table>
 </div>
 </div><p>You will be asked to input the Name. You just have to type anonymous to connect.
@@ -150,7 +150,7 @@ If you do a &ldquo;ls&rdquo; you will be able do see the a file called FTPflag.t
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> p0wny-shell
-ftp 127.18.0.1
+ftp 192.168.42.1
 put shell.php
 </code></pre></td></tr></table>
 </div>
@@ -268,8 +268,8 @@ Don&rsquo;t to submit your flags in <a href=https://cueh-comsec.ctfd.io/ target=
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-10-14&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/e963b335fd6847fabd578574b36c40c30e1aeca2 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) e963b335fd6847fabd578574b36c40c30e1aeca2: Fixed weblinks and added Second Docker File">
-<i class="fas fa-hashtag fa-fw"></i>e963b33</a></span>
+<span>Updated on 2021-10-23&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/b21bff7e491c32c872d34dc2085cdd35d9adea3b target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) b21bff7e491c32c872d34dc2085cdd35d9adea3b: Updated IP">
+<i class="fas fa-hashtag fa-fw"></i>b21bff7</a></span>
 </div>
 <div class=post-info-license></div>
 </div>

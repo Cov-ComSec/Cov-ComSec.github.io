@@ -22,12 +22,12 @@ Minimize your shell open a new one and start scanning.
 ### Nmap Scan
 
 ```bash
-sudo nmap -sC -sV 172.18.0.1
+sudo nmap -sC -sV 192.168.42.1
 ```
 ![nmap1scan](imgs/nmap_1_scan.png)
 
 It looks like we have 4 ports open 21,25,80,8080
-Lets navigate to http://172.18.0.1
+Lets navigate to http://192.168.42.1
 
 If you look at your nmap scan you can see that u have something like "/ftp-uploads" so this a directory in the website let's see whats going on in there. We have a folder called a anonymous let's see what's inside. Hm a file called FTPflag.txt looks like we found the first flag. Good Job!
 
@@ -36,13 +36,13 @@ If you look at your nmap scan you can see that u have something like "/ftp-uploa
 So you have one flag.To be honest this flag works more like a hint to tell you what you should do after this. So if you go back to your nmap scan you will see that you have a line "21/tcp open ftp Pure-ftp" so we have a file transfer protocol it is always good to check as this can sometimes be used for file upload to the machine you are attacking. But what's the mean of ftp-anonymous if you do a fast google search you will find out that when this happens you can have acces to ftp server without having to know the credentials.So lets try to connect to the ftp.
 
 ```bash
-ftp 172.18.0.1
+ftp 192.168.42.1
 ```
 You will be asked to input the Name. You just have to type anonymous to connect.
 If you do a "ls" you will be able do see the a file called FTPflag.txt which is the same file you found in the website. You type help you will see as the commands that you can use inside the ftp, we want to upload p0wnyshell so that we can get access to the machine through the browser. For now you just need to know that we are using p0wnyshell as our reverse-shell. So "ctrl+c" to stop the ftp connection clone p0wny shell repository [P0wny-Shell](http://github.com/flozz/p0wny-shell.git){target=_blank}.
 ```bash
 cd p0wny-shell
-ftp 127.18.0.1
+ftp 192.168.42.1
 put shell.php
 ```
 The last command is going to upload our shell.

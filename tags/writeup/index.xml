@@ -3,4 +3,4 @@ Every time first thing to do Nmap scan Look at your scan results. So we have one
 after running this commands
 1 2 wget https://cov-comsec.github.io/posts/welcome_nmap/c1/docker-compose.yaml docker-compose up After running this commands you should see something like this in your terminal.
 If you do see this it means you are ready for playing. Minimize your shell open a new one and start scanning.
-Nmap Scan 1 sudo nmap -sC -sV 172.</description></item></channel></rss>
+Nmap Scan 1 sudo nmap -sC -sV 192.</description></item></channel></rss>
