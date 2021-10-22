@@ -9,13 +9,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/welcome_nmap_writeup/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2020-10-21T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-10-23T00:00:03+01:00">
+<meta property="article:modified_time" content="2021-10-23T00:22:39+01:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="ComSec Introduction Writeup">
 <meta name=twitter:description content="A writeup for the introduction to ComSec challenges.">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/welcome_nmap_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/docker-compose/><link rel=next href=https://cov-comsec.github.io/posts/web_enum/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ComSec Introduction Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, TryHackMe, Nmap, writeup","wordcount":991,"url":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/","datePublished":"2020-10-21T12:40:28+01:00","dateModified":"2021-10-23T00:00:03+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Tiago Pascoal"},"description":"A writeup for the introduction to ComSec challenges."}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/welcome_nmap_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/docker-compose/><link rel=next href=https://cov-comsec.github.io/posts/web_enum/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ComSec Introduction Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, TryHackMe, Nmap, writeup","wordcount":1343,"url":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/","datePublished":"2020-10-21T12:40:28+01:00","dateModified":"2021-10-23T00:22:39+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Tiago Pascoal"},"description":"A writeup for the introduction to ComSec challenges."}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,8 +83,8 @@ Cancel
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">ComSec Introduction Writeup</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Tiago Pascoal</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2020-21/><i class="far fa-folder fa-fw"></i>Academic Year 2020-21</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-10-21>2020-10-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;991 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-10-21>2020-10-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1343 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept=true>
 <div class="details-summary toc-title">
 <span>Contents</span>
@@ -101,35 +101,114 @@ Cancel
 </ul>
 </nav></div>
 </div><div class=content id=content><h2 id=nmap-1>Nmap 1</h2>
-<p>So first week of comsec I hope everyone enjoyed the slides and is prepared for the ctf.</p>
-<p>after running this commands</p>
+<p>Welcome to ComSec&rsquo;s first challenge! This week we will be targeting a docker container, to start it, issue the following two commands:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>wget https://cov-comsec.github.io/posts/welcome_nmap/c1/docker-compose.yaml
-docker-compose up
+<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ wget https://cov-comsec.github.io/posts/welcome_nmap/c1/docker-compose.yaml
+$ sudo docker-compose up
+<span class=o>[</span>sudo<span class=o>]</span> password <span class=k>for</span> kali: 
+WARNING: Found orphan containers <span class=o>(</span>kali_evilweb_1<span class=o>)</span> <span class=k>for</span> this project. If you removed or renamed this service in your compose file, you can run this <span class=nb>command</span> with the --remove-orphans flag to clean it up.
+Recreating kali_ftp_1  ... <span class=k>done</span>
+Recreating kali_smtp_1 ... <span class=k>done</span>
+Starting kali_ssh_1    ... <span class=k>done</span>
+Creating kali_web_1    ... <span class=k>done</span>
+Attaching to kali_web_1, kali_ssh_1, kali_smtp_1, kali_ftp_1
+ftp_1   <span class=p>|</span> Starting Pure-FTPd:
+ftp_1   <span class=p>|</span>   pure-ftpd  -c <span class=m>30</span> -C <span class=m>10</span> -l puredb:/etc/pure-ftpd/pureftpd.pdb -j -R -P localhost -p 30000:30059  
+web_1   <span class=p>|</span> AH00558: apache2: Could not reliably determine the server<span class=s1>&#39;s fully qualified domain name, using 192.168.42.4. Set the &#39;</span>ServerName<span class=s1>&#39; directive globally to suppress this message
+</span><span class=s1>web_1   | AH00558: apache2: Could not reliably determine the server&#39;</span>s fully qualified domain name, using 192.168.42.4. Set the <span class=s1>&#39;ServerName&#39;</span> directive globally to suppress this message
+web_1   <span class=p>|</span> <span class=o>[</span>Fri Oct <span class=m>22</span> 23:08:37.325178 2021<span class=o>]</span> <span class=o>[</span>mpm_prefork:notice<span class=o>]</span> <span class=o>[</span>pid 1<span class=o>]</span> AH00163: Apache/2.4.25 <span class=o>(</span>Debian<span class=o>)</span> PHP/7.3.4 configured -- resuming normal operations
+web_1   <span class=p>|</span> <span class=o>[</span>Fri Oct <span class=m>22</span> 23:08:37.326184 2021<span class=o>]</span> <span class=o>[</span>core:notice<span class=o>]</span> <span class=o>[</span>pid 1<span class=o>]</span> AH00094: Command line: <span class=s1>&#39;apache2 -D FOREGROUND&#39;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>After running this commands you should see something like this in your terminal.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=imgs/docker_is_working.png data-srcset="/posts/welcome_nmap_writeup/imgs/docker_is_working.png, imgs/docker_is_working.png 1.5x, /posts/welcome_nmap_writeup/imgs/docker_is_working.png 2x" data-sizes=auto alt=/posts/welcome_nmap_writeup/imgs/docker_is_working.png title=dockerrunning></p>
-<p>If you do see this it means you are ready for playing.
-Minimize your shell open a new one and start scanning.</p>
+</div><p><strong>NB:</strong> Despite the output, the target machine will be launched at 192.168.42.1!</p>
 <h3 id=nmap-scan>Nmap Scan</h3>
+<p>Now the point of this week is to learn Nmap, so lets start a scan with service detection and scripting turned on:</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>sudo nmap -sC -sV 192.168.42.1
+<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>$ nmap -sV -sC 192.168.42.1 -T4
+Starting Nmap 7.91 <span class=o>(</span> https://nmap.org <span class=o>)</span> at 2021-10-22 19:14 EDT
+Nmap scan report <span class=k>for</span> 192.168.42.1
+Host is up <span class=o>(</span>0.00021s latency<span class=o>)</span>.
+Not shown: <span class=m>996</span> closed ports
+PORT   STATE SERVICE VERSION
+21/tcp open  ftp     Pure-FTPd
+<span class=p>|</span> ftp-anon: Anonymous FTP login allowed <span class=o>(</span>FTP code 230<span class=o>)</span>
+<span class=p>|</span>_Can<span class=s1>&#39;t get directory listing: PASV IP 127.0.0.1 is not the same as 192.168.42.1
+</span><span class=s1>22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u2 (protocol 2.0)
+</span><span class=s1>| ssh-hostkey: 
+</span><span class=s1>|   2048 f5:f2:1d:64:04:1b:fd:92:22:7e:6b:71:b7:f4:72:49 (RSA)
+</span><span class=s1>|   256 4b:80:f8:74:c0:8d:aa:40:fc:38:02:16:9f:1c:3b:bd (ECDSA)
+</span><span class=s1>|_  256 a8:08:e5:35:12:d6:a4:cc:74:8f:4c:9c:02:62:f4:f1 (ED25519)
+</span><span class=s1>25/tcp open  smtp    Postfix smtpd
+</span><span class=s1>|_smtp-commands: 8d1d2dc2ddf0.lan, PIPELINING, SIZE 10240000, VRFY, ETRN, STARTTLS, ENHANCEDSTATUSCODES, 8BITMIME, DSN, SMTPUTF8, 
+</span><span class=s1>| ssl-cert: Subject: commonName=8d1d2dc2ddf0
+</span><span class=s1>| Subject Alternative Name: DNS:8d1d2dc2ddf0
+</span><span class=s1>| Not valid before: 2020-08-14T10:33:23
+</span><span class=s1>|_Not valid after:  2030-08-12T10:33:23
+</span><span class=s1>|_ssl-date: TLS randomness does not represent time
+</span><span class=s1>80/tcp open  http    Apache httpd 2.4.25 ((Debian))
+</span><span class=s1>| http-robots.txt: 1 disallowed entry 
+</span><span class=s1>|_/ftp-uploads
+</span><span class=s1>|_http-server-header: Apache/2.4.25 (Debian)
+</span><span class=s1>|_http-title: Site doesn&#39;</span>t have a title <span class=o>(</span>text/html<span class=o>)</span>.
+Service Info: Host:  8d1d2dc2ddf0.lan<span class=p>;</span> OS: Linux<span class=p>;</span> CPE: cpe:/o:linux:linux_kernel
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap <span class=k>done</span>: <span class=m>1</span> IP address <span class=o>(</span><span class=m>1</span> host up<span class=o>)</span> scanned in 7.25 seconds
 </code></pre></td></tr></table>
 </div>
-</div><p><img class=lazyload src=/svg/loading.min.svg data-src=imgs/nmap_1_scan.png data-srcset="/posts/welcome_nmap_writeup/imgs/nmap_1_scan.png, imgs/nmap_1_scan.png 1.5x, /posts/welcome_nmap_writeup/imgs/nmap_1_scan.png 2x" data-sizes=auto alt=/posts/welcome_nmap_writeup/imgs/nmap_1_scan.png title=nmap1scan></p>
-<p>It looks like we have 4 ports open 21,25,80,8080
-Lets navigate to http://192.168.42.1</p>
-<p>If you look at your nmap scan you can see that u have something like &ldquo;/ftp-uploads&rdquo; so this a directory in the website let&rsquo;s see whats going on in there. We have a folder called a anonymous let&rsquo;s see what&rsquo;s inside. Hm a file called FTPflag.txt looks like we found the first flag. Good Job!</p>
+</div><p>It looks like we have 4 ports open. Let&rsquo;s check out the <a href=http://192.168.42.1 target=_blank rel="noopener noreffer">web server</a>.</p>
+<p>From the scan, we can see that there is a directory named <a href=http://192.168.42.1 target=_blank rel="noopener noreffer">/ftp-uploads</a> and we can see that a flag file has been stored.</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=imgs/ftp_anonymous.png data-srcset="/posts/welcome_nmap_writeup/imgs/ftp_anonymous.png, imgs/ftp_anonymous.png 1.5x, /posts/welcome_nmap_writeup/imgs/ftp_anonymous.png 2x" data-sizes=auto alt=/posts/welcome_nmap_writeup/imgs/ftp_anonymous.png title=ftpanonymous></p>
 <p>So you have one flag.To be honest this flag works more like a hint to tell you what you should do after this. So if you go back to your nmap scan you will see that you have a line &ldquo;21/tcp open ftp Pure-ftp&rdquo; so we have a file transfer protocol it is always good to check as this can sometimes be used for file upload to the machine you are attacking. But what&rsquo;s the mean of ftp-anonymous if you do a fast google search you will find out that when this happens you can have acces to ftp server without having to know the credentials.So lets try to connect to the ftp.</p>
 <div class=highlight><div class=chroma>
@@ -141,7 +220,7 @@ Lets navigate to http://192.168.42.1</p>
 </code></pre></td></tr></table>
 </div>
 </div><p>You will be asked to input the Name. You just have to type anonymous to connect.
-If you do a &ldquo;ls&rdquo; you will be able do see the a file called FTPflag.txt which is the same file you found in the website. You type help you will see as the commands that you can use inside the ftp, we want to upload p0wnyshell so that we can get access to the machine through the browser. For now you just need to know that we are using p0wnyshell as our reverse-shell. So &ldquo;ctrl+c&rdquo; to stop the ftp connection clone p0wny shell repository <a href=http://github.com/flozz/p0wny-shell.git target=_blank rel="noopener noreffer">P0wny-Shell</a>{target=_blank}.</p>
+If you do a &ldquo;ls&rdquo; you will be able do see the a file called FTPflag.txt which is the same file you found in the website. You type help you will see as the commands that you can use inside the ftp, we want to upload p0wnyshell so that we can get access to the machine through the browser. For now you just need to know that we are using p0wnyshell as our reverse-shell. So &ldquo;ctrl+c&rdquo; to stop the ftp connection clone p0wny shell repository <a href=http://github.com/flozz/p0wny-shell.git target=_blank rel="noopener noreffer">P0wny-Shell</a>.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -268,8 +347,8 @@ Don&rsquo;t to submit your flags in <a href=https://cueh-comsec.ctfd.io/ target=
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-10-23&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/b21bff7e491c32c872d34dc2085cdd35d9adea3b target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) b21bff7e491c32c872d34dc2085cdd35d9adea3b: Updated IP">
-<i class="fas fa-hashtag fa-fw"></i>b21bff7</a></span>
+<span>Updated on 2021-10-23&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/cc1ee89968f6d3b1b2139c08564fe50b5451c926 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) cc1ee89968f6d3b1b2139c08564fe50b5451c926: Switched some Images to code fences">
+<i class="fas fa-hashtag fa-fw"></i>cc1ee89</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
