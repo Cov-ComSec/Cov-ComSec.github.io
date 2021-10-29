@@ -25,7 +25,7 @@ For this challenge we will just use the decompilation, the disassembly will beco
 
 So what does it do?
 
-1. An `xor` operation gets done on the flag string
+1. An `xor` operation is executed on the flag string.
 2. An `xor` operation gets done on another string. 
 3. Some text is printed to the user via `puts` & `printf`
 4. User input is taken via `gets`
