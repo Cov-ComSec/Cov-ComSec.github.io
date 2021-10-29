@@ -58,7 +58,7 @@ We can open the binary in PwnDbg (GDB), and use `starti` to set a temporary brea
 0x000055555555525a <+245>:	test   eax,eax
 ```
 
-So let's set a breakpoint there, we know the value should be in `rsi`.
+So let's set a breakpoint there, we know the value should be in `rsi`. We can use `x` to see what value is in an address or register, we can reference registers by prepending the register name with `$`. We can tell GDB which data type we want to view the data as by using a character after a `/`. So we can print a string at a specific address `x/s`.
 
 ```
 b *main+240
@@ -80,7 +80,7 @@ You are correct.
 flag{AdraMMel3ch}
 ```
 
-This was actually unnecessary because the flag text is stored on the stack already.
+This was actually unnecessary because the flag text is stored on the stack already. We can print multiple addresses at a time by inserting a number before specifying the data type.
 
 ```
 pwndbg> x/5s $rsp
