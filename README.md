@@ -1,5 +1,5 @@
 # CUEH ComSec Website
-Welcome to the official website for Coventry University's Ethical Hacking Society. We wish to use this as a platform to document and share what we do! For more information, have a look at our site https://cov-comsec.github.io
+Welcome to the official website for Coventry's Ethical Hacking Society. We wish to use this as a platform to document and share what we do! For more information, have a look at our site https://cov-comsec.github.io
 
 ## Mistakes/Suggestions
 Unfortunately we are ethical hackers, and not graphics designers (we are used to spending 90% of our time in terminals), so if you have a suggestion to improve our content, let us know! We are also only human, so there is a high likelihood that we have made a syntax error on a webpage or presentation or have a bug in a piece of code or challenge.
