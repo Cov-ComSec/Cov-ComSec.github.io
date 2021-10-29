@@ -14,7 +14,7 @@ The main benefit of OSINT is that it is a form of passive reconnaissance (so leg
 
 
 {{< admonition warning >}}
-Although it is legal to access documents in the public domain, you must be wary of stalking rules and people's right to a private life (see the Human Rights Act).
+Although it is legal to access documents in the public domain, you must be wary of stalking rules and people's right to a private life (see the [Human Rights Act 1998 Article 8](https://www.legislation.gov.uk/ukpga/1998/42)).
 {{< /admonition >}}
 
 ### Good Places
