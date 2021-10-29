@@ -148,4 +148,5 @@ Using loops in the same way as task 2, you should now be able to implement the r
 
 ## Conclusion
 
-We hope you found this an interesting session, or at the very least that you learnt something. We will hopefully be looking at some reverse engineering next week. If you enjoyed these assembly challenges the definitely checkout the shellcode challenges on CTFd
+We hope you found this an interesting session, or at the very least that you learnt something. We will hopefully be looking at some reverse engineering next week. If you enjoyed these assembly challenges then definitely checkout the shellcode challenges on CTFd!
+
