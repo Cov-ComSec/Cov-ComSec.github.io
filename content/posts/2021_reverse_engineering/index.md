@@ -15,7 +15,7 @@ The session at ComSec this week went into some basic reverse engineering methods
 
 The first demo showed how we can use a decompiler to understand how a binary functions, and then use a debugger to inspect memory at runtime in order to find credentials. You can download the demo binary [here](binaries/demon). 
 
-Opening the binary in our reversing tool of choice (we will use Rizin Cutter) we can see a number of Windows. By double clicking the `main` function from symbols tab on the left, we see the disassembly and decompilation of the binary is displayed.
+Opening the binary in our reversing tool of choice (we will use Rizin Cutter) we can see a number of Windows. By double clicking the `main` function from the `symbols` tab on the left, we see that the disassembly and decompilation of the binary is displayed.
 
 ![Cutter Disassembly View](images/ss1.png)
 
