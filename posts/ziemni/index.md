@@ -12,10 +12,7 @@ The main talking points were:
 - Live HTB demo
 
 ### Resources
-Here are the resources used:
-
-- [Presentation Slides](ziemni.pdf)
-- [Live Session Recording](https://www.twitch.tv/videos/785147513) 
-- [Live HTB Demo](https://www.twitch.tv/videos/785274676) 
+Here are the [Presentation Slides](ziemni.pdf).
 
 Also, to find out more about Ziemni, please visit [his website](https://ziemni.com).
+
