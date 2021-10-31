@@ -5,7 +5,7 @@ draft: false
 author: "Ben Roxbee Cox"
 description: "An introductory session into the basics of reverse engineering"
 tags: ["pwn", "reversing", "assembly"]
-categories: ["Academic Year 2020-21"]
+categories: ["Academic Year 2021-22"]
 ---
 
 The session at ComSec this week went into some basic reverse engineering methods. Ben did a demo with some challenges, and then we released some CTF challenges to solve.
