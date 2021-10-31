@@ -122,3 +122,4 @@ flag{c0unt-ch0cula-cereal-FTW}
 ## Conclusion
 
 I won't go through the third demo because it is a Hack The Box challenge, and HTB rules stipulate that write ups of live challenges are not allowed. If you want to keep practicing your reversing skills you can download the zipped challenges binaries from [here](binaries/challenges.zip). I hope this was an informative article, and that it covers most of what we went through during the session. Next week we will be combining the knowledge gained from week 1 and this week in order to attempt our first buffer overflow attack - stack smashing.
+
