@@ -9,13 +9,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-10-20T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-10-29T11:31:27+01:00">
+<meta property="article:modified_time" content="2021-10-31T18:26:21+00:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="Assembly & Shellcoding">
 <meta name=twitter:description content="An introduction to assembly coding and shellcoding">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding/><link rel=prev href=https://cov-comsec.github.io/posts/octalkber/><link rel=next href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Assembly \u0026 Shellcoding","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_assembly_and_shellcoding\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, Docker, assembly","wordcount":835,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_assembly_and_shellcoding\/","datePublished":"2021-10-20T12:40:28+01:00","dateModified":"2021-10-29T11:31:27+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introduction to assembly coding and shellcoding"}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding/><link rel=prev href=https://cov-comsec.github.io/posts/octalkber/><link rel=next href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Assembly \u0026 Shellcoding","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_assembly_and_shellcoding\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, Docker, assembly","wordcount":835,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_assembly_and_shellcoding\/","datePublished":"2021-10-20T12:40:28+01:00","dateModified":"2021-10-31T18:26:21+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introduction to assembly coding and shellcoding"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -82,7 +82,7 @@ Cancel
 <h2 class=toc-title>Contents</h2>
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Assembly & Shellcoding</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>***REMOVED***</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2020-21/><i class="far fa-folder fa-fw"></i>Academic Year 2020-21</a></span></div>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=" author" class=author><i class="fas fa-user-circle fa-fw"></i>***REMOVED***</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-10-20>2021-10-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;835 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept=true>
@@ -315,8 +315,8 @@ a = 4
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-10-29&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/dd138595d0f3fe758736aa8ce30edaec2dfbc558 target=_blank title="commit by sharkmoos(muddy117@gmail.com) dd138595d0f3fe758736aa8ce30edaec2dfbc558: Update index.md">
-<i class="fas fa-hashtag fa-fw"></i>dd13859</a></span>
+<span>Updated on 2021-10-31&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/1f83c2d753e291a55ce6114f08e7eea4b505bd10 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 1f83c2d753e291a55ce6114f08e7eea4b505bd10: Updated Academic Year">
+<i class="fas fa-hashtag fa-fw"></i>1f83c2d</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
