@@ -22,7 +22,7 @@ For this challenge, we disabled the kernel level protection ASLR using the follo
 echo 0 > /proc/sys/kernel/randomize_va_space
 ```
 
-The binary has been compiled with no protections, besides partial RelRO. We can confirm this using checksec.
+The binary has been compiled with no protections, besides partial RelRO. We can confirm this using checksec. You can download it [here](binaries/demo)
 
 ```
 > checksec --file challenge
@@ -142,7 +142,7 @@ echo 2 > /proc/sys/kernel/randomize_va_space
 
 ## Challenge 1
 
-The challenge simply takes an input, prints an outout, and exits.
+The challenge simply takes an input, prints an outout, and exits. You can download the challenge binary [here](binary/challenge_1)
 
 ```
 > ./challenge
@@ -189,7 +189,7 @@ We won!
 
 ## Challenge 2 
 
-Challenge 2 is essentially the same as challenge 1. It demonstrates that once we have a stack address, ASLR becomes a mere inconvenience. In this challenge the stack address is given to us, but it represents a situation where the attacker could leak a stack address, for example via a format string vuln.
+Challenge 2 is essentially the same as challenge 1. It demonstrates that once we have a stack address, ASLR becomes a mere inconvenience. In this challenge the stack address is given to us, but it represents a situation where the attacker could leak a stack address, for example via a format string vuln. You can download it [here](binary/challenge_2)
 
 
 Running the binary, we are given a stack address.
