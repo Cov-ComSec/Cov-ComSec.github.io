@@ -1,5 +1,5 @@
 ---
-title: "Week 2: Scanning and Enumeration"
+title: "Scanning and Enumeration"
 date: 2021-09-29T22:40:28+01:00
 draft: false
 description: "A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge"
