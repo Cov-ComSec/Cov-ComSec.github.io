@@ -8,13 +8,14 @@
 <meta property="og:description" content="An introductory session into traditional buffer overflows">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/2021_stack_smashing/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
-<meta property="article:modified_time" content="2021-11-04T15:34:34+00:00">
+<meta property="article:published_time" content="2021-11-04T12:40:28+01:00">
+<meta property="article:modified_time" content="2021-11-04T15:44:02+00:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="Introduction to Stack Smashing">
 <meta name=twitter:description content="An introductory session into traditional buffer overflows">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=next href=https://cov-comsec.github.io/posts/welcome_nmap/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Introduction to Stack Smashing","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, stack smash","wordcount":1415,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/","dateModified":"2021-11-04T15:34:34+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into traditional buffer overflows"}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=prev href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Introduction to Stack Smashing","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, stack smash","wordcount":1415,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/","datePublished":"2021-11-04T12:40:28+01:00","dateModified":"2021-11-04T15:44:02+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into traditional buffer overflows"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -82,7 +83,7 @@ Cancel
 <div class=toc-content id=toc-content-auto></div>
 </div><article class="page single"><h1 class="single-title animated flipInX">Introduction to Stack Smashing</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>***REMOVED***</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=0001-01-01>0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1415 words&nbsp;
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-11-04>2021-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1415 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
 </div><div class="details toc" id=toc-static kept=true>
 <div class="details-summary toc-title">
@@ -518,8 +519,8 @@ foobar
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-11-04&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/8a4e5fd50279f9c110d595f8e4fdeb61f2173649 target=_blank title="commit by sharkmoos(muddy117@gmail.com) 8a4e5fd50279f9c110d595f8e4fdeb61f2173649: Update index.md">
-<i class="fas fa-hashtag fa-fw"></i>8a4e5fd</a></span>
+<span>Updated on 2021-11-04&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/392ef3565addbf6c4eea30d8a4f90aa295a44f20 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 392ef3565addbf6c4eea30d8a4f90aa295a44f20: Fixed Date">
+<i class="fas fa-hashtag fa-fw"></i>392ef35</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -538,8 +539,7 @@ foobar
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
 </div>
-<div class=post-nav>
-<a href=/posts/welcome_nmap/ class=next rel=next title="ComSec Introduction">ComSec Introduction<i class="fas fa-angle-right fa-fw"></i></a></div>
+<div class=post-nav><a href=/posts/2021_reverse_engineering/ class=prev rel=prev title="Reverse Engineering Basics"><i class="fas fa-angle-left fa-fw"></i>Reverse Engineering Basics</a></div>
 </div>
 <div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong>
 <noscript>
