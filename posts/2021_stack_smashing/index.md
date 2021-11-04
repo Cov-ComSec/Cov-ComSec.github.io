@@ -30,7 +30,7 @@ The binary has been compiled with no protections, besides partial RelRO (which w
 
 NX Stack is disabled, meaning the stack is executable. The fact the stack is executable means that shellcode can be entered onto the stack and then get executed, because ASLR is disabled, we can hard code the addresses needed when jumping to the start of our shellcode. 
 
-Let's use gdb to collect all the values we need. First we should find the offset to the return pointer, knowing this will allow us to place our own address and the instruction pointer will return there when the function has finished executing.
+Let's use GDB to collect all the values we need. First we should find the offset to the return pointer, knowing this will allow us to place our own address and the instruction pointer will return there when the function has finished executing.
 
 We can use the cyclic command to generate a string where no 8 bytes are the same, entering this into the program will allow us to locate the offset.
 
@@ -41,7 +41,7 @@ aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaa
 
 We can then run the program and enter this string. When the program crashes we can see the offset in Pwn-Dbg.
 
-![Offset located in gdb](images/ss1.png)
+![Offset located in GDB](images/ss1.png)
 
 The top of the stack pointer indicated the offset to us, we can see the bytes are `oaaaaaab`. So the offset is 312.
 
@@ -51,7 +51,7 @@ pwndbg> cyclic -l oaaaaaab -n=8
 312
 ```
 
-We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching gdb to it will allow us to check this (`attach <pid>).
+We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching GDB to it will allow us to check this (`attach <pid>).
 
 ```py
 #!/usr/bin/env python3
@@ -70,9 +70,9 @@ p.sendlineafter(b"Overflow me", b"A" * 312 + p64(0xdeadbeef))
 p.interactive()
 ```
 
-![Offset confirmed in gdb](images/ss2.png)
+![Offset confirmed in GDB](images/ss2.png)
 
-Lets calculate the address of the start of our shellcode. Let's load the binary in gdb and set a breakpoint on the `gets` instruction, which is collecting our user input. The address that the user input is being written to resides in `rdi`
+Lets calculate the address of the start of our shellcode. Let's load the binary in GDB and set a breakpoint on the `gets` instruction, which is collecting our user input. The address that the user input is being written to resides in `rdi`
 
 ```py
 pwndbg> b *unsafe+41
@@ -220,9 +220,9 @@ p.sendlineafter(b"Overflow me\n", payload)
 p.interactive()
 ```
 
-If we attach gdb to the process `attach 10528`, we can see that the stack leak matches the start address of the input buffer. 
+If we attach GDB to the process `attach 10528`, we can see that the stack leak matches the start address of the input buffer. 
 
-![gdb for the stack leak](images/ss6.png)
+![GDB for the stack leak](images/ss6.png)
 
 
 This means we can just jump back to the address that is leaked in order to execute our shellcode. A nop sled will catch any stack changes at runtime.

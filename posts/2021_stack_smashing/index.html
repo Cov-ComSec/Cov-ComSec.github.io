@@ -9,13 +9,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/2021_stack_smashing/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-11-04T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-11-04T15:44:02+00:00">
+<meta property="article:modified_time" content="2021-11-04T15:52:25+00:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="Introduction to Stack Smashing">
 <meta name=twitter:description content="An introductory session into traditional buffer overflows">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=prev href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Introduction to Stack Smashing","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, stack smash","wordcount":1415,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/","datePublished":"2021-11-04T12:40:28+01:00","dateModified":"2021-11-04T15:44:02+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into traditional buffer overflows"}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=prev href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Introduction to Stack Smashing","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, stack smash","wordcount":1415,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/","datePublished":"2021-11-04T12:40:28+01:00","dateModified":"2021-11-04T15:52:25+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into traditional buffer overflows"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -135,7 +135,7 @@ Cancel
 </code></pre></td></tr></table>
 </div>
 </div><p>NX Stack is disabled, meaning the stack is executable. The fact the stack is executable means that shellcode can be entered onto the stack and then get executed, because ASLR is disabled, we can hard code the addresses needed when jumping to the start of our shellcode.</p>
-<p>Let&rsquo;s use gdb to collect all the values we need. First we should find the offset to the return pointer, knowing this will allow us to place our own address and the instruction pointer will return there when the function has finished executing.</p>
+<p>Let&rsquo;s use GDB to collect all the values we need. First we should find the offset to the return pointer, knowing this will allow us to place our own address and the instruction pointer will return there when the function has finished executing.</p>
 <p>We can use the cyclic command to generate a string where no 8 bytes are the same, entering this into the program will allow us to locate the offset.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -148,7 +148,7 @@ Cancel
 </code></pre></td></tr></table>
 </div>
 </div><p>We can then run the program and enter this string. When the program crashes we can see the offset in Pwn-Dbg.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss1.png data-srcset="/posts/2021_stack_smashing/images/ss1.png, images/ss1.png 1.5x, /posts/2021_stack_smashing/images/ss1.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss1.png title="Offset located in gdb"></p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss1.png data-srcset="/posts/2021_stack_smashing/images/ss1.png, images/ss1.png 1.5x, /posts/2021_stack_smashing/images/ss1.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss1.png title="Offset located in GDB"></p>
 <p>The top of the stack pointer indicated the offset to us, we can see the bytes are <code>oaaaaaab</code>. So the offset is 312.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -160,7 +160,7 @@ Cancel
 <span class=mi>312</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching gdb to it will allow us to check this (`attach <pid>).</p>
+</div><p>We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching GDB to it will allow us to check this (`attach <pid>).</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -195,8 +195,8 @@ Cancel
 <span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
 </code></pre></td></tr></table>
 </div>
-</div><p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss2.png data-srcset="/posts/2021_stack_smashing/images/ss2.png, images/ss2.png 1.5x, /posts/2021_stack_smashing/images/ss2.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss2.png title="Offset confirmed in gdb"></p>
-<p>Lets calculate the address of the start of our shellcode. Let&rsquo;s load the binary in gdb and set a breakpoint on the <code>gets</code> instruction, which is collecting our user input. The address that the user input is being written to resides in <code>rdi</code></p>
+</div><p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss2.png data-srcset="/posts/2021_stack_smashing/images/ss2.png, images/ss2.png 1.5x, /posts/2021_stack_smashing/images/ss2.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss2.png title="Offset confirmed in GDB"></p>
+<p>Lets calculate the address of the start of our shellcode. Let&rsquo;s load the binary in GDB and set a breakpoint on the <code>gets</code> instruction, which is collecting our user input. The address that the user input is being written to resides in <code>rdi</code></p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -436,8 +436,8 @@ foobar
 <span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>If we attach gdb to the process <code>attach 10528</code>, we can see that the stack leak matches the start address of the input buffer.</p>
-<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss6.png data-srcset="/posts/2021_stack_smashing/images/ss6.png, images/ss6.png 1.5x, /posts/2021_stack_smashing/images/ss6.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss6.png title="gdb for the stack leak"></p>
+</div><p>If we attach GDB to the process <code>attach 10528</code>, we can see that the stack leak matches the start address of the input buffer.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss6.png data-srcset="/posts/2021_stack_smashing/images/ss6.png, images/ss6.png 1.5x, /posts/2021_stack_smashing/images/ss6.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss6.png title="GDB for the stack leak"></p>
 <p>This means we can just jump back to the address that is leaked in order to execute our shellcode. A nop sled will catch any stack changes at runtime.</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -519,8 +519,8 @@ foobar
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-11-04&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/392ef3565addbf6c4eea30d8a4f90aa295a44f20 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 392ef3565addbf6c4eea30d8a4f90aa295a44f20: Fixed Date">
-<i class="fas fa-hashtag fa-fw"></i>392ef35</a></span>
+<span>Updated on 2021-11-04&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/d29304bdb91ab14ac254d90032d0809e8fa79b99 target=_blank title="commit by sharkmoos(muddy117@gmail.com) d29304bdb91ab14ac254d90032d0809e8fa79b99: Changed gdb to GDB">
+<i class="fas fa-hashtag fa-fw"></i>d29304b</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
