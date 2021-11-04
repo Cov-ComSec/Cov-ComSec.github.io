@@ -12,7 +12,7 @@ This week, Ben introduced the concept of stack smashing, demonstrating the most 
 
 Presentation slides [here](presentation.pdf)
 
-The term stack smashing was first coined in the Phrack article [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html). It is a term used to describe the technique of overflowing a with shellcode (and sometimes a NOP sled), and then overwriting the return address of a the stack frame with the address near the start of the payload. During the session we also recapped some fundamentals about memory layout and binary protections. This article will walk through the demo challenge 1, as well as the solutions for challenges 1 and 2 on CTFd.
+The term stack smashing was first coined in the Phrack article [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html). It is a term used to describe the technique of overflowing a buffer, writing shellcode onto the stack (and sometimes a NOP sled), and then overwriting the return address of a the stack frame with the address near the start of the payload. During the session we also recapped some fundamentals about memory layout and binary protections. This article will walk through the demo challenge 1, as well as the solutions for challenges 1 and 2 on CTFd.
 
 ## Demo Challenge 1
 
@@ -22,7 +22,7 @@ For this challenge, we disabled the kernel level protection ASLR using the follo
 echo 0 > /proc/sys/kernel/randomize_va_space
 ```
 
-The binary has been compiled with no protections, besides partial RelRO. We can confirm this using checksec. You can download it [here](binaries/demo)
+The binary has been compiled with no protections, besides partial RelRO (which we will look at in more depth at a later date). We can confirm this using checksec. You can download it [here](binaries/demo)
 
 ```
 > checksec --file challenge
@@ -35,7 +35,7 @@ The binary has been compiled with no protections, besides partial RelRO. We can 
     RWX:      Has RWX segments
 ```
 
-The fact the stack is executable means that shellcode can be entered onto the stack and then get executed, because ASLR is disabled, we can hard code the addresses needed when jumping to the start of our shellcode. 
+NX Stack is disabled, meaning the stack is executable. The fact the stack is executable means that shellcode can be entered onto the stack and then get executed, because ASLR is disabled, we can hard code the addresses needed when jumping to the start of our shellcode. 
 
 Let's use GDB to collect all the values we need. First we should find the offset to the return pointer, knowing this will allow us to place our own address and the instruction pointer will return there when the function has finished executing.
 
@@ -58,7 +58,7 @@ pwndbg> cyclic -l oaaaaaab -n=8
 312
 ```
 
-We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching GDB to it will allow us to check this.
+We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching GDB to it will allow us to check this (`attach <pid>).
 
 ```py
 #!/usr/bin/env python3
@@ -215,7 +215,7 @@ context.binary = elf
 
 p = process([elf.path])
 
-offset= 216
+offset = 216
 
 p.recvuntil(b"free stack address ")
 leak = int(p.recvline()[:-1], 16)
@@ -279,4 +279,4 @@ We achieved code exection again. This exploit should also work on the remote hos
 
 ## Conclusion
 
-That brings us to the end of another ComSec writeup. Make sure you attempt task 3, and if you found all those easy then try some of the pwn challenges on Hack The Box ! As always feel free to contact me on the Discord server if you have any questions.
+That brings us to the end of another ComSec writeup. Make sure you attempt task 3, and if you found all those easy then try some of the pwn challenges on Hack The Box! As always feel free to contact me on the Discord server if you have any questions.
