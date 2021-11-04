@@ -4,18 +4,18 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>Week 2: Scanning and Enumeration - CUEH ComSec</title><meta name=Description content="A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge"><meta property="og:title" content="Week 2: Scanning and Enumeration">
+<title>Scanning and Enumeration - CUEH ComSec</title><meta name=Description content="A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge"><meta property="og:title" content="Scanning and Enumeration">
 <meta property="og:description" content="A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://cov-comsec.github.io/posts/scanning/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://cov-comsec.github.io/posts/2021_scanning/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-29T22:40:28+01:00">
-<meta property="article:modified_time" content="2021-10-08T01:21:48+01:00">
+<meta property="article:modified_time" content="2021-11-04T10:34:36+00:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
-<meta name=twitter:title content="Week 2: Scanning and Enumeration">
+<meta name=twitter:title content="Scanning and Enumeration">
 <meta name=twitter:description content="A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/scanning/><link rel=prev href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=next href=https://cov-comsec.github.io/posts/octalkber/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Week 2: Scanning and Enumeration","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/scanning\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"Nmap, CTF, Docker, enumeration, reconnaissance","wordcount":726,"url":"https:\/\/cov-comsec.github.io\/posts\/scanning\/","datePublished":"2021-09-29T22:40:28+01:00","dateModified":"2021-10-08T01:21:48+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Jack Orcherton"},"description":"A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge"}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_scanning/><link rel=prev href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=next href=https://cov-comsec.github.io/posts/octalkber/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Scanning and Enumeration","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_scanning\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"Nmap, CTF, Docker, enumeration, reconnaissance","wordcount":726,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_scanning\/","datePublished":"2021-09-29T22:40:28+01:00","dateModified":"2021-11-04T10:34:36+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Jack Orcherton"},"description":"A brief introduction to scanning tools and techniques, ending the session with a boot2root challenge"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -81,7 +81,7 @@ Cancel
 <div class=container><div class=toc id=toc-auto>
 <h2 class=toc-title>Contents</h2>
 <div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">Week 2: Scanning and Enumeration</h1><div class=post-meta>
+</div><article class="page single"><h1 class="single-title animated flipInX">Scanning and Enumeration</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://jackorcherton.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Jack Orcherton</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-29>2021-09-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;726 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;</div>
@@ -224,14 +224,14 @@ There are a few ways to go about this, each with pro’s and con’s:</p>
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-10-08&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/94d0b4bf9d575f0e15e7afa7fc484807566944a9 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 94d0b4bf9d575f0e15e7afa7fc484807566944a9: Fixed Date">
-<i class="fas fa-hashtag fa-fw"></i>94d0b4b</a></span>
+<span>Updated on 2021-11-04&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/ecc5ef2321a107b34b1f245ee632f438a58c85f4 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) ecc5ef2321a107b34b1f245ee632f438a58c85f4: Removed week 2 name">
+<i class="fas fa-hashtag fa-fw"></i>ecc5ef2</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
 <div class=post-info-line>
 <div class=post-info-md><span>
-<a class=link-to-markdown href=/posts/scanning/index.md target=_blank>Read Markdown</a>
+<a class=link-to-markdown href=/posts/2021_scanning/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
 <span></span>

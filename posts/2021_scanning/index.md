@@ -1,4 +1,4 @@
-# Week 2: Scanning and Enumeration
+# Scanning and Enumeration
 
 
 In this session we will begin to look at scanning and enummeration, and start to look at some of the associated tools.
