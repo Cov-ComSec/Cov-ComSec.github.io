@@ -10,7 +10,7 @@ categories: ["Academic Year 2021-22"]
 
 This week, Ben introduced the concept of stack smashing, demonstrating the most basic form of buffer overflow attacks, the stack smash.
 
-Presentation slides [here](presentation.pptx)
+Presentation slides [here](presentation.pdf)
 
 The term stack smashing was first coined in the Phrack article [Smashing the Stack for Fun and Profit](http://phrack.org/issues/49/14.html). It is a term used to describe the technique of overflowing a with shellcode (and sometimes a NOP sled), and then overwriting the return address of a the stack frame with the address near the start of the payload. During the session we also recapped some fundamentals about memory layout and binary protections. This article will walk through the demo challenge 1, as well as the solutions for challenges 1 and 2 on CTFd.
 
