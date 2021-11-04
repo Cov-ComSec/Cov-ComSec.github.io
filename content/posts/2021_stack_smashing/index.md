@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Stack Smashing"
-date: 2021-11-4T12:40:28+01:00
+date: 2021-11-04T12:40:28+01:00
 draft: false
 author: "Ben Roxbee Cox"
 description: "An introductory session into traditional buffer overflows"
