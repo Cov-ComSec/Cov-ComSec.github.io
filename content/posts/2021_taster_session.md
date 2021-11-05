@@ -1,11 +1,11 @@
 ---
-title: "Week1: Intro, Recon & OSINT"
+title: "Introduction, Recon & OSINT Taster Session"
 date: 2021-09-22T20:14:41+01:00
 draft: false
 author: "Jack Orcherton"
 authorLink: "https://jackorcherton.github.io"
 description: "A quick introduction to ComSec, then jumping into a boot2root CTF machine!"
-tags: ["welcome "]
+tags: ["welcome", "CTF", "OSINT", "web", "Web Shells", "nc"]
 categories: ["Academic Year 2021-22"]
 ---
 
