@@ -1,4 +1,4 @@
-# Week1: Intro, Recon & OSINT
+# Introduction, Recon & OSINT Taster Session
 
 
 Welcome back to our first official session for the new academic year, it was great to finally meet you all in real life. This is a quick recap of what we did.

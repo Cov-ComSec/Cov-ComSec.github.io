@@ -4,18 +4,18 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=robots content="noodp">
 <meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>Week1: Intro, Recon & OSINT - CUEH ComSec</title><meta name=Description content="A quick introduction to ComSec, then jumping into a boot2root CTF machine!"><meta property="og:title" content="Week1: Intro, Recon & OSINT">
+<title>Introduction, Recon & OSINT Taster Session - CUEH ComSec</title><meta name=Description content="A quick introduction to ComSec, then jumping into a boot2root CTF machine!"><meta property="og:title" content="Introduction, Recon & OSINT Taster Session">
 <meta property="og:description" content="A quick introduction to ComSec, then jumping into a boot2root CTF machine!">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://cov-comsec.github.io/posts/taster_week1/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
+<meta property="og:url" content="https://cov-comsec.github.io/posts/2021_taster_session/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-09-22T20:14:41+01:00">
-<meta property="article:modified_time" content="2021-09-23T13:44:30+01:00">
+<meta property="article:modified_time" content="2021-11-05T17:35:11+00:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
-<meta name=twitter:title content="Week1: Intro, Recon & OSINT">
+<meta name=twitter:title content="Introduction, Recon & OSINT Taster Session">
 <meta name=twitter:description content="A quick introduction to ComSec, then jumping into a boot2root CTF machine!">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/taster_week1/><link rel=prev href=https://cov-comsec.github.io/posts/welcome_2021/><link rel=next href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Week1: Intro, Recon \u0026 OSINT","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/taster_week1\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome ","wordcount":364,"url":"https:\/\/cov-comsec.github.io\/posts\/taster_week1\/","datePublished":"2021-09-22T20:14:41+01:00","dateModified":"2021-09-23T13:44:30+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Jack Orcherton"},"description":"A quick introduction to ComSec, then jumping into a boot2root CTF machine!"}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_taster_session/><link rel=prev href=https://cov-comsec.github.io/posts/welcome_2021/><link rel=next href=https://cov-comsec.github.io/posts/week1_writeup/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Introduction, Recon \u0026 OSINT Taster Session","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_taster_session\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"welcome, CTF, OSINT, web, Web Shells, nc","wordcount":364,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_taster_session\/","datePublished":"2021-09-22T20:14:41+01:00","dateModified":"2021-11-05T17:35:11+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Jack Orcherton"},"description":"A quick introduction to ComSec, then jumping into a boot2root CTF machine!"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -81,7 +81,7 @@ Cancel
 <div class=container><div class=toc id=toc-auto>
 <h2 class=toc-title>Contents</h2>
 <div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">Week1: Intro, Recon & OSINT</h1><div class=post-meta>
+</div><article class="page single"><h1 class="single-title animated flipInX">Introduction, Recon & OSINT Taster Session</h1><div class=post-meta>
 <div class=post-meta-line><span class=post-author><a href=https://jackorcherton.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Jack Orcherton</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
 <div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-09-22>2021-09-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;364 words&nbsp;
 <i class="far fa-clock fa-fw"></i>&nbsp;2 minutes&nbsp;</div>
@@ -154,14 +154,14 @@ Today’s challenge – mainly based on reconnaissance. The more you know, the e
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-09-23&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/26f84e91041463f72f1e86b1ad8814d1c8bd6d20 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) 26f84e91041463f72f1e86b1ad8814d1c8bd6d20: Added link">
-<i class="fas fa-hashtag fa-fw"></i>26f84e9</a></span>
+<span>Updated on 2021-11-05&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/b0a7d96db7444e1ad03ecb045404d67734709754 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) b0a7d96db7444e1ad03ecb045404d67734709754: Removed Week 1 and added better tagging">
+<i class="fas fa-hashtag fa-fw"></i>b0a7d96</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
 <div class=post-info-line>
 <div class=post-info-md><span>
-<a class=link-to-markdown href=/posts/taster_week1/index.md target=_blank>Read Markdown</a>
+<a class=link-to-markdown href=/posts/2021_taster_session/index.md target=_blank>Read Markdown</a>
 </span></div>
 <div class=post-info-share>
 <span></span>
@@ -169,7 +169,7 @@ Today’s challenge – mainly based on reconnaissance. The more you know, the e
 </div>
 </div>
 <div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/welcome/>welcome</a></section>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/welcome/>welcome</a>,&nbsp;<a href=/tags/ctf/>CTF</a>,&nbsp;<a href=/tags/osint/>OSINT</a>,&nbsp;<a href=/tags/web/>web</a>,&nbsp;<a href=/tags/web-shells/>Web Shells</a>,&nbsp;<a href=/tags/nc/>nc</a></section>
 <section>
 <span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
 </section>
