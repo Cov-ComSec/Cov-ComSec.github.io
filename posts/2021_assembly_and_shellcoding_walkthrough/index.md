@@ -267,7 +267,7 @@ print_clean(p.readrepeat())
 Here's the solution already implemented in 'boilerplate.py'
 
 
-## Task 3
+## Solution: Shellcode Challenge 3 
 
 Same procedure used with the first two challenges, we edit the port value in 'boilerplate.py' and navigate to the target webpage. This time we notice that the stdin bytes are back to 0x1000 but there is new text that states that now syscalls in all their forms are filtered out before, and only before, runtime. The filter only looks for the specific bytes of syscall (0x0f05), sysenter(0x0f34) and int (0x80).
 There are also other lines which contiain helpful hints to solve this challenge.
@@ -353,3 +353,4 @@ Here's the solution already implemented in 'boilerplate.py'
 ## Conclusion
 
 We hope this explanation on how to solve the three challenges was helpful (and not too verbose!). If something is still obscure to you, you can ask a question on the discord server or comment below and we will try to answer in a timely manner.
+
