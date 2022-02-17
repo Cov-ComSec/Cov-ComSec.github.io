@@ -17,7 +17,7 @@ The powerpoint deck used in the session is available [here](./presentation.pdf)
 
 The first challenge was a simple TOCTOU race condition with very little complexity. The challenge binary was inside a docker container running with SUID privileges and owned by root. 
 
-Once connected over SSH, we see the binary in the ctf user's home directory. The binary takes a file path as an argument, and will print the contents of any file on the filesystem except the flag. 
+Once connected over SSH, we can see the binary in the ctf user's home directory. The binary takes a file path as an argument, and will print the contents of any file on the filesystem except the flag. 
 
 In a lot of Linux systems this would be enough for privilege escalation, for example we could attempt to crack the passwords in /etc/shadow  or read root ssh keys, but since this is a docker container, and a slightly contrived beginner challenge, root has no password or ssh keys. 
 
@@ -36,7 +36,7 @@ Let's note down the sequential steps here.
 5. lstat is called to get information about the file that was supplied as the argument
 6. Program prints more information
 7. Program checks to ensure the supplied file is not a *symlink*
-8. If its not a symlink, the file is opened 
+8. If it's not a symlink, the file is opened 
 9. Contents of file is written to stdout
 10. `main` returns.
 
@@ -63,9 +63,9 @@ Consider this, we create an empty file `s` and supply it as the argument for the
 
 ### Exploitation
 
-There is no single solution to most race conditions, we can use anything that comes to mind in order to increase the window of opportunity (such as using directory mazes), or to speed up the attacker side of the race. In my solution, I fork the a Python program, one thread repeatedly runs the program, supplying `s` as the argument, the other repeatedly switches between `s` being an empty file and being a symlink to `/flag`.
+There is no single solution to most race conditions, we can use anything that comes to mind in order to increase the window of opportunity (such as using directory mazes), or to speed up the attacker side of the race. In my solution, I fork a Python program, one thread repeatedly runs the program, supplying `s` as the argument, the other repeatedly switches between `s` being an empty file and being a symlink to `/flag`.
 
-It's worth noting that this script is pretty janky. For example the child process that is swapping the files will continue even after the parent has closed. But for challenge 1 it's enough to get the flag. Solve script is below.
+It's worth noting that this script is pretty janky. For example the child process that is swapping the files will continue even after the parent has closed. But for challenge 1 it's enough to get the flag. The solve script is below.
 
 ```python
 #! /usr/bin/python3
@@ -108,7 +108,7 @@ We can see it took 94 attempts before we won the race. We could take additional 
 
 ## Challenge 1
 
-The second challenge was a similar setup. We can SSH into a container with a challenge binary. The challenge binary is familiar too, it still accepts a file path as a command line argument. However this time the program does a size check on the file, if the file is too large it exits.
+The second challenge was a similar setup. We can SSH into a container with a challenge binary. The challenge binary is familiar too, it still accepts a file path as a command line argument. However, this time the program does a size check on the file, if the file is too large it exits.
 
 ![Binary will not read large files](images/ss5.png)
 
@@ -167,7 +167,7 @@ This hit rate (on my system) is pretty low. A flag only comes out every few seco
 
 #### Creating a filesystem maze
 
-A filesystem maze is essentially a way of forcing a process to pointlessly navigate the filesystem in order to find a file. For example, we could create a directory 800 deep, and then place a file in directory 800 which is a symlink back to the directory we started.
+A file system maze is essentially a way of forcing a process to pointlessly navigate the filesystem in order to find a file. For example, we could create a directory 800 deep, and then place a file in directory 800 which is a symlink back to the directory we started.
 
 ![A maze route](images/ss10.png)
 
@@ -223,7 +223,7 @@ There actually isn't any vulnerability in the *source code* of this web applicat
         return True, ""
 ```
 
-Wen can see that the item is sold before the users balance is updated. Had the application been single threaded this would not be a problem, as nothing would use the shared resource in between requests, however it is multi threaded meaning different threads may alter the shared resource without alerting the other threads. This presents us with a race condition, due to the time between the item being sold and the balance being updated, that an adversary could make an unexpected change.
+We can see that the item is sold before the users balance is updated. Had the application been single threaded this would not be a problem, as nothing would use the shared resource in between requests, however it is multi threaded meaning different threads may alter the shared resource without alerting the other threads. This presents us with a race condition, due to the time between the item being sold and the balance being updated, that an adversary could make an unexpected change.
 
 ### Exploitation
 
@@ -286,4 +286,4 @@ After a little while, I had loads of cash. Enough to buy `Gentle words of encour
 
 I hope you enjoyed this tutorial. Race conditions are not a topic covered on the current course syllabus, so hopefully this was a useful introduction, and enough for everyone to understand the basics.
 
-Have a go at the challenge 3 container if you can, there will be a challenge published onto CTFd soon that will combine everything we've learnt so far in the binary exploitation sessions, from rop to race. I hope you're looking forward to it!
+Have a go at the challenge 3 container if you can, there will be a challenge published onto CTFd soon that will combine everything we've learnt so far in the binary exploitation sessions, from ROP to race. I hope you're looking forward to it!

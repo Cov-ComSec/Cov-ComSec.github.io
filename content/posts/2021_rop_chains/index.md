@@ -86,7 +86,7 @@ Remembering x86_64 calling conventions, we need the string `/bin/sh` in RDI, and
 0x0000000000401017: pop rax; syscall;
 ```
 
-There are convenient gadgets for all operations we want to do, so we can build a ROP chain using the ROP module of pwntools. We should use the RSI gadget first as it will clobber any data in RDI.
+There are convenient gadgets for all operations we want to do, so we can build a ROP chain using the ROP module of pwntools. We should use the `pop rsi; mov rdi, rsi; ret;` gadget first as it will clobber any data in RDI.
 
 We also need the string `/bin/sh`. Thankfully it already exists in the binary. If this were not the case our ROP chain would need to write `/bin/sh` into memory before trying to execve.
 
