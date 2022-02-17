@@ -9,13 +9,13 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://cov-comsec.github.io/posts/2021_reverse_engineering/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2021-10-28T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-10-31T18:27:01+00:00">
+<meta property="article:modified_time" content="2021-11-03T22:30:01+00:00">
 <meta name=twitter:card content="summary_large_image">
 <meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
 <meta name=twitter:title content="Reverse Engineering Basics">
 <meta name=twitter:description content="An introductory session into the basics of reverse engineering">
 <meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=prev href=https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding/><link rel=next href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Reverse Engineering Basics","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_reverse_engineering\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, reversing, assembly","wordcount":1001,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_reverse_engineering\/","datePublished":"2021-10-28T12:40:28+01:00","dateModified":"2021-10-31T18:27:01+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into the basics of reverse engineering"}</script></head>
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2021_reverse_engineering/><link rel=prev href=https://cov-comsec.github.io/posts/2021_assembly_and_shellcoding/><link rel=next href=https://cov-comsec.github.io/posts/2021_stack_smashing/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Reverse Engineering Basics","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2021_reverse_engineering\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, reversing, assembly","wordcount":1001,"url":"https:\/\/cov-comsec.github.io\/posts\/2021_reverse_engineering\/","datePublished":"2021-10-28T12:40:28+01:00","dateModified":"2021-11-03T22:30:01+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introductory session into the basics of reverse engineering"}</script></head>
 <body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
 <div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
 <div class=header-wrapper>
@@ -265,8 +265,8 @@ flag{c0unt-ch0cula-cereal-FTW}
 <div class=post-info>
 <div class=post-info-line>
 <div class=post-info-mod>
-<span>Updated on 2021-10-31&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/e2b6ee29e34688a228b4a1891276f8dd8c262ce9 target=_blank title="commit by Jack Orcherton(31766070+jackorcherton@users.noreply.github.com) e2b6ee29e34688a228b4a1891276f8dd8c262ce9: Updated academic year">
-<i class="fas fa-hashtag fa-fw"></i>e2b6ee2</a></span>
+<span>Updated on 2021-11-03&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/89f725074559af9a285cd464d87ed11351bc1406 target=_blank title="commit by sharkmoos(muddy117@gmail.com) 89f725074559af9a285cd464d87ed11351bc1406: Added article for Stack Smashing">
+<i class="fas fa-hashtag fa-fw"></i>89f7250</a></span>
 </div>
 <div class=post-info-license></div>
 </div>
@@ -293,7 +293,7 @@ flag{c0unt-ch0cula-cereal-FTW}
 Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
 </noscript></div></article></div>
 </main><footer class=footer>
-<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
+<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
 </div>
 </footer></div>
 <div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">

@@ -273,4 +273,3 @@ We achieved code exection again. This exploit should also work on the remote hos
 ## Conclusion
 
 That brings us to the end of another ComSec writeup. Make sure you attempt task 3, and if you found all those easy then try some of the pwn challenges on Hack The Box! As always feel free to contact me on the Discord server if you have any questions.
-
