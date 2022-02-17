@@ -1,6 +1,6 @@
 ---
 title: "Exploiting Race Conditions"
-date: 2022-02-16T12:40:28+01:00
+date: 2022-02-18T08:40:28+01:00
 draft: false
 author: "***REMOVED***"
 description: "An introduction to exploiting race conditions in software and the web"
