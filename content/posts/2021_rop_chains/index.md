@@ -1,7 +1,7 @@
 ---
 title: "Introduction to ROP Chain Attacks"
 date: 2021-11-11T12:40:28+01:00
-draft: false
+draft: true
 author: "***REMOVED***"
 description: "An introductory session modern binary exploitation techniques"
 tags: ["pwn", "rop", "ret2libc"]
