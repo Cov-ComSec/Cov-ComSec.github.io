@@ -192,28 +192,28 @@ The web application presents a page with some products. A banner shows that we h
 The vulnerability in this application only presents itself due to the fact that it is mutli-threaded. Had it been single threaded, we would have no race condition. This multi threaded application uses a shared resource without any locking (or similar) mechanisms for the shared resource. Let's have a look at the `sell` function.
 
 ```py
-    @db.connection_context()
-    def sell(token: str, purchase_id: int) -> (bool, str):
+@db.connection_context()
+def sell(token: str, purchase_id: int) -> (bool, str):
 
-        purchase_history_objs = PurchaseLog.select().where(PurchaseLog.id == purchase_id)
-        if len(purchase_history_objs) == 0: return False, "Product does not exist"
+    purchase_history_objs = PurchaseLog.select().where(PurchaseLog.id == purchase_id)
+    if len(purchase_history_objs) == 0: return False, "Product does not exist"
 
-        purchase_history_obj = purchase_history_objs[0]
-        user_objs = User.select().where(User.token == token)
+    purchase_history_obj = purchase_history_objs[0]
+    user_objs = User.select().where(User.token == token)
 
-        if len(user_objs) == 0: return False, "Invalid User Token"
+    if len(user_objs) == 0: return False, "Invalid User Token"
 
-        user_obj = user_objs[0]
-        if purchase_history_obj.user_id != user_obj.id: return False, "You did not make this purchase"
+    user_obj = user_objs[0]
+    if purchase_history_obj.user_id != user_obj.id: return False, "You did not make this purchase"
 
-        # We could have a more complex table... or we can just delete the log -_-
-        PurchaseLog.delete().where(PurchaseLog.id == purchase_history_obj.id).execute()
+    # We could have a more complex table... or we can just delete the log -_-
+    PurchaseLog.delete().where(PurchaseLog.id == purchase_history_obj.id).execute()
 
-        User.update(balance=user_obj.balance + purchase_history_obj.paid_amount) \
-            .where(User.id == user_obj.id) \
-            .execute()
+    User.update(balance=user_obj.balance + purchase_history_obj.paid_amount) \
+        .where(User.id == user_obj.id) \
+        .execute()
 
-        return True, ""
+    return True, ""
 ```
 
 We can see that the item is sold before the users balance is updated. Had the application been single threaded this would not be a problem, as nothing would use the shared resource in between requests, however it is multi threaded meaning different threads may alter the shared resource without alerting the other threads. This presents us with a race condition, due to the time between the item being sold and the balance being updated, that an adversary could make an unexpected change.
