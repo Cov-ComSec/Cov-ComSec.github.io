@@ -189,7 +189,7 @@ The web application presents a page with some products. A banner shows that we h
 
 ![We can buy and sell](images/ss15.png)
 
-There actually isn't any vulnerability in the *source code* of this web application, the vulnerability lies in the implementation. The web application is a multi threaded, using shared resource, without any locking (or similar) methods for the shared resource. Let's have a look at the `sell` function.
+The vulnerability in this application only presents itself due to the fact that it is mutli-threaded. Had it been single threaded, we would have no race condition. This multi threaded application uses a shared resource without any locking (or similar) mechanisms for the shared resource. Let's have a look at the `sell` function.
 
 ```py
     @db.connection_context()
