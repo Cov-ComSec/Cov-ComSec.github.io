@@ -76,7 +76,7 @@ The command ends the string then compares 1 with 1 (which equals true) and "--" 
 - Use the fetchone method - this does not secure it, but makes exploitation much easier
 {{< /admonition >}}
 
-# How am I meant to remember the commands?
+## How am I meant to remember the commands?
 Thankfully you can use a tool named SQLmap, here is a useful [SQLmap Cheatsheet](https://thedarksource.com/sqlmap-cheat-sheet/).
 
 It is also possible to pair with Burpsuite, to save having specify location. To do this, intercept the request, then save it to a file and use the following command:
