@@ -1,163 +1,17 @@
-<!doctype html><html lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=robots content="noodp">
-<meta http-equiv=x-ua-compatible content="IE=edge, chrome=1">
-<title>Web Exploitation & OWASP - CUEH ComSec</title><meta name=Description content="The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."><meta property="og:title" content="Web Exploitation & OWASP">
-<meta property="og:description" content="This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:
- Good notes, and their importance Making notes with Markdown What is website exploitation? Introduction to OWASP top 10 SQL Injection Sqlmap Cross-Site Scripting (XSS) Sensitive Data Exposure  Resources  Presentation Slides  Note Taking Effective hacking requires a thorough and methodological approach. Additionally, in the workplace you will have to report findings to clients and be able to work with others.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://cov-comsec.github.io/posts/owasp_sqli_xss/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2020-11-04T12:40:28+01:00">
-<meta property="article:modified_time" content="2021-06-22T12:09:00+01:00">
-<meta name=twitter:card content="summary_large_image">
-<meta name=twitter:image content="https://cov-comsec.github.io/logo.svg">
-<meta name=twitter:title content="Web Exploitation & OWASP">
-<meta name=twitter:description content="This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:
- Good notes, and their importance Making notes with Markdown What is website exploitation? Introduction to OWASP top 10 SQL Injection Sqlmap Cross-Site Scripting (XSS) Sensitive Data Exposure  Resources  Presentation Slides  Note Taking Effective hacking requires a thorough and methodological approach. Additionally, in the workplace you will have to report findings to clients and be able to work with others.">
-<meta name=application-name content="CUEH ComSec">
-<meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/owasp_sqli_xss/><link rel=prev href=https://cov-comsec.github.io/posts/ziemni/><link rel=next href=https://cov-comsec.github.io/posts/osint_social_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Web Exploitation \u0026 OWASP","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/owasp_sqli_xss\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"web, OWASP, XSS, SQLi","wordcount":952,"url":"https:\/\/cov-comsec.github.io\/posts\/owasp_sqli_xss\/","datePublished":"2020-11-04T12:40:28+01:00","dateModified":"2021-06-22T12:09:00+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Jack Orcherton"},"description":""}</script></head>
-<body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'dark'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'dark'==='dark')&&document.body.setAttribute('theme','dark')</script>
-<div id=mask></div><div class=wrapper><header class=desktop id=header-desktop>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
-</div>
-<div class=menu>
-<div class=menu-inner><a class=menu-item href=/about/> About </a><a class=menu-item href=/posts/> Posts </a><a class=menu-item href=/tags/> Tags </a><a class=menu-item href=/categories/> Categories </a><a class=menu-item href=https://cueh-comsec.ctfd.io/ rel="noopener noreffer" target=_blank> CTFd </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Web Exploitation & OWASP - CUEH ComSec</title><meta name=Description content="The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."><meta property="og:title" content="Web Exploitation & OWASP"><meta property="og:description" content="This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:
+ Good notes, and their importance Making notes with Markdown What is website exploitation? Introduction to OWASP top 10 SQL Injection Sqlmap Cross-Site Scripting (XSS) Sensitive Data Exposure  Resources  Presentation Slides  Note Taking Effective hacking requires a thorough and methodological approach. Additionally, in the workplace you will have to report findings to clients and be able to work with others."><meta property="og:type" content="article"><meta property="og:url" content="https://cov-comsec.github.io/posts/owasp_sqli_xss/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-11-04T12:40:28+01:00"><meta property="article:modified_time" content="2021-06-22T12:09:00+01:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cov-comsec.github.io/logo.svg"><meta name=twitter:title content="Web Exploitation & OWASP"><meta name=twitter:description content="This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:
+ Good notes, and their importance Making notes with Markdown What is website exploitation? Introduction to OWASP top 10 SQL Injection Sqlmap Cross-Site Scripting (XSS) Sensitive Data Exposure  Resources  Presentation Slides  Note Taking Effective hacking requires a thorough and methodological approach. Additionally, in the workplace you will have to report findings to clients and be able to work with others."><meta name=application-name content="CUEH ComSec"><meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=stylesheet href=/css/forms.css media=screen><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/owasp_sqli_xss/><link rel=prev href=https://cov-comsec.github.io/posts/ziemni/><link rel=next href=https://cov-comsec.github.io/posts/osint_social_engineering/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Web Exploitation \u0026 OWASP","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/owasp_sqli_xss\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"web, OWASP, XSS, SQLi","wordcount":952,"url":"https:\/\/cov-comsec.github.io\/posts\/owasp_sqli_xss\/","datePublished":"2020-11-04T12:40:28+01:00","dateModified":"2021-06-22T12:09:00+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Jack Orcherton"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"dark"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"dark"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/about/>About </a><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/categories/>Categories </a><a class=menu-item href=https://cueh-comsec.ctfd.io/ rel="noopener noreffer" target=_blank>CTFd </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
 <input type=text placeholder="Search titles or contents..." id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search>
-<i class="fas fa-search fa-fw"></i>
-</a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear>
-<i class="fas fa-times-circle fa-fw"></i>
-</a>
-<span class="search-button search-loading" id=search-loading-desktop>
-<i class="fas fa-spinner fa-fw fa-spin"></i>
-</span>
-</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a>
-</div>
-</div>
-</div>
-</header><header class=mobile id=header-mobile>
-<div class=header-container>
-<div class=header-wrapper>
-<div class=header-title>
-<a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a>
-</div>
-<div class=menu-toggle id=menu-toggle-mobile>
-<span></span><span></span><span></span>
-</div>
-</div>
-<div class=menu id=menu-mobile><div class=search-wrapper>
-<div class="search mobile" id=search-mobile>
-<input type=text placeholder="Search titles or contents..." id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search>
-<i class="fas fa-search fa-fw"></i>
-</a>
-<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear>
-<i class="fas fa-times-circle fa-fw"></i>
-</a>
-<span class="search-button search-loading" id=search-loading-mobile>
-<i class="fas fa-spinner fa-fw fa-spin"></i>
-</span>
-</div>
-<a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>
-Cancel
-</a>
-</div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=https://cueh-comsec.ctfd.io/ title rel="noopener noreffer" target=_blank>CTFd</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw"></i>
-</a></div>
-</div>
-</header>
-<div class="search-dropdown desktop">
-<div id=search-dropdown-desktop></div>
-</div>
-<div class="search-dropdown mobile">
-<div id=search-dropdown-mobile></div>
-</div>
-<main class=main>
-<div class=container><div class=toc id=toc-auto>
-<h2 class=toc-title>Contents</h2>
-<div class=toc-content id=toc-content-auto></div>
-</div><article class="page single"><h1 class="single-title animated flipInX">Web Exploitation & OWASP</h1><div class=post-meta>
-<div class=post-meta-line><span class=post-author><a href=https://jackorcherton.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Jack Orcherton</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2020-21/><i class="far fa-folder fa-fw"></i>Academic Year 2020-21</a></span></div>
-<div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-11-04>2020-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;952 words&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div>
-</div><div class="details toc" id=toc-static kept=true>
-<div class="details-summary toc-title">
-<span>Contents</span>
-<span><i class="details-icon fas fa-angle-right"></i></span>
-</div>
-<div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#resources>Resources</a></li>
-</ul>
-</li>
-<li><a href=#note-taking>Note Taking</a></li>
-<li><a href=#markdown>Markdown</a>
-<ul>
-<li><a href=#editor-choice>Editor Choice</a></li>
-<li><a href=#markdown-syntax>Markdown Syntax</a></li>
-</ul>
-</li>
-<li><a href=#web-exploitation>Web Exploitation</a>
-<ul>
-<li><a href=#owasp>OWASP</a></li>
-</ul>
-</li>
-<li><a href=#injection-attacks>Injection Attacks</a>
-<ul>
-<li><a href=#sql-injection>SQL Injection</a></li>
-<li><a href=#sqlmap>Sqlmap</a></li>
-</ul>
-</li>
-<li><a href=#cross-site-scripting-xss>Cross Site Scripting (XSS)</a>
-<ul>
-<li><a href=#more-than-just-a-popup>More than just a popup?</a></li>
-</ul>
-</li>
-<li><a href=#sensitive-data-exposure>Sensitive Data Exposure</a></li>
-<li><a href=#challenge>Challenge</a></li>
-<li><a href=#further-challenges>Further Challenges</a></li>
-</ul>
-</nav></div>
-</div><div class=content id=content><p>This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:</p>
-<ul>
-<li>Good notes, and their importance</li>
-<li>Making notes with Markdown</li>
-<li>What is website exploitation?</li>
-<li>Introduction to OWASP top 10</li>
-<li>SQL Injection</li>
-<li>Sqlmap</li>
-<li>Cross-Site Scripting (XSS)</li>
-<li>Sensitive Data Exposure</li>
-</ul>
-<h3 id=resources>Resources</h3>
-<ul>
-<li><a href=/posts/owasp_sqli_xss/webExploit.pdf rel>Presentation Slides</a></li>
-</ul>
-<h2 id=note-taking>Note Taking</h2>
-<p>Effective hacking requires a thorough and methodological approach. Additionally, in the workplace you will have to report findings to clients and be able to work with others. Finally, they are useful as a point of reference in the future.</p>
-<p>They don&rsquo;t have to be long and laborious - short and sweet can be best (such as recording command outputs). For an example of good note checking, <a href=https://github.coventry.ac.uk/CUEH/DansALLNotes target=_blank rel="noopener noreffer">have a look at this by Dan</a>.</p>
-<h2 id=markdown>Markdown</h2>
-<p>All three of the ComSec committee uses Markdown - this is a simplistic language great for taking notes. Personally, I prefer it to other options because of code fences with syntax highlighting and, as it is open source, many programs can display it in its formatted form. Finally, it is easy to export Markdown to different formats, e.g. All the content on this website has been exported to HTML from Markdown.</p>
-<h3 id=editor-choice>Editor Choice</h3>
-<p>As said above, you can open/use multiple programs to edit ComSec articles. Here are some of our favourites:</p>
-<ul>
-<li>Joplin - Martin&rsquo;s and my favourite</li>
-<li>Obsidian.md - Tiago&rsquo;s favourite</li>
-<li>Visual Studio Code - great for making changes for files or don&rsquo;t want them stored in a central location. I also use VS Code to write assignments in Markdown</li>
-</ul>
-<h3 id=markdown-syntax>Markdown Syntax</h3>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=https://cueh-comsec.ctfd.io/ title rel="noopener noreffer" target=_blank>CTFd</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Web Exploitation & OWASP</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://jackorcherton.github.io title=Author target=_blank rel="noopener noreffer author" class=author><i class="fas fa-user-circle fa-fw"></i>Jack Orcherton</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2020-21/><i class="far fa-folder fa-fw"></i>Academic Year 2020-21</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-11-04>2020-11-04</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;952 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;5 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><a href=#resources>Resources</a></li></ul></li><li><a href=#note-taking>Note Taking</a></li><li><a href=#markdown>Markdown</a><ul><li><a href=#editor-choice>Editor Choice</a></li><li><a href=#markdown-syntax>Markdown Syntax</a></li></ul></li><li><a href=#web-exploitation>Web Exploitation</a><ul><li><a href=#owasp>OWASP</a></li></ul></li><li><a href=#injection-attacks>Injection Attacks</a><ul><li><a href=#sql-injection>SQL Injection</a></li><li><a href=#sqlmap>Sqlmap</a></li></ul></li><li><a href=#cross-site-scripting-xss>Cross Site Scripting (XSS)</a><ul><li><a href=#more-than-just-a-popup>More than just a popup?</a></li></ul></li><li><a href=#sensitive-data-exposure>Sensitive Data Exposure</a></li><li><a href=#challenge>Challenge</a></li><li><a href=#further-challenges>Further Challenges</a></li></ul></nav></div></div><div class=content id=content><p>This week we will begin to look at website exploitation, using the OWASP top 10. The main areas we will cover are:</p><ul><li>Good notes, and their importance</li><li>Making notes with Markdown</li><li>What is website exploitation?</li><li>Introduction to OWASP top 10</li><li>SQL Injection</li><li>Sqlmap</li><li>Cross-Site Scripting (XSS)</li><li>Sensitive Data Exposure</li></ul><h3 id=resources>Resources</h3><ul><li><a href=/posts/owasp_sqli_xss/webExploit.pdf rel>Presentation Slides</a></li></ul><h2 id=note-taking>Note Taking</h2><p>Effective hacking requires a thorough and methodological approach. Additionally, in the workplace you will have to report findings to clients and be able to work with others. Finally, they are useful as a point of reference in the future.</p><p>They don&rsquo;t have to be long and laborious - short and sweet can be best (such as recording command outputs). For an example of good note checking, <a href=https://github.coventry.ac.uk/CUEH/DansALLNotes target=_blank rel="noopener noreffer">have a look at this by Dan</a>.</p><h2 id=markdown>Markdown</h2><p>All three of the ComSec committee uses Markdown - this is a simplistic language great for taking notes. Personally, I prefer it to other options because of code fences with syntax highlighting and, as it is open source, many programs can display it in its formatted form. Finally, it is easy to export Markdown to different formats, e.g. All the content on this website has been exported to HTML from Markdown.</p><h3 id=editor-choice>Editor Choice</h3><p>As said above, you can open/use multiple programs to edit ComSec articles. Here are some of our favourites:</p><ul><li>Joplin - Martin&rsquo;s and my favourite</li><li>Obsidian.md - Tiago&rsquo;s favourite</li><li>Visual Studio Code - great for making changes for files or don&rsquo;t want them stored in a central location. I also use VS Code to write assignments in Markdown</li></ul><h3 id=markdown-syntax>Markdown Syntax</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -169,167 +23,30 @@ Cancel
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-mysql data-lang=mysql><span class=err>•</span><span class=w> </span><span class=p>(</span><span class=n>Mostly</span><span class=p>)</span><span class=w> </span><span class=n>The</span><span class=w> </span><span class=n>same</span><span class=w> </span><span class=n>syntax</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>Discord</span><span class=o>/</span><span class=nf>GitHub</span><span class=w> </span><span class=p>(</span><span class=n>due</span><span class=w> </span><span class=k>to</span><span class=w> </span><span class=n>slightly</span><span class=w> </span><span class=n>different</span><span class=w> </span><span class=n>implementations</span><span class=p>)</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=c1># Make a Heading
-</span><span class=c1></span><span class=err>•</span><span class=w> </span><span class=c1>## Make a smaller header (can use up to six #)
-</span><span class=c1></span><span class=err>•</span><span class=w> </span><span class=o>*</span><span class=n>make</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>italic</span><span class=o>*</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>**</span><span class=n>make</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>bold</span><span class=o>**</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>***</span><span class=n>make</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>bold</span><span class=w> </span><span class=o>&amp;</span><span class=w> </span><span class=n>italic</span><span class=o>***</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=p>[</span><span class=n>Enter</span><span class=w> </span><span class=kt>text</span><span class=p>](</span><span class=n>enter</span><span class=w> </span><span class=n>hyperlink</span><span class=p>)</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>!</span><span class=p>[</span><span class=n>Image</span><span class=w> </span><span class=n>name</span><span class=p>](</span><span class=n>image</span><span class=w> </span><span class=n>hyperlink</span><span class=p>)</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=n>Inline</span><span class=w> </span><span class=n>embed</span><span class=p>:</span><span class=w> </span><span class=o>`</span><span class=n>test</span><span class=o>`</span><span class=w>
-</span><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>```</span><span class=n>python</span><span class=w> 
-</span><span class=w></span><span class=nf>print</span><span class=p>(</span><span class=s2>&#34;Format this code like Python&#34;</span><span class=p>)</span><span class=w>
-</span><span class=w></span><span class=o>```</span><span class=n>Example</span><span class=w> </span><span class=n>of</span><span class=w> </span><span class=n>code</span><span class=w> </span><span class=n>fences</span><span class=w>
-</span></code></pre></td></tr></table>
-</div>
-</div><h2 id=web-exploitation>Web Exploitation</h2>
-<p>Website exploitation is when you can make a website act in a way it shouldn&rsquo;t; typically, with the aim of gaining access to the underlying system or &lsquo;protected information&rsquo;.</p>
-<h3 id=owasp>OWASP</h3>
-<p>The Open Web Application Security Project (OWASP) is a non-profit organisation that, every four years, releases a list named The OWASP Top 10. This list shows the most critical flaws that can be found in websites. The current list, released in 2017 is:</p>
-<ol>
-<li>Injection</li>
-<li>Broken Authentication</li>
-<li>Sensitive Data Exposure</li>
-<li>XML External Entities</li>
-<li>Broken Access Control</li>
-<li>Security Misconfigurations</li>
-<li>Cross Site Scripting (XSS)</li>
-<li>Insecure Deserialization</li>
-<li>Using components with known vulnerabilities</li>
-<li>Insufficient Logging and Monitoring</li>
-</ol>
-<p>These are important to look for when creating/pen testing websites as they can lead to easy targeting.</p>
-<h2 id=injection-attacks>Injection Attacks</h2>
-<p>This is the most critically rated website vulnerability and is where an attacker can convince a user input box to run a command/code. The most common form of injection attacks target SQL databases.</p>
-<h3 id=sql-injection>SQL Injection</h3>
-<p>SQLi (SQL Injection) is a form of attack which allows you to carry out commands on an underlying database. This can be dangerous, especially when the database contains private information.</p>
-<p>So, let&rsquo;s examine some SQL that you may use for a login page</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-SQL data-lang=SQL><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>userTable</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>username</span><span class=o>=</span><span class=n>userinput</span><span class=w>
-</span></code></pre></td></tr></table>
-</div>
-</div><p>For normal usage this would be fine, as this is what would be formed during normal usage:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-SQL data-lang=SQL><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>userTable</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>username</span><span class=o>=</span><span class=s2>&#34;jack&#34;</span><span class=w> 
-</span></code></pre></td></tr></table>
-</div>
-</div><p>And if a database entry is found, you could log in. The problem occurs when a malicious payload is entered, like <code>" OR 1=1; - -</code>. This would form the following:</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-SQL data-lang=SQL><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>userTable</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>username</span><span class=o>=</span><span class=s2>&#34;&#34;</span><span class=w> </span><span class=k>OR</span><span class=w> </span><span class=mi>1</span><span class=o>=</span><span class=mi>1</span><span class=p>;</span><span class=w> </span><span class=c1>--&#34;;
-</span></code></pre></td></tr></table>
-</div>
-</div><p>This would print out the whole table as 1=1 equates to true and &ndash; comments out the rest of the statement.</p>
-<p>There are also further payloads that can be used, but we&rsquo;ll cover this another time, as we must move on.</p>
-<h3 id=sqlmap>Sqlmap</h3>
-<p>As great as exploiting manually is, sometimes it is best to use prebuilt tools to automate the process; the most notable being sqlmap. The general command is</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>sqlmap –a –u ‘http://example.com’
-</code></pre></td></tr></table>
-</div>
-</div><p>This runs all scripts against an URL. For more granular control, use <code>--help </code> to find the right flags.</p>
-<h2 id=cross-site-scripting-xss>Cross Site Scripting (XSS)</h2>
-<p>This is when clients can inject html commands into an input field. The problem with this is that they can use this to execute JavaScript code.</p>
-<p>This type of exploit can typically be found on web forums. The easiest way to test this is to attempt to create an alert box.</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span><span class=nx>alert</span><span class=p>(</span><span class=s2>&#34;demo XSS exploit&#34;</span><span class=p>)</span> <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>There are also more ways to run JavaScript as it can sometimes be possible to bypass XSS protections. The best way to check is to a fuzzer and the XSS payload list from Seclists.</p>
-<h3 id=more-than-just-a-popup>More than just a popup?</h3>
-<p>With JavaScript you can do more evil things:</p>
-<ul>
-<li>Steal cookies & send them to a remote server (could lead to session hijacking)</li>
-<li>Deface websites (E.g., create tech support scam pop-ups)</li>
-<li>Preform actions on behalf of the user (such as transactions)</li>
-<li>Create iframes – this can allow you to embed different webpages into one
-another. One use of this could be to spoof a login page (so instead of logging in they send credentials to your server) – great for phishing!</li>
-<li>Capture keystrokes</li>
-<li>Read all the data on a victim&rsquo;s webpage (could reveal sensitive information).</li>
-</ul>
-<p>Please note that this was a quick intro to a larger topic, if you wish to find out more, I recommend <a href=https://pentest-tools.com/blog/xss-attacks-practical-scenarios/ target=_blank rel="noopener noreffer">this article</a>.</p>
-<h2 id=sensitive-data-exposure>Sensitive Data Exposure</h2>
-<p>This is when websites accidently expose/leak sensitive data. This could be:</p>
-<ul>
-<li>In transit – using HTTP/unencrypted communication.</li>
-<li>Having public S3 buckets/insecure databases.</li>
-<li>Leaving keys in Git repositories / view previous website archives.</li>
-<li>Using unprotected/default passwords</li>
-<li>Leaving API keys/admin credentials in code comments</li>
-</ul>
-<p>So, in essence it is anywhere where private data can be exposed.</p>
-<h2 id=challenge>Challenge</h2>
-<p>This week&rsquo;s challenge is to:</p>
-<ul>
-<li>use <a href=https://dvwa.co.uk/ target=_blank rel="noopener noreffer">DVWA</a> – this can be run locally or on <a href=https://tryhackme.com/room/dvwa target=_blank rel="noopener noreffer">THM (need an account)</a></li>
-<li>Start hacking the SQL & XSS challenges</li>
-<li>Enter flags you find on the ComSec CTFd</li>
-</ul>
-<h2 id=further-challenges>Further Challenges</h2>
-<ul>
-<li><a href=https://tryhackme.com/room/owasptop10 target=_blank rel="noopener noreffer">THM OWASP Room</a></li>
-</ul>
-</div><div class=post-footer id=post-footer>
-<div class=post-info>
-<div class=post-info-line>
-<div class=post-info-mod>
-<span>Updated on 2021-06-22&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/7a17d3da21d05c229d6dc88795865bdcc9436e57 target=_blank title="commit by Jack Orcherton(jackorcherton@outlook.com) 7a17d3da21d05c229d6dc88795865bdcc9436e57: SPaG Check">
-<i class="fas fa-hashtag fa-fw"></i>7a17d3d</a></span>
-</div>
-<div class=post-info-license></div>
-</div>
-<div class=post-info-line>
-<div class=post-info-md><span>
-<a class=link-to-markdown href=/posts/owasp_sqli_xss/index.md target=_blank>Read Markdown</a>
-</span></div>
-<div class=post-info-share>
-<span></span>
-</div>
-</div>
-</div>
-<div class=post-info-more>
-<section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/web/>web</a>,&nbsp;<a href=/tags/owasp/>OWASP</a>,&nbsp;<a href=/tags/xss/>XSS</a>,&nbsp;<a href=/tags/sqli/>SQLi</a></section>
-<section>
-<span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span>
-</section>
-</div>
-<div class=post-nav><a href=/posts/ziemni/ class=prev rel=prev title="Graduate Talks - Ziemni"><i class="fas fa-angle-left fa-fw"></i>Graduate Talks - Ziemni</a>
-<a href=/posts/osint_social_engineering/ class=next rel=next title="OSINT & Social Engineering">OSINT & Social Engineering<i class="fas fa-angle-right fa-fw"></i></a></div>
-</div>
-<div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong>
-<noscript>
-Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.
-</noscript></div></article></div>
-</main><footer class=footer>
-<div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div>
-</div>
-</footer></div>
-<div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top">
-<i class="fas fa-arrow-up fa-fw"></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments">
-<i class="fas fa-comment fa-fw"></i>
-</a>
-</div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body>
-</html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-mysql data-lang=mysql><span class=line><span class=cl><span class=err>•</span><span class=w> </span><span class=p>(</span><span class=n>Mostly</span><span class=p>)</span><span class=w> </span><span class=n>The</span><span class=w> </span><span class=n>same</span><span class=w> </span><span class=n>syntax</span><span class=w> </span><span class=k>as</span><span class=w> </span><span class=n>Discord</span><span class=o>/</span><span class=nf>GitHub</span><span class=w> </span><span class=p>(</span><span class=n>due</span><span class=w> </span><span class=k>to</span><span class=w> </span><span class=n>slightly</span><span class=w> </span><span class=n>different</span><span class=w> </span><span class=n>implementations</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=c1># Make a Heading
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>•</span><span class=w> </span><span class=c1>## Make a smaller header (can use up to six #)
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=err>•</span><span class=w> </span><span class=o>*</span><span class=n>make</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>italic</span><span class=o>*</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>**</span><span class=n>make</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>bold</span><span class=o>**</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>***</span><span class=n>make</span><span class=w> </span><span class=n>this</span><span class=w> </span><span class=n>bold</span><span class=w> </span><span class=o>&amp;</span><span class=w> </span><span class=n>italic</span><span class=o>***</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=p>[</span><span class=n>Enter</span><span class=w> </span><span class=kt>text</span><span class=p>](</span><span class=n>enter</span><span class=w> </span><span class=n>hyperlink</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>!</span><span class=p>[</span><span class=n>Image</span><span class=w> </span><span class=n>name</span><span class=p>](</span><span class=n>image</span><span class=w> </span><span class=n>hyperlink</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=n>Inline</span><span class=w> </span><span class=n>embed</span><span class=p>:</span><span class=w> </span><span class=o>`</span><span class=n>test</span><span class=o>`</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=err>•</span><span class=w> </span><span class=o>```</span><span class=n>python</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nf>print</span><span class=p>(</span><span class=s2>&#34;Format this code like Python&#34;</span><span class=p>)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=o>```</span><span class=n>Example</span><span class=w> </span><span class=n>of</span><span class=w> </span><span class=n>code</span><span class=w> </span><span class=n>fences</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=web-exploitation>Web Exploitation</h2><p>Website exploitation is when you can make a website act in a way it shouldn&rsquo;t; typically, with the aim of gaining access to the underlying system or &lsquo;protected information&rsquo;.</p><h3 id=owasp>OWASP</h3><p>The Open Web Application Security Project (OWASP) is a non-profit organisation that, every four years, releases a list named The OWASP Top 10. This list shows the most critical flaws that can be found in websites. The current list, released in 2017 is:</p><ol><li>Injection</li><li>Broken Authentication</li><li>Sensitive Data Exposure</li><li>XML External Entities</li><li>Broken Access Control</li><li>Security Misconfigurations</li><li>Cross Site Scripting (XSS)</li><li>Insecure Deserialization</li><li>Using components with known vulnerabilities</li><li>Insufficient Logging and Monitoring</li></ol><p>These are important to look for when creating/pen testing websites as they can lead to easy targeting.</p><h2 id=injection-attacks>Injection Attacks</h2><p>This is the most critically rated website vulnerability and is where an attacker can convince a user input box to run a command/code. The most common form of injection attacks target SQL databases.</p><h3 id=sql-injection>SQL Injection</h3><p>SQLi (SQL Injection) is a form of attack which allows you to carry out commands on an underlying database. This can be dangerous, especially when the database contains private information.</p><p>So, let&rsquo;s examine some SQL that you may use for a login page</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-SQL data-lang=SQL><span class=line><span class=cl><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>userTable</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>username</span><span class=o>=</span><span class=n>userinput</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>For normal usage this would be fine, as this is what would be formed during normal usage:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-SQL data-lang=SQL><span class=line><span class=cl><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>userTable</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>username</span><span class=o>=</span><span class=s2>&#34;jack&#34;</span><span class=w> 
+</span></span></span></code></pre></td></tr></table></div></div><p>And if a database entry is found, you could log in. The problem occurs when a malicious payload is entered, like <code>" OR 1=1; - -</code>. This would form the following:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-SQL data-lang=SQL><span class=line><span class=cl><span class=k>SELECT</span><span class=w> </span><span class=o>*</span><span class=w> </span><span class=k>FROM</span><span class=w> </span><span class=n>userTable</span><span class=w> </span><span class=k>WHERE</span><span class=w> </span><span class=n>username</span><span class=o>=</span><span class=s2>&#34;&#34;</span><span class=w> </span><span class=k>OR</span><span class=w> </span><span class=mi>1</span><span class=o>=</span><span class=mi>1</span><span class=p>;</span><span class=w> </span><span class=c1>--&#34;;
+</span></span></span></code></pre></td></tr></table></div></div><p>This would print out the whole table as 1=1 equates to true and &ndash; comments out the rest of the statement.</p><p>There are also further payloads that can be used, but we&rsquo;ll cover this another time, as we must move on.</p><h3 id=sqlmap>Sqlmap</h3><p>As great as exploiting manually is, sometimes it is best to use prebuilt tools to automate the process; the most notable being sqlmap. The general command is</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>sqlmap –a –u ‘http://example.com’
+</span></span></code></pre></td></tr></table></div></div><p>This runs all scripts against an URL. For more granular control, use <code>--help</code> to find the right flags.</p><h2 id=cross-site-scripting-xss>Cross Site Scripting (XSS)</h2><p>This is when clients can inject html commands into an input field. The problem with this is that they can use this to execute JavaScript code.</p><p>This type of exploit can typically be found on web forums. The easiest way to test this is to attempt to create an alert box.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span><span class=nx>alert</span><span class=p>(</span><span class=s2>&#34;demo XSS exploit&#34;</span><span class=p>)</span> <span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>There are also more ways to run JavaScript as it can sometimes be possible to bypass XSS protections. The best way to check is to a fuzzer and the XSS payload list from Seclists.</p><h3 id=more-than-just-a-popup>More than just a popup?</h3><p>With JavaScript you can do more evil things:</p><ul><li>Steal cookies & send them to a remote server (could lead to session hijacking)</li><li>Deface websites (E.g., create tech support scam pop-ups)</li><li>Preform actions on behalf of the user (such as transactions)</li><li>Create iframes – this can allow you to embed different webpages into one
+another. One use of this could be to spoof a login page (so instead of logging in they send credentials to your server) – great for phishing!</li><li>Capture keystrokes</li><li>Read all the data on a victim&rsquo;s webpage (could reveal sensitive information).</li></ul><p>Please note that this was a quick intro to a larger topic, if you wish to find out more, I recommend <a href=https://pentest-tools.com/blog/xss-attacks-practical-scenarios/ target=_blank rel="noopener noreffer">this article</a>.</p><h2 id=sensitive-data-exposure>Sensitive Data Exposure</h2><p>This is when websites accidently expose/leak sensitive data. This could be:</p><ul><li>In transit – using HTTP/unencrypted communication.</li><li>Having public S3 buckets/insecure databases.</li><li>Leaving keys in Git repositories / view previous website archives.</li><li>Using unprotected/default passwords</li><li>Leaving API keys/admin credentials in code comments</li></ul><p>So, in essence it is anywhere where private data can be exposed.</p><h2 id=challenge>Challenge</h2><p>This week&rsquo;s challenge is to:</p><ul><li>use <a href=https://dvwa.co.uk/ target=_blank rel="noopener noreffer">DVWA</a> – this can be run locally or on <a href=https://tryhackme.com/room/dvwa target=_blank rel="noopener noreffer">THM (need an account)</a></li><li>Start hacking the SQL & XSS challenges</li><li>Enter flags you find on the ComSec CTFd</li></ul><h2 id=further-challenges>Further Challenges</h2><ul><li><a href=https://tryhackme.com/room/owasptop10 target=_blank rel="noopener noreffer">THM OWASP Room</a></li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2021-06-22&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/7a17d3da21d05c229d6dc88795865bdcc9436e57 target=_blank title="commit by Jack Orcherton(jackorcherton@outlook.com) 7a17d3da21d05c229d6dc88795865bdcc9436e57: SPaG Check">
+<i class="fas fa-hashtag fa-fw"></i>7a17d3d</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/posts/owasp_sqli_xss/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/web/>web</a>,&nbsp;<a href=/tags/owasp/>OWASP</a>,&nbsp;<a href=/tags/xss/>XSS</a>,&nbsp;<a href=/tags/sqli/>SQLi</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/ziemni/ class=prev rel=prev title="Graduate Talks - Ziemni"><i class="fas fa-angle-left fa-fw"></i>Graduate Talks - Ziemni</a>
+<a href=/posts/osint_social_engineering/ class=next rel=next title="OSINT & Social Engineering">OSINT & Social Engineering<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong><noscript>Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
