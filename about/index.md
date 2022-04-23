@@ -5,6 +5,8 @@ Hello and welcome to Comsec, we are Coventry University’s unofficial ethical h
 
 We meet weekly during term-time, typically on Wednesdays, to provide lectures on ethical hacking, invite guest lecturers, compete in tournaments and meeting with businesses in the cybersecurity field.
 
+Currently the CTF teams operate with the aliases 'Ethical Slackers' or 'R0073R5'. We participate in a number of university CTFs such as [pwnEd](https://pwned.sigint.mx/) (9/45) and the [Hack The Box Uni CTF](https://www.hackthebox.com/universities/university-ctf-2021) (33/594), as well as global CTFs such as picoCTF and RuCTFe.
+
 Below shows ComSec competing in the 2019 RuCTFe, in which our team 'Ethical Slackers' achieved 60th place.
 
 ![ComSec at RuCTFe 2019](comsec.png)
