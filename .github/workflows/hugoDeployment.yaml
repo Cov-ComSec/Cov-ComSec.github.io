@@ -21,9 +21,6 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Fetch Hugo Modules
-        run: hugo mod get -u
-
       - name: Build
         run: hugo --minify --gc
 
