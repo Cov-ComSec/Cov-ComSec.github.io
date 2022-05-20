@@ -8,7 +8,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-20.04
-    
+    steps:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
