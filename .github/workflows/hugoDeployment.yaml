@@ -22,7 +22,7 @@ jobs:
           extended: true
 
       - name: Fetch Hugo Modules
-	run: hugo mod get -u
+        run: hugo mod get -u
 
       - name: Build
         run: hugo --minify --gc
