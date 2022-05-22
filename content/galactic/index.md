@@ -1,5 +1,7 @@
 ---
 title: Coming Soon
+description: "Congratulations on finding this page about {redacted}. Don't panic, we will reveal more information on Wednesday 25th May 2022 at 12:00 UTC"
+
 ---
 
 Congratulations on finding this page about {redacted}. Don't panic, we will reveal more information on what this is about in:
