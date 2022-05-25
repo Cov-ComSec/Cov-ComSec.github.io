@@ -9,7 +9,7 @@ disableHugoGeneratorInject = true
 
 [module]
   [[module.imports]]
-    path = "github.com/jackorcherton/hackit"
+    path = "github.com/jackorcherton/HackIt"
 
 
 [menu]
