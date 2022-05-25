@@ -1,9 +1,21 @@
-# Coming Soon
+# Coventry Galactic CTF
 
-
-Congratulations on finding this page about {redacted}. Don't panic, we will reveal more information on what this is about in:
 
 <style>
+.button {
+  background-color: #015fbc;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.button:hover {
+	background-color: #38b6ff;
+}
 
 *, *:before, *:after {
   box-sizing: inherit;
@@ -37,6 +49,42 @@ ul#countdown li .label {
 }
 </style>
 
+<a href="https://forms.office.com/Pages/ResponsePage.aspx?id=mqsYS2U3vkqsfA4NOYr9TzvNREW-c5pLgP1wBfxa65ZUOElVNVJTNTNQMTZLSlRGSThKQTk3UEVQQi4u" target="_blank"><button class="button">Register Interest <i class="fa fa-pen-to-square"></i></button></a>
+<a href="https://discord.gg/4Vpp8KgtXc" target="_blank"><button class="button">Join us on Discord <i class='fab fa-discord'></i></button></a>
+
+Starting on the 9th of August 2022 at 12:00 UTC CUEH is proud to host the first internal Coventry University group CTF. If you are interested, please fill out the interest form, and to stay up-to-date with the latest information, please join our Coventry Galactic Discord (*Note* this is different from the normal ComSec Discord server).
+
+![Coventry Galactic CTF Trailer](assets/trailer.gif)
+
+## Frequently Asked Questions
+
+### When is the event?
+The event will take place between 9th August 2022 12:00 UTC until 15th August 2022 12:00.
+
+### Who can take part?
+To take part you must be a student or recent graduate from the Coventry University Group or associated partners. If you are unsure, contact the CTF organisers.
+
+### How can we communicate with the CTF organisers?
+If you have a question that you feel would be beneficial to others, please either leave a comment at the bottom of the page or ask a question in the Discord server. If the question is more personal, please ask someone with the organiser role within the Discord server.
+
+### What is ComSec?
+See our [about page](/about/).
+
+### What will the difficulty be like?
+We are aiming to produce beginner friendly to more challenging; so, do not be disheartened if you cannot solve something, try another challenge.
+
+### What type of challenges will there be?
+We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone.
+
+### I have never taken part in a CTF, can I join?
+Of course, everyone must start somewhere! We will release more guidance closer to the CTF.
+
+### How can I help?
+The best way you can help is by spreading the word, please pass the link to this web page to your friends within the university.
+
+### How long is it until the event begins?
+We are glad you asked:
+
 <center>
   <ul id="countdown">
   <li id="days">
@@ -60,7 +108,7 @@ ul#countdown li .label {
 
 <script id="rendered-js" >
 
-var countDate = new Date("2022/05/25 12:00:00 UTC");
+var countDate = new Date("2022/08/09 12:00:00 UTC");
 var x = setInterval(function() {
     var now = new Date().getTime();
     var distance = countDate - now;
