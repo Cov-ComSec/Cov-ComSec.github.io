@@ -34,7 +34,7 @@ Now, the only thing left to do is execute 'poison' once again and get our root s
 
 ## Demo 2: Log poisoning
 
-Log poisoning, unlike PATH poisoning, can work with web applications as well as locally. The most basic example of log poisoning is apache log poisoning, where an attacked exploits either 'access.log' or 'error.log' in order to write custom payloads which allow to gain code execution. The demo uses 'access.log' to demonstrate how log poisoning works.
+Log poisoning, unlike PATH poisoning, can work with web applications as well as locally. The most basic example of log poisoning is apache log poisoning, where an attacker exploits either 'access.log' or 'error.log' in order to write custom payloads which allow to gain code execution. The demo uses 'access.log' to demonstrate how log poisoning works.
 
 The first thing we see after navigating to the target web page is a portal that allows the user to select a different kind of snake and read very interesting facts about them.
 
