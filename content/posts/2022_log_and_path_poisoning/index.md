@@ -1,5 +1,6 @@
 In this session we talked about log files, the PATH variable and how an attacker could exploit them. Briefly, the PATH is a system variable unique to UNIX systems which defines the hierarchy that the CPU uses to find executable binaries. If someone were to prepend or append a valid directory to the PATH, then the CPU would consider it as a valid location to find binaries in. Similarly, log files can be used as a vector for code execution if the permissions were to be misconfigured.
-Presentation slides can be found [here](files/presentation.pdf)
+
+Presentation slides can be found [here](files/presentation.pdf).
 
 ## Demo 1: PATH poisoning
 
