@@ -6,7 +6,7 @@ Presentation slides can be found [here](files/presentation.pdf)
 As I said before, the PATH is an environmental variable that tells the shell where to locate executable binaries. Using 'echo' it's possible to print the PATH to screen and using 'export' it's possible to prepend or append valid directories. PATH checks the directories in order, from left to right, so if a directory is prepended to the PATH, it would be parsed and checked before any other directory; making it a perfect place to store malicious payloads.
 
 The demo starts with a box that gives us instruction on how to connect and an username to connect as.
-![Screenshot of the box displayed](files/path_setup.jpg)
+![Connection Details](files/path_setup.jpg)
 
 Using the command ```ssh -p 1337 comsec@<ip>``` and the password given, we can login as user comsec and we discover that an executable file is present
 
