@@ -51,7 +51,7 @@ This is easily recognizable as an LFI vulnerability which can be used to read an
 Yes! Now that we managed to actually read the file all there's left is to actually poison this logfile but, how do we do it? Well, given the nature of the logfile, access.log will record any connection attempt made, as well as the header of the request, even the connection (for example) to non-existant pages. Since the target runs a PHP application, we can submit a request with a simple webshell in the header, then connect to access.log and specify our command as a URL parameter.
 
 The following script is the one used to forge and send the malicious request.
-```
+```py
 import requests
 
 URL = "http://172.17.0.2:80/evil"
