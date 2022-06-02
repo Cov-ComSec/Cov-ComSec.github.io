@@ -1,6 +1,6 @@
 ---
 title: "Log and PATH Poisoning"
-date: 2022-06-02T21:15:26+08:00
+date: 2022-04-13T21:15:26+08:00
 draft: false
 author: "Mattia Donadelli"
 description: "Writeup of the session dedicated to log and PATH poisoning"
