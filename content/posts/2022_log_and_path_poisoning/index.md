@@ -6,7 +6,7 @@ author: "Mattia Donadelli"
 description: "Writeup of the session dedicated to log and PATH poisoning"
 
 tags: ["web", "privesc", "logs", "cron"]
-categories: ["Academic Year 2021-22", "Web Hacking", "Escalting Privileges"]
+categories: ["Academic Year 2021-22"]
 
 ---
 
