@@ -1,3 +1,15 @@
+---
+title: "Log and PATH Poisoning"
+date: 2022-06-02T21:15:26+08:00
+draft: false
+author: "Mattia Donadelli"
+description: "Writeup of the session dedicated to log and PATH poisoning"
+
+tags: ["web", "privesc", "logs", "cron"]
+categories: ["Academic Year 2021-22", "Web Hacking", "Escalting Privileges"]
+
+---
+
 In this session we talked about log files, the PATH variable and how an attacker could exploit them. Briefly, the PATH is a system variable unique to UNIX systems which defines the hierarchy that the CPU uses to find executable binaries. If someone were to prepend or append a valid directory to the PATH, then the CPU would consider it as a valid location to find binaries in. Similarly, log files can be used as a vector for code execution if the permissions were to be misconfigured.
 
 Presentation slides can be found [here](files/presentation.pdf).
