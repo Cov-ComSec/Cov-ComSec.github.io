@@ -2,7 +2,7 @@
 title: "Introduction to ROP Chain Attacks"
 date: 2021-11-11T12:40:28+01:00
 draft: true
-author: "***REMOVED***"
+author: "Ben Roxbee Cox"
 description: "An introductory session modern binary exploitation techniques"
 tags: ["pwn", "rop", "ret2libc"]
 categories: ["Academic Year 2021-22"]

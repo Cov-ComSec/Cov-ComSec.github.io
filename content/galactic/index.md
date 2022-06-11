@@ -78,10 +78,10 @@ See our [about page](/about/).
 We are aiming to produce beginner friendly to more challenging; so, do not be disheartened if you cannot solve something, try another challenge.
 
 ### What type of challenges will there be?
-We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone. Topics will  include web, cryptography, forensics, mobile, open-source intelligence, binary exploitation and reverse engineering (note: this list is not exhaustive.
+We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone. Topics will  include web, cryptography, forensics, mobile, open-source intelligence, binary exploitation and reverse engineering (note: this list is not exhaustive).
 
 ### I have never taken part in a CTF, can I join?
-Of course, everyone must start somewhere! We will release more guidance closer to the CTF.
+Of course, everyone must start somewhere! We will release more guidance closer to the CTF. Additionally, during the CTF we will have warm-up challenges, these will be beginner friendly and will help to ease you into more difficult challenges. Finally, we recommend that you practice beforehand (please see the next question).
 
 ### What can I do to practice?
 For practice, we have re-released the challenges from Twelvetide, our Christmas 2021 CTF.

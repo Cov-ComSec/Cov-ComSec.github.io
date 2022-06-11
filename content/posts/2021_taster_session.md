@@ -20,7 +20,7 @@ Welcome to ComSec, we are Coventry University's Ethical Hacking Society. We aim 
 
 ## Committee 2021
 This year the committee is:
-- ***REMOVED*** (second year)
+- Ben Roxbee Cox (second year)
 - Jack Orcherton (third year)
 - Martin Schon (placement year)
 - Tiago Pascoal (third year)
