@@ -78,7 +78,7 @@ See our [about page](/about/).
 We are aiming to produce beginner friendly to more challenging; so, do not be disheartened if you cannot solve something, try another challenge.
 
 ### What type of challenges will there be?
-We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone. Topics to expect will be cryptography, forensics, mobile, opensource intelligence, pwn and reverse engineering (note this list is not a guarantee or exhaustive).
+We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone. Topics will  include web, cryptography, forensics, mobile, open-source intelligence, binary exploitation and reverse engineering (note: this list is not exhaustive.
 
 ### I have never taken part in a CTF, can I join?
 Of course, everyone must start somewhere! We will release more guidance closer to the CTF.
