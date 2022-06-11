@@ -63,7 +63,7 @@ Starting on the 9th of August 2022 at 12:00 UTC CUEH is proud to host the first 
 ## Frequently Asked Questions
 
 ### When is the event?
-The event will take place between 9th August 2022 12:00 UTC until 15th August 2022 12:00.
+The event will take place between Tuesday 9th August 2022 12:00 UTC until Monday 15th August 2022 12:00. On Monday 8th August we will provide introductory information as well as warm up challenges.
 
 ### Who can take part?
 To take part you must be a student or recent graduate from the Coventry University Group or associated partners. If you are unsure, contact the CTF organisers.
@@ -78,10 +78,17 @@ See our [about page](/about/).
 We are aiming to produce beginner friendly to more challenging; so, do not be disheartened if you cannot solve something, try another challenge.
 
 ### What type of challenges will there be?
-We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone.
+We aim to cover a wide range of topics related to ethical hacking, so there should be something for everyone. Topics to expect will be cryptography, forensics, mobile, opensource intelligence, pwn and reverse engineering (note this list is not a guarantee or exhaustive).
 
 ### I have never taken part in a CTF, can I join?
 Of course, everyone must start somewhere! We will release more guidance closer to the CTF.
+
+### What can I do to practice?
+For practice, we have re-released the challenges from Twelvetide, our Christmas 2021 CTF.
+
+The challenges are hosted on ComSec's CTF platform, which can be found at https://cueh-comsec.ctfd.io/. If you are new, you will need to create an account by clicking on register and signing up with your Coventry University group email address.
+
+Once signed in, scroll down to the "2021-12-26 TwelveTide CTF" and start with the "day 0 - Test 1" challenge which will take you through the steps required to download the CTF deployment virtual machine. After this challenge has been completed, feel free to solve the challenges in this category in any order you see fit.
 
 ### How can I help?
 The best way you can help is by spreading the word, please pass the link to this web page to your friends within the university.
