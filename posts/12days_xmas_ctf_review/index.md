@@ -15,6 +15,6 @@ We would also like to thank everyone who took part, and we hoped that you enjoye
 Today we plan to let you pick the challenges you struggled with, and the person who created it will walk you through the intended solution.
 
 {{< admonition type=info open=false >}} 
-As this session was done live and to avoid spoilers, we have not posted solutions. However, if you would like to view them, we recommend that you look at [Ben's note's](https://blog.benroxbeecox.me/CovChristmasCTF/); who won the best writeup prize. 
+As this session was done live and to avoid spoilers, we have not posted solutions.
 {{< /admonition >}}
 
