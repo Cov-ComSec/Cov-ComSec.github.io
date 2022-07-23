@@ -2,7 +2,7 @@
 title: "Assembly & Shellcoding"
 date: 2021-10-20T12:40:28+01:00
 draft: false
-author: "Ben Roxbee Cox"
+author: "Ben R"
 description: "An introduction to assembly coding and shellcoding"
 tags: ["pwn", "Docker", "assembly"]
 categories: ["Academic Year 2021-22"]
