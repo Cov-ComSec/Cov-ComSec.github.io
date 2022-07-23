@@ -2,7 +2,7 @@
 title: "Reverse Engineering Basics"
 date: 2021-10-28T12:40:28+01:00
 draft: false
-author: "Ben Roxbee Cox"
+author: "Ben R"
 description: "An introductory session into the basics of reverse engineering"
 tags: ["pwn", "reversing", "assembly"]
 categories: ["Academic Year 2021-22"]
