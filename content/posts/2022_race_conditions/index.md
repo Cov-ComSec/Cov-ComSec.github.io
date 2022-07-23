@@ -2,7 +2,7 @@
 title: "Exploiting Race Conditions"
 date: 2022-02-17T08:40:28+01:00
 draft: false
-author: "Ben Roxbee Cox"
+author: "Ben R"
 description: "An introduction to exploiting race conditions in software and the web"
 tags: ["pwn", "web", "software_security"]
 categories: ["Academic Year 2021-22"]
