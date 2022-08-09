@@ -56,14 +56,14 @@ ul#countdown li .label {
 <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=mqsYS2U3vkqsfA4NOYr9TzvNREW-c5pLgP1wBfxa65ZUOElVNVJTNTNQMTZLSlRGSThKQTk3UEVQQi4u" target="_blank"><button class="button">Register Interest <i class="fa fa-pen-to-square"></i></button></a>
 <a href="https://discord.gg/4Vpp8KgtXc" target="_blank"><button class="button">Join us on Discord <i class='fab fa-discord'></i></button></a>
 
-Starting on the 9th of August 2022 at 12:00 UTC CUEH is proud to host the first internal Coventry University group CTF. If you are interested, please fill out the interest form, and to stay up-to-date with the latest information, please join our Coventry Galactic Discord (*Note* this is different from the normal ComSec Discord server).
+Starting on the 9th of August 2022 at 10:00 UTCC CUEH is proud to host the first internal Coventry University group CTF. If you are interested, please fill out the interest form, and to stay up-to-date with the latest information, please join our Coventry Galactic Discord (*Note* this is different from the normal ComSec Discord server).
 
 ![Coventry Galactic CTF Trailer](assets/trailer.gif)
 
 ## Frequently Asked Questions
 
 ### When is the event?
-The event will take place between Tuesday 9th August 2022 12:00 UTC until Monday 15th August 2022 12:00. On Monday 8th August we will provide introductory information as well as warm up challenges.
+The event will take place between Tuesday 9th August 2022 10:00 UTC until Monday 15th August 2022 12:00. On Monday 8th August we will provide introductory information as well as warm up challenges.
 
 ### Who can take part?
 To take part you must be a student or recent graduate from the Coventry University Group or associated partners. If you are unsure, contact the CTF organisers.
