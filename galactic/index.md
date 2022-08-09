@@ -115,7 +115,7 @@ We are glad you asked:
 
 <script id="rendered-js" >
 
-var countDate = new Date("2022/08/09 12:00:00 UTC");
+var countDate = new Date("2022/08/09 10:00:00 UTC");
 var x = setInterval(function() {
     var now = new Date().getTime();
     var distance = countDate - now;
