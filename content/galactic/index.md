@@ -1,6 +1,6 @@
 ---
 title: Coventry Galactic CTF
-description: "Starting on the 9th of August 2022 at 12:00 UTC CUEH is proud to host the first internal Coventry University group CTF. To make sure that you stay updated with the latest information, please join our Coventry Galactic Discord Server and fill out our interest form."
+description: "Starting on the 9th of August 2022 at 10:00 UTC CUEH is proud to host the first internal Coventry University group CTF. To make sure that you stay updated with the latest information, please join our Coventry Galactic Discord Server and fill out our interest form."
 images: ["assets/card.png"]
 
 ---
