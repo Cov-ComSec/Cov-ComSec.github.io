@@ -18,11 +18,6 @@ disableHugoGeneratorInject = true
     name = "About"
     url = "/about/"
     weight = 1
-  [[menu.main]]  
-    identifer = "galactic"
-    name = "Galactic CTF"
-    url = "/galactic/"
-    weight = 2
   [[menu.main]]
     identifier = "posts"
     name = "Posts"
