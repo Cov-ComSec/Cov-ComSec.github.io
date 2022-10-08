@@ -1,5 +1,6 @@
 ---
 title: ComSec Session Schedule 2022/23
+description: The Schedule for ComSec 2022/23
 ---
 
 Session Schedule is an estimation, and is subject to change.
