@@ -18,26 +18,31 @@ disableHugoGeneratorInject = true
     name = "About"
     url = "/about/"
     weight = 1
+  [[menu.main]]  
+    identifer = "galactic"
+    name = "Galactic CTF"
+    url = "/galactic/"
+    weight = 2
   [[menu.main]]
     identifier = "posts"
     name = "Posts"
     url = "/posts/"
     weight = 3
   [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 4
+  [[menu.main]]
     identifier = "categories"
     name = "Categories"
     url = "/categories/"
-    weight = 4
-#  [[menu.main]]
-#    identifier = "ctfd"
-#    name = "CTFd"
-#    url = "https://cueh-comsec.ctfd.io/"
-#    weight = 6
-  [[menu.main]]
-    identifier = "schedule"
-    name = "Schedule"
-    url = "/schedule/"
     weight = 5
+  [[menu.main]]
+    identifier = "ctfd"
+    name = "CTFd"
+    url = "https://cueh-comsec.ctfd.io/"
+    weight = 6
 [params]
   version = "0.2.X"
   description = "The official site of CUEH ComSec - Coventry University's Ethical Hacking Society. Meeting weekly, we plan to use this site to show the progress of the group."
