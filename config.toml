@@ -39,9 +39,9 @@ disableHugoGeneratorInject = true
     url = "/categories/"
     weight = 5
   [[menu.main]]
-    identifier = "ctfd"
-    name = "CTFd"
-    url = "https://cueh-comsec.ctfd.io/"
+    identifier = "schedule"
+    name = "Schedule"
+    url = "/schedule/"
     weight = 6
 [params]
   version = "0.2.X"
