@@ -35,26 +35,26 @@ an audio file titled 'rage.wav' is provided for you to download.
 
 ### Testing the waters
 
-After downloading and listenning to the audio it seemed like a mashup of random nonsense at first, with someone screaming "Rage" at the end. I could hear something was off
-in the background but I couldn't quite pinpoint what was wrong with it. After listenning to it a few more times I decided to open it in various
-audio editting software tools and play around with some settings. I started of with simple edits such as playing in reverse, at x0.5 speed, at x2.0 speed, and a few other settings, you get the idea. 
+After downloading and listening to the audio it seemed like a mashup of random nonsense at first, with someone screaming "Rage" at the end. I could hear something was off
+in the background, but I couldn't quite pinpoint what was wrong with it. After listening to it a few more times I decided to open it in various
+audio editing software tools and play around with some settings. I started of with simple edits such as playing in reverse, at x0.5 speed, at x2.0 speed, and a few other settings, you get the idea. 
 
 Aside from that, a quick google search led me to some ideas of how I could potentially extract a string from an audio file. Some of these ideas included
 some quick "win" CLI commands (exiftool, strings, etc) to extract strings from the file, analysing the Hexadecimal data for something that may be out of place (like a hidden comment), 
 and even using some python to extract metadata. All valid methods to attempt the challenge, however none of these methods bared any fruit in this case. 
 
 Finally, I came across a video on YouTube from a user named John Hammond in which he uses Sonic Visualiser to view and analyse contents of the audio file. In the video he generates
-a spectogram of the audio and finds the flag hidden in it, as apparently this is a common way in CTFs to hide a flag for these type of challenges, so I gave it a go.  
+a spectrogram of the audio and finds the flag hidden in it, as apparently this is a common way in CTFs to hide a flag for these type of challenges, so I gave it a go.  
 
 
 ### The solution
 
-Thankfully checking out the file in Sonic Visualiser resulted to be the correct decision, as I could see something in the spectogram, but I could not make out what it was. As opposed to the video, 
-the flag was not in clear text writting. I decided to play around with a lot of the settings, changing things like zoom, the colour scheme, dbs, freequencies and so many other things that I did not know
-what exactly they do, in hopes of seeing something that made sense within the spectogram.
+Thankfully checking out the file in Sonic Visualiser resulted to be the correct decision, as I could see something in the spectrogram, but I could not make out what it was. As opposed to the video, 
+the flag was not in clear text writing. I decided to play around with a lot of the settings, changing things like zoom, the colour scheme, dbs, frequencies and so many other things that I did not know
+what exactly they do, in hopes of seeing something that made sense within the spectrogram.
 
-After spending a while playing around with it, our teamate ThatGuySteve pointed out it sounded like morse code in the background. 
-Thanks to this it was much easier knowing what I had to look for, and stretching the spectogram out as well as changing the colour contrast finally revealed the morse code. 
+After spending a while playing around with it, our teammate ThatGuySteve pointed out it sounded like morse code in the background. 
+Thanks to this it was much easier knowing what I had to look for, and stretching the spectrogram out as well as changing the colour contrast finally revealed the morse code. 
 From there on it was simply a matter of manually typing the morse code into any online decoder to get the flag. 
 
 ![Solution](images/spectogram.jpg)
