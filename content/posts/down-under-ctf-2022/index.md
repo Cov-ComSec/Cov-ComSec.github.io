@@ -18,7 +18,50 @@ to see what a jeopardy style CTF looks like.
 
 ## Pre-kebab Competition 
 
-## Rage 
+## Rage! 
+
+Rage! was a challenge from the "Miscellaneous" category, a category in which challenges are completely random and unprecedented. Anything goes here and it is said
+that they tend to require a mixture of patience, knowledge and logic to solve.
+In the end Rage! was only worth 50 points as many teams solved it (420 solves, nice), but it proved to be a fun challenge to tackle no matter the skill level.  
+
+No prior knowledge is required to be able to follow this writeup. 
+
+### The Challenge
+
+The only hint the challenge gives is that you end up with a string, and that string is the flag needed to complete the challenge. Additionally, 
+an audio file titled 'rage.wav' is provided for you to download.
+
+![Challenge Card](images/RageChallenge.jpg)
+
+### Testing the waters
+
+After downloading and listenning to the audio it seemed like a mashup of random nonsense at first, with someone screaming "Rage" at the end. I could hear something was off
+in the background but I couldn't quite pinpoint what was wrong with it. After listenning to it a few more times I decided to open it in various
+audio editting software tools and play around with some settings. I started of with simple edits such as playing in reverse, at x0.5 speed, at x2.0 speed, and a few other settings, you get the idea. 
+
+Aside from that, a quick google search led me to some ideas of how I could potentially extract a string from an audio file. Some of these ideas included
+some quick "win" CLI commands (exiftool, strings, etc) to extract strings from the file, analysing the Hexadecimal data for something that may be out of place (like a hidden comment), 
+and even using some python to extract metadata. All valid methods to attempt the challenge, however none of these methods bared any fruit in this case. 
+
+Finally, I came across a video on YouTube from a user named John Hammond in which he uses Sonic Visualiser to view and analyse contents of the audio file. In the video he generates
+a spectogram of the audio and finds the flag hidden in it, as apparently this is a common way in CTFs to hide a flag for these type of challenges, so I gave it a go.  
+
+
+### The solution
+
+Thankfully checking out the file in Sonic Visualiser resulted to be the correct decision, as I could see something in the spectogram, but I could not make out what it was. As opposed to the video, 
+the flag was not in clear text writting. I decided to play around with a lot of the settings, changing things like zoom, the colour scheme, dbs, freequencies and so many other things that I did not know
+what exactly they do, in hopes of seeing something that made sense within the spectogram.
+
+After spending a while playing around with it, our teamate ThatGuySteve pointed out it sounded like morse code in the background. 
+Thanks to this it was much easier knowing what I had to look for, and stretching the spectogram out as well as changing the colour contrast finally revealed the morse code. 
+From there on it was simply a matter of manually typing the morse code into any online decoder to get the flag. 
+
+![Solution](images/spectogram.jpg)
+
+The output of the morse code translated to "RAGINGTOWEIRDLIBIDO" which resulted to be the correct flag. Job done! 
+
+![Solution2](images/Decoder.jpg)
 
 ## p0ison3d 
 
