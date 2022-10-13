@@ -7,52 +7,48 @@ played, we had quite a few new members playing this one so it was a great chance
 This article contains writeups of a range of difficulty and category, so this should be a good place for new members
 to see what a jeopardy style CTF looks like.
 
-## Treasure Hunt 
 
 ## Pre-kebab Competition 
 
-# Pre-Kebab Competition Writeup
 
-![](images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg)
+![Picture 1](images/ea002b34-ca4c-4e5f-80e5-3afed57138e5.jpg)
 
 I first began searching for the image using Google Lens the image below, is the result of that search:
 
-![](images/eef57e69-085a-475a-bc19-a62076f87d66.png)
+![Picture 2](images/eef57e69-085a-475a-bc19-a62076f87d66.png)
 
 As we can see, the results indicate that the building photographed is called "The Epping Club". However, the CTF asks us
 to find "**Where**" it was taken from. So, we need to do more digging.
 
 Once searching "The Epping Club" into google, we are then given the address of the location, which is shown below:
 
-![](images/4656039d-a033-4662-a4cd-a3525dc693e2.png)
+![Picture 3](images/4656039d-a033-4662-a4cd-a3525dc693e2.png)
 
 To further ensure that this is the correct location, we can see that the small billboard in the photograph appears to read "Rawson":
 
-![](images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png)
+![Picture 4](images/2e56cc16-1236-4c79-87fb-ecf7076d0bdb.png)
 
 So, we can be almost certain that it is the correct location. Now that we know the location of the building 
 photographed, we can move onto investigating **where** it was taken. To do this, we can use google maps to take a 
 look at the surrounding area to figure out a possible location.
 
-![](images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png)
+![Picture 5](images/cccaeb77-93c0-4f8d-a983-83196637a0d1.png)
 
 After further inspection of the image, we know it must have been taken at roof level. This due to the roof of the
 building being far more present in the image. Whilst in Google Maps (ground level), the roof is less apparent at the 
 same angle, which can be seen below:
 
-![](images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png)
+![Picture 6](images/5d6fb26f-0dca-4b08-a7da-e4fa7cfeb1d5.png)
 
 Knowing this, once we take a look behind us, we are met with a huge clue:
 
-![](images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png)
+![Picture 7](images/0a7914a3-c97a-456b-a3da-e5f1e3447e80.png)
 
 The two signs which appear on the roof of the "Epping Hotel" are also present in the original image
 
-![](images/22012a50-2705-45be-a692-7b9331f54406.png)
+![Picture 8](images/22012a50-2705-45be-a692-7b9331f54406.png)
 
-So we know the flag must be:
-
-**DUCTF{EppingHotel}**
+So we know the flag must be: **DUCTF{EppingHotel}**
 
 ## Rage! 
 
