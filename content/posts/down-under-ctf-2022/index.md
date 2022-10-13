@@ -14,6 +14,12 @@ played, we had quite a few new members playing this one so it was a great chance
 This article contains writeups of a range of difficulty and category, so this should be a good place for new members
 to see what a jeopardy style CTF looks like.
 
+# Table of contents
+
+- [OSINT: Pre-kebab Competition](#pre-kebab-competition)
+- [Misc: Rage!](#rage)
+- [Pwn: p0ison3d](#p0ison3d)
+
 
 ## Pre-kebab Competition 
 
