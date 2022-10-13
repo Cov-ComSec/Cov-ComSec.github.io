@@ -106,7 +106,7 @@ The output of the morse code translated to "RAGINGTOWEIRDLIBIDO" which resulted 
 This was a heap based pwn challenge that scored us 428 points. This writeup expects a basic understanding of binary exploitation, and the 
 some foundational knowledge of dynamic memory.
 
-![Challenge Card](images/p0ison3d.png)
+![Challenge Card](images/poision_challenge_card.jpg)
 
 ### The Challenge
 
