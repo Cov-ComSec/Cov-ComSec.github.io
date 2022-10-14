@@ -8,18 +8,14 @@ tags: ["downunderctf", "ctf", "writeup"]
 categories: ["Academic Year 2022-23"]
 ---
 
+
 DownUnder CTF was a 48 hour CTF that began on Friday 23rd September 2022. It was the first CTF of the year that ComSec
 played, we had quite a few new members playing this one so it was a great chance for them to practice their skills.
 
 This article contains writeups of a range of difficulty and category, so this should be a good place for new members
 to see what a jeopardy style CTF looks like.
 
-# Table of contents
-
-- [OSINT: Pre-kebab Competition](#pre-kebab-competition)
-- [Misc: Rage!](#rage)
-- [Pwn: p0ison3d](#p0ison3d)
-
+{{< toc >}}
 
 ## Pre-kebab Competition 
 
