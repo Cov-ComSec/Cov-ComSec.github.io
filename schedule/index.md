@@ -12,7 +12,7 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 3  | Server Side Template Injection                          | Ben R                    |
 | &check; | Week 4  | A Pentesters Guide to the Internet                      | Alex S                   |
 | &check; | Week 5  | External Entity Injection                               | Alex S, Hedvig M         |
-|         | Week 6  | Advanced SQL Injection Techniques                       | Hedvig M, Ben R          |
+| &check; | Week 6  | Advanced SQL Injection Techniques                       | Hedvig M, Ben R          |
 |         | Week 7  | Introduction to Docker for CTFs                         | Martin S, Mattia D       |
 |         | Week 8  | Serial Transmission Procotols                           | Tiago P, Martin S, Ben R |
 |         | Week 9  | Introduction to Pwn Adventure and Reverse Engineering   | Ben R                    |
