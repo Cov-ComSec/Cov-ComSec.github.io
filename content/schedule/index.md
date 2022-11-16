@@ -16,7 +16,7 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 5  | External Entity Injection                               | Alex S, Hedvig M         |
 | &check; | Week 6  | Advanced SQL Injection Techniques                       | Hedvig M, Ben R          |
 | &check; | Week 7  | Serial Transmission Procotols                           | Martin S, Mattia D       |
-|         | Week 8  | Introduction to Docker for CTFs                         | Tiago P, Martin S, Ben R |
+| &check; | Week 8  | Introduction to Docker for CTFs                         | Tiago P, Martin S, Ben R |
 |         | Week 9  | Introduction to Pwn Adventure and Reverse Engineering   | Ben R                    |
 |         | Week 10 | Binary Patching & Data Extraction to Hack Pwn Adventure | Ben R                    |
 |         | Week 11 | Writing a Network Proxy to Hack Pwn Adventure           | Martin S, Ben R          |
