@@ -18,6 +18,6 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 7  | Serial Transmission Procotols                           | Tiago P, Martin S, Ben R |
 | &check; | Week 8  | Introduction to Docker for CTFs                         | Martin S, Mattia D       |
 | &check; | Week 9  | Introduction to Pwn Adventure and Reverse Engineering   | Ben R                    |
-|         | Week 10 | Binary Patching & Data Extraction to Hack Pwn Adventure | Ben R                    |
+| &check; | Week 10 | Binary Patching & Data Extraction to Hack Pwn Adventure | Ben R                    |
 |         | Week 11 | Writing a Network Proxy to Hack Pwn Adventure           | Martin S, Ben R          |
 |         | Week 12 | Hacking all the Pwn Adventure things!                   |                          |
