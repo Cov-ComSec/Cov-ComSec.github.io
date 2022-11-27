@@ -129,7 +129,7 @@
 </span><span class=lnt>20
 </span><span class=lnt>21
 </span><span class=lnt>22
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=line><span class=cl><span class=nd>@db</span><span class=o>.</span><span class=n>connection_context</span><span class=p>()</span>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-py data-lang=py><span class=line><span class=cl><span class=nd>@db.connection_context</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>sell</span><span class=p>(</span><span class=n>token</span><span class=p>:</span> <span class=nb>str</span><span class=p>,</span> <span class=n>purchase_id</span><span class=p>:</span> <span class=nb>int</span><span class=p>)</span> <span class=o>-&gt;</span> <span class=p>(</span><span class=nb>bool</span><span class=p>,</span> <span class=nb>str</span><span class=p>):</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=n>purchase_history_objs</span> <span class=o>=</span> <span class=n>PurchaseLog</span><span class=o>.</span><span class=n>select</span><span class=p>()</span><span class=o>.</span><span class=n>where</span><span class=p>(</span><span class=n>PurchaseLog</span><span class=o>.</span><span class=n>id</span> <span class=o>==</span> <span class=n>purchase_id</span><span class=p>)</span>

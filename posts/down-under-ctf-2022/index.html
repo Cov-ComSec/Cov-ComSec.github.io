@@ -62,9 +62,9 @@ The integer is used to identify whether the note is allocated. Up to three notes
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=k>typedef</span> <span class=k>struct</span> <span class=n>note</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=kt>int</span>   <span class=n>allocated</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span><span class=p>;</span>
-</span></span><span class=line><span class=cl><span class=p>}</span> <span class=n>note_t</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> <span class=kt>note_t</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=n>note_t</span> <span class=n>storage</span><span class=p>[</span><span class=mi>3</span><span class=p>];</span>
+</span></span><span class=line><span class=cl><span class=kt>note_t</span> <span class=n>storage</span><span class=p>[</span><span class=mi>3</span><span class=p>];</span>
 </span></span></code></pre></td></tr></table></div></div><h4 id=add-note>Add Note</h4><p>The user can choose the index number for the note, the index is used as the position of the note in the storage array.
 The user cannot choose the size of chunk that is allocated, 128 bytes are requested, so a 144 byte chunk will be allocated.
 128 bytes of data can be written into the chunk, so there is no overflow.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -89,19 +89,19 @@ The user cannot choose the size of chunk that is allocated, 128 bytes are reques
 </span><span class=lnt>20
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>add_note</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>get_index</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=nf>get_index</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>index</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: bad index&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;error: bad index&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>allocated</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: index already allocated&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;error: index already allocated&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span> <span class=o>=</span> <span class=p>(</span><span class=kt>char</span><span class=o>*</span><span class=p>)</span><span class=n>malloc</span><span class=p>(</span><span class=mi>128</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>get_data</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=mi>128</span><span class=p>))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: unable to read input&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kt>char</span><span class=o>*</span> <span class=n>data</span> <span class=o>=</span> <span class=p>(</span><span class=kt>char</span><span class=o>*</span><span class=p>)</span><span class=nf>malloc</span><span class=p>(</span><span class=mi>128</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nf>get_data</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=mi>128</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;error: unable to read input&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>data</span> <span class=o>=</span> <span class=n>data</span><span class=p>;</span>
@@ -127,18 +127,18 @@ function reads up to 153 bytes of data into the chunk.</p><div class=highlight><
 </span><span class=lnt>17
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>edit_note</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=n>get_index</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=kt>int</span> <span class=n>index</span> <span class=o>=</span> <span class=nf>get_index</span><span class=p>();</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=n>index</span> <span class=o>&lt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: bad index&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;error: bad index&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>allocated</span><span class=p>)</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: index not allocated&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;error: index not allocated&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>get_data</span><span class=p>(</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>data</span><span class=p>,</span> <span class=mi>153</span><span class=p>))</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>        <span class=n>puts</span><span class=p>(</span><span class=s>&#34;error: unable to read input&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=nf>get_data</span><span class=p>(</span><span class=n>storage</span><span class=p>[</span><span class=n>index</span><span class=p>].</span><span class=n>data</span><span class=p>,</span> <span class=mi>153</span><span class=p>))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;error: unable to read input&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=k>return</span><span class=p>;</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
@@ -150,8 +150,8 @@ function reads up to 153 bytes of data into the chunk.</p><div class=highlight><
 </span><span class=lnt>5
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>quit</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>puts</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\n</span><span class=s>goodbye!&#34;</span><span class=p>);</span>
-</span></span><span class=line><span class=cl>    <span class=n>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>puts</span><span class=p>(</span><span class=s>&#34;</span><span class=se>\n</span><span class=s>goodbye!&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>);</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -159,7 +159,7 @@ function reads up to 153 bytes of data into the chunk.</p><div class=highlight><
 </span><span class=lnt>4
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-c data-lang=c><span class=line><span class=cl><span class=kt>void</span> <span class=nf>win</span><span class=p>()</span>
 </span></span><span class=line><span class=cl><span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=n>system</span><span class=p>(</span><span class=s>&#34;cat ./flag.txt&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=nf>system</span><span class=p>(</span><span class=s>&#34;cat ./flag.txt&#34;</span><span class=p>);</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>So, to recap.</p><ul><li>0x90 sized heap chunks can be allocated, edited, and freed.</li><li>Up to three chunks can be allocated at a time.</li><li>There is a heap overflow of 25 bytes when editing a chunk.</li></ul><h3 id=exploitation>Exploitation</h3><p>Since this is libc 2.27, the tcache will be used to fulfil all the malloc requests we make. This is useful, as in earlier
 versions of libc the tcache had few protections. This will let us craft an attack called a <strong>tcache dup</strong>.</p><p>The tcache dup is an attack that involved corrupting the heap metadata stored inside a freed chunk to create a <em>fake chunk</em>
