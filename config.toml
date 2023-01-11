@@ -2,14 +2,15 @@ baseURL = "https://cov-comsec.github.io/"
 defaultContentLanguage = "en"
 languageCode = "en"
 title = "CUEH ComSec"
-theme = "HackIt"
+#theme = "HackItTheme"
 enableGitInfo = true
 enableRobotsTXT = true
 disableHugoGeneratorInject = true
 
-#[module]
-#  [[module.imports]]
+[module]
+  [[module.imports]]
 #    path = "github.com/jackorcherton/HackIt"
+    path = "github.com/Cov-ComSec/HackIt"
 
 
 [menu]
