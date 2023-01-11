@@ -1,6 +1,3 @@
-[submodule "themes/HackIt"]
-	path = themes/HackIt
-	url = https://github.com/Cov-ComSec/HackIt.git
 [submodule "themes/HackItTheme"]
 	path = themes/HackItTheme
 	url = https://github.com/Cov-ComSec/HackIt
