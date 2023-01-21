@@ -23,9 +23,6 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 12 | Hacking all the Pwn Adventure things!                   |                          |
 
 
-
-# Semester 2
-
 ## Semester 2
 
 |     | Week    | Title                                          | Organiser                           |
