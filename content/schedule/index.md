@@ -30,8 +30,8 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 1  | Welcome back, Hackerspace                      | N/A                                 |
 | &check; | Week 2  | Christmas CTF Recap and Challenge Demos        | Martin S, Mattia D, Hedvig M, Ben R |
 | &check; | Week 3  | Attacking Python, Part 1                       | Alex S, Ben R                       |
-|         | Week 4  | Binary Fuzzing - Intro to AFL++                | Ben R                               |
-|         | Week 5  | Attacking Python, Part 2                       | Alex S                              |
+| &check; | Week 4  | Binary Fuzzing - Intro to AFL++                | Ben R                               |
+| &check; | Week 5  | Attacking Python, Part 2                       | Alex S                              |
 |         | Week 6  | Mid Term Hackerspace                           | N/A                                 |
 |         | Week 7  | Nettitude Talk & CTF                           | N/A                                 |
 |         | Week 8  | Trip to Bletchley Park                         | N/A                                 |
