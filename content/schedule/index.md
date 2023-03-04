@@ -32,8 +32,8 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 3  | Attacking Python, Part 1                       | Alex S, Ben R                       |
 | &check; | Week 4  | Binary Fuzzing - Intro to AFL++                | Ben R                               |
 | &check; | Week 5  | Attacking Python, Part 2                       | Alex S                              |
-|         | Week 6  | Mid Term Hackerspace                           | N/A                                 |
-|         | Week 7  | Nettitude Talk & CTF                           | N/A                                 |
+| &check; | Week 6  | Mid Term Hackerspace                           | N/A                                 |
+| &check; | Week 7  | Nettitude Talk & CTF                           | N/A                                 |
 |         | Week 8  | Trip to Bletchley Park                         | N/A                                 |
 |         | Week 9  | Introduction to Meltdown/Spectre Style Attacks | Mattia D                            |
 |         | Week 10 | TBC                                            |                                     |
