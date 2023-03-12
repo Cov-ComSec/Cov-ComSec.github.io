@@ -34,7 +34,7 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 5  | Attacking Python, Part 2                       | Alex S                              |
 | &check; | Week 6  | Mid Term Hackerspace                           | N/A                                 |
 | &check; | Week 7  | Nettitude Talk & CTF                           | N/A                                 |
-|         | Week 8  | Trip to Bletchley Park                         | N/A                                 |
+| &check; | Week 8  | Trip to Bletchley Park                         | N/A                                 |
 |         | Week 9  | Introduction to Meltdown/Spectre Style Attacks | Mattia D                            |
 |         | Week 10 | TBC                                            |                                     |
 |         | Week 11 | Trip to the Science Museum                     | N/A                                 |
