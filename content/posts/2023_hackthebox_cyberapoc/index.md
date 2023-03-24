@@ -17,10 +17,10 @@ contains some challenges
 
 ## rev: Alien Saboteur
 
+![Challenge Card](./images/alien/ss0.png)
+
 Solved by Ben R, this was rated a medium difficulty challenge, and his personal favourite challenge in the CTF. 2 files
 could be downloaded, and there was no remote element.
-
-![Challenge Card](./images/alien/ss0.png)
 
 Running the program, it seems to be a classic 'find the password' style challenge.
 
@@ -895,6 +895,8 @@ We got the flag!
 > HTB{5w1rl_4r0und_7h3_4l13n_l4ngu4g3}
 
 ## pwn: Control Room
+
+![Challenge Card](./images/control/ss4.png)
 
 Control room was a hard rated pwn challenge, solved by Ben R. Like most pwn challenges, we were given the target
 binary and the relevant LIBC, and a remote server to run the final exploit to grab the flag.
