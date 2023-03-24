@@ -1105,6 +1105,11 @@ Plan of attack seems... simples!
 5. Use the buffer overflow to do a ret2libc
 6. Profit
 
+{{< admonition type=note open=false >}}
+Turns out this wasn't actually the intended method. The player was supposed to use the UDA to leak LIBC, and then
+overwrite `atoi` with `system`, then just supply `sh` to input that gets passed to atoi. My way is more fun tho :D 
+{{< /admonition >}}
+
 
 ![Attempt 1 Exploit](./images/control/ss0.png)
 
