@@ -120,7 +120,7 @@ struct operations_table
 };
 ```
 
-### Reversing the VM Program - `bin`
+### Reversing the VM Program 
 
 It could be pointless to now go and reverse engineer all the operations, some of them may never be used. Looking at
 the `bin` file, we see the first three bytes are the file header, which don't get `memcpy`'d into the code segment,
@@ -942,6 +942,8 @@ Enter your new username: shark
 Option [1-5]:
 ```
 
+### Static Analysis
+
 The challenge binary had quite a few functions, compared to your standard pwn challenge, and a bunch of functions
 were irrelevant for my exploit, so I'll just list most of the functions.
 
@@ -961,8 +963,6 @@ a valid range and would log an error if not. I don't think there was anything ch
 - `configure_engine`: A person with the technician role can configure the engines, this is the juicy one that we will
 discuss more.
 
-
-### Configure Engine
 
 `configure_engine()` lets a technician select one of the 4 engines, and then supply values for `thrust` and `mix_ratio`.
 The values are stored in a global variable, in a variable I called `engines`.
@@ -1083,6 +1083,8 @@ GOT protection: Partial RELRO | GOT functions: 20
 [0x4050b0] exit@GLIBC_2.2.5 -> 0x401160 ◂— endbr64
 ```
 
+### Exploitation
+
 After quite a while looking the functions, what arguments are supplied, whether they're used in places that would
 break the program before I could exploit it. This was quite tricky, as the data out (`fgets`, `scanf` etc) functions 
 all have quite complex function arguments that couldn't be fulfilled in other functions, such as `fgets` needing a 
@@ -1094,7 +1096,6 @@ overflow in the `confirm` variable, which is 2 bytes long, with the `y` characte
 
 So `strcmp(&confirm, &y)` becomes `read_input(confirm, 79)`, which is a large buffer overflow. 
 
-## Exploitation
 
 Plan of attack seems... simples!
 
