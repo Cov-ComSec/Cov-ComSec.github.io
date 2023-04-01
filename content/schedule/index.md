@@ -25,18 +25,16 @@ Session Schedule is an estimation, and is subject to change.
 
 ## Semester 2
 
-|     | Week    | Title                                          | Organiser                           |
-|-----|---------|------------------------------------------------|-------------------------------------|
-|     | Week 1  | Welcome back, Hackerspace                      | N/A                                 |
-|     | Week 2  | Christmas CTF Recap and Challenge Demos        | Martin S, Mattia D, Hedvig M, Ben R |
-|     | Week 3  | Attacking Python, Part 1                       | Alex S, Ben R                       |
-|     | Week 4  | Attacking Python, Part 2                       | Alex S, Ben R                       |
-|     | Week 5  | TBC                                            |                                     |
-|     | Week 6  | Mid Term Hackerspace                           | N/A                                 |
-|     | Week 7  | Nettitude Talk & CTF                           | N/A                                 |
-|     | Week 8  | Trip to Bletchley Park                         | N/A                                 |
-|     | Week 9  | Introduction to Meltdown/Spectre Style Attacks | Mattia D                            |
-|     | Week 10 | TBC                                            |                                     |
-|     | Week 11 | Trip to the Science Museum                     | N/A                                 |
-|     | Week 12 | End of year, Hackerspace                       | N/A                                 |
-|     | Week 13 | End of year, Hackerspace                       | N/A                                 |
+|         | Week    | Title                                          | Organiser                           |
+|---------|---------|------------------------------------------------|-------------------------------------|
+| &check; | Week 1  | Welcome back, Hackerspace                      | N/A                                 |
+| &check; | Week 2  | Christmas CTF Recap and Challenge Demos        | Martin S, Mattia D, Hedvig M, Ben R |
+| &check; | Week 3  | Attacking Python, Part 1                       | Alex S, Ben R                       |
+| &check; | Week 4  | Binary Fuzzing - Intro to AFL++                | Ben R                               |
+| &check; | Week 5  | Attacking Python, Part 2                       | Alex S                              |
+| &check; | Week 6  | Mid Term,Hackerspace                           | N/A                                 |
+| &check; | Week 7  | Nettitude Talk & CTF                           | N/A                                 |
+| &check; | Week 8  | Trip to Bletchley Park                         | N/A                                 |
+| &check; | Week 9  | Introduction to Meltdown/Spectre Style Attacks | Mattia D                            |
+| &check; | Week 10 | HackTheBox Cyber Apocalypse                    | N/A                                 |
+|         | Week 11 | End of year, Hackerspace                       | N/A                                 |

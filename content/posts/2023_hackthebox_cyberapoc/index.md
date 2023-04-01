@@ -964,6 +964,8 @@ a valid range and would log an error if not. I don't think there was anything ch
 discuss more.
 
 
+## Configure Engine
+
 `configure_engine()` lets a technician select one of the 4 engines, and then supply values for `thrust` and `mix_ratio`.
 The values are stored in a global variable, in a variable I called `engines`.
 
@@ -1083,7 +1085,7 @@ GOT protection: Partial RELRO | GOT functions: 20
 [0x4050b0] exit@GLIBC_2.2.5 -> 0x401160 ◂— endbr64
 ```
 
-### Exploitation
+## Exploitation
 
 After quite a while looking the functions, what arguments are supplied, whether they're used in places that would
 break the program before I could exploit it. This was quite tricky, as the data out (`fgets`, `scanf` etc) functions 
@@ -1095,7 +1097,6 @@ overflow in the `confirm` variable, which is 2 bytes long, with the `y` characte
 79, neat right!
 
 So `strcmp(&confirm, &y)` becomes `read_input(confirm, 79)`, which is a large buffer overflow. 
-
 
 Plan of attack seems... simples!
 
