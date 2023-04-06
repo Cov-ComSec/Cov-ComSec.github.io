@@ -37,4 +37,4 @@ Session Schedule is an estimation, and is subject to change.
 | &check; | Week 8  | Trip to Bletchley Park                         | N/A                                 |
 | &check; | Week 9  | Introduction to Meltdown/Spectre Style Attacks | Mattia D                            |
 | &check; | Week 10 | HackTheBox Cyber Apocalypse                    | N/A                                 |
-|         | Week 11 | End of year, Hackerspace                       | N/A                                 |
+| &check; | Week 11 | End of year, Hackerspace                       | N/A                                 |
