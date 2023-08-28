@@ -373,34 +373,34 @@ is incremented by 6, hints that <strong>all</strong> instructions in this custom
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>interpret_instruction</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=k>global</span> <span class=n>file_data</span><span class=p>,</span> <span class=n>instruction_counter</span>
 </span></span><span class=line><span class=cl>    <span class=n>opcode</span> <span class=o>=</span> <span class=n>file_data</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
-</span></span><span class=line><span class=cl>    <span class=n>match</span> <span class=n>opcode</span><span class=p>:</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mi>5</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>match</span> <span class=n>opcode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mi>5</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_multi</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x1</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_add</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x10</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x10</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_putc</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x11</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x11</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_je</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x13</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x13</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_jle</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x9</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x9</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_inv</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xa</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xa</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_push</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xc</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xc</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_mov</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xe</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xe</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_exit</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x15</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x15</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_xor</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x16</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x16</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_store</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x17</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x17</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_load</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x18</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x18</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_input</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=n>_</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=n>_</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;NOT IMPLEMENTED&#34;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>            <span class=n>exit</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>
@@ -1122,38 +1122,38 @@ and also add functionality for the user to specify a file to disassemble.</p><di
 </span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>interpret_instruction</span><span class=p>():</span>
 </span></span><span class=line><span class=cl>    <span class=k>global</span> <span class=n>file_data</span><span class=p>,</span> <span class=n>instruction_counter</span>
 </span></span><span class=line><span class=cl>    <span class=n>opcode</span> <span class=o>=</span> <span class=n>file_data</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
-</span></span><span class=line><span class=cl>    <span class=n>match</span> <span class=n>opcode</span><span class=p>:</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=k>match</span> <span class=n>opcode</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mi>0</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_add</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mi>5</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mi>5</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_multi</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x1</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_add</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xb</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xb</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_pop</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x10</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x10</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_putc</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x11</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x11</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_je</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x13</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x13</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_jle</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x9</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x9</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_inv</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xa</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xa</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_push</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xc</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xc</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_mov</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0xe</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0xe</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_exit</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x15</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x15</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_xor</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x16</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x16</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_store</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x17</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x17</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_load</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=mh>0x18</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=mh>0x18</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=n>interpret_input</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>        <span class=n>case</span> <span class=n>_</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>case</span> <span class=n>_</span><span class=p>:</span>
 </span></span><span class=line><span class=cl>            <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;NOT IMPLEMENTED&#34;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>            <span class=n>exit</span><span class=p>()</span>
 </span></span><span class=line><span class=cl>
