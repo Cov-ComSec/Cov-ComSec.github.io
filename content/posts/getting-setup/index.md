@@ -1,6 +1,6 @@
 ---
 title: "Getting setup for ComSec"
-date: 2023-03-23T12:40:28+01:00
+date: 2023-08-30T12:40:28+01:00
 draft: false
 author: "ComSec"
 description: "A brief guide on getting a Virtual Environment created for ComSec sessions"
