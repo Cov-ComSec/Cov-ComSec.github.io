@@ -14,16 +14,16 @@ we ranked 6th in the UK.
 
 ![ComSec at RuCTFe 2019](comsec.png)
 
-We plan to resume ComSec fully again in September 2023. In the meantime, we are always active on our Discord channel, invite links available to Coventry University students.
+We plan to resume ComSec fully again in September 2025. In the meantime, we are always active on our Discord channel, invite links available to Coventry University students.
 
 ## Committee
 
 As a society we are fairly open and will allow anyone to run sessions. One of the advantages of not being an official society is no requirement for formal society roles. However, to ensure that the club runs smoothly, ComSec is currently led by the following people:
 
-- Hedvig M
-- Agnes Suszter
-- Alex S
-- Owen Ball
+- Iseefa
+- Steve
+- Luca
+- Ehsan
 
 
 ## Want to Join?
