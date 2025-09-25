@@ -1,3 +1,6 @@
-[submodule "themes/HackItTheme"]
+ [submodule "themes/HackItTheme"]
+        path = themes/HackItTheme
+        url = https://github.com/jackorcherton/HackIt
+[submodule "themes/HackIt"]
 	path = themes/HackItTheme
 	url = https://github.com/jackorcherton/HackIt
